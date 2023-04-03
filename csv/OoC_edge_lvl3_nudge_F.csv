@@ -1,0 +1,82 @@
+organ,x,y
+,0,0
+adipose,0,-1
+cardiovascular,0,0
+dermal,0,0
+endocrine,0,1.5
+gastrointestinal,0,0
+"hepatic, pancreatic, biliary",0,0
+lymphatic,0,-0.5
+mammary,2,-0.5
+multiple organs,0,0
+musculoskeletal,0,-0.2
+nasal,0,0
+neural,0,0.5
+ocular,0,0.3
+oral,0.5,0
+otic,-1.5,0
+reproductive,0,1.5
+respiratory,0,-1
+urinary,0,0
+airway,0,0
+barriers,0,0.5
+biliary,0,0
+brain,0,0
+choroid,0,0.5
+cochlea,0,0.5
+cornea,-1,0
+epidermis,-3,0
+female reproductive,3.5,0
+hair follicle,-3,0
+heart,0,0
+intestine,-2,1.5
+joint,0,0
+kidney,0,1
+liver,0,0
+lung,0,-1
+lymphatic vessel,-3.5,-0.5
+lymphoid,0,1
+male reproductive,3,0
+mucociliary,0,0
+muscle,0,0
+nerve,0,0
+omentum,-1,-0.5
+osteochondral,-1,0
+pancreas,0,0
+retina,0,0
+spine,0,-1
+stomach,0,0
+tendon,2.3,0
+thyroid,1.5,0
+tongue,-2,0.5
+tooth,0,0.5
+unspecified adipose,0,-1
+unspecified cardiovascular,0,0
+unspecified dermal,0,1
+unspecified endocrine,0.5,0
+unspecified gastrointestinal,0,0
+"unspecified hepatic, pancreatic, biliary",0,0
+unspecified lymphatic,0,0.5
+unspecified mammary,0,0.5
+unspecified musculoskeletal,0,-0.2
+unspecified neural,0,0
+unspecified ocular,0,-0.5
+unspecified oral,0,0
+unspecified otic,0,-0.5
+unspecified reproductive,0,0.5
+unspecified respiratory,0,0
+unspecified urinary,0,0
+vascular,0,0
+white adipose tissue,-5,0
+blood-brain barrier,0,-0.5
+forebrain,0,0
+glymphatic,0,0.5
+large intestine,-1,-0.5
+neuromuscular,0,0
+neurovascular,0,0
+small intestine,1,0.5
+spinal cord,3,0
+unspecified brain,0,0.5
+unspecified intestine,0,-1
+unspecified nerve,0,0
+unspecified spine,-0.5,0

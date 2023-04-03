@@ -1,0 +1,19 @@
+"Search query: ((((tumor[Text Word] OR cancer[Text Word]) AND (""english""[Language])) AND ((""2011/01/01""[Date - Publication] : ""3000""[Date - Publication]))) AND (""journal article""[Publication Type])) NOT (""retracted publication""[Publication Type] OR ""retraction of publication""[Publication Type] OR ""review""[Publication Type] OR ""comment""[Publication Type])"
+Year,Count
+2023,2
+2022,62677
+2021,170621
+2020,161525
+2019,146758
+2018,137724
+2017,130701
+2016,125005
+2015,123390
+2014,116495
+2013,110420
+2012,103667
+2011,93351
+2010,13183
+2009,360
+2008,20
+2006,7

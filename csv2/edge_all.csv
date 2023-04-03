@@ -1,0 +1,233 @@
+from,to,major_organ,tumor_organ
+body,neural,neural,brain/nerve
+body,otic,otic,other
+body,ocular,ocular,other
+body,nasal,nasal,other
+body,oral,oral,oral
+body,lymphatic,lymphatic,lymphatic
+body,endocrine,endocrine,other
+body,mammary,mammary,mammary
+body,cardiovascular,cardiovascular,other
+body,respiratory,respiratory,other
+body,gastrointestinal,gastrointestinal,other
+body,"hepatic, pancreatic, biliary","hepatic, pancreatic, biliary",other
+body,reproductive,reproductive,other
+body,urinary,urinary,other
+body,dermal,dermal,dermal
+body,musculoskeletal,musculoskeletal,other
+body,adipose,adipose,other
+body,multiple organs,multiple organs,other
+body,prenatal,NA,NA
+body,unidentified,unidentified,other
+body,venom gland,venom gland,NA
+neural,brain,neural,brain/nerve
+neural,barriers,neural,brain/nerve
+neural,neuroimmune,neural,brain/nerve
+neural,nerve,neural,brain/nerve
+neural,spine,neural,other
+neural,unspecified neural,neural,brain/nerve
+brain,forebrain,neural,brain/nerve
+brain,brainstem,neural,brain/nerve
+brain,unspecified brain,neural,brain/nerve
+forebrain,cerebrum,neural,brain/nerve
+forebrain,diencephalon,neural,brain/nerve
+cerebrum,cortex,neural,brain/nerve
+cerebrum,hippocampus,neural,brain/nerve
+cerebrum,basal ganglion,neural,brain/nerve
+cortex,corticostriatal network,neural,brain/nerve
+basal ganglion,striatum,neural,other
+diencephalon,thalamus,neural,brain/nerve
+diencephalon,hypothalamus,neural,brain/nerve
+diencephalon,pituitary,neural,brain/nerve
+brainstem,midbrain,neural,brain/nerve
+brainstem,hindbrain,neural,brain/nerve
+hindbrain,cerebellum,neural,brain/nerve
+barriers,blood-brain barrier,neural,brain/nerve
+barriers,choroid plexus,neural,brain/nerve
+barriers,glymphatic,neural,other
+glymphatic,gliovascular unit,neural,other
+nerve,ganglion,neural,brain/nerve
+nerve,neurovascular,neural,brain/nerve
+nerve,neuromuscular,neural,brain/nerve
+nerve,unspecified nerve,neural,brain/nerve
+ganglion,dorsal root ganglion,neural,brain/nerve
+neurovascular,neurovascular unit,neural,brain/nerve
+neuromuscular,neuromuscular junction,neural,brain/nerve
+spine,spinal cord,neural,other
+spine,unspecified spine,neural,other
+otic,cochlea,otic,other
+otic,umbo,otic,other
+otic,unspecified otic,otic,other
+ocular,optic vesicle,ocular,brain/nerve
+ocular,optic cup,ocular,other
+ocular,retina,ocular,other
+ocular,lacrimal gland,ocular,other
+ocular,meibomian gland,ocular,other
+ocular,cornea,ocular,other
+ocular,choroid,ocular,other
+ocular,unspecified ocular,ocular,other
+retina,blood-retinal barrier,ocular,other
+cornea,corneal limbus,ocular,other
+cornea,corneal barrier,ocular,other
+oral,tooth,oral,oral
+oral,tongue,oral,oral
+oral,salivary gland,oral,oral
+oral,unspecified oral,oral,oral
+tooth,dental follicle,oral,oral
+tooth,dental papilla,oral,oral
+tooth,enamel organ,oral,oral
+tooth,periodontium,oral,oral
+tooth,dental pulp,oral,oral
+tongue,taste bud,oral,oral
+tongue,circumvallate papilla,oral,oral
+salivary gland,parotid gland,oral,oral
+salivary gland,submandibular gland,oral,oral
+lymphatic,lymphoid,lymphatic,lymphatic
+lymphatic,lymphatic vessel,lymphatic,lymphatic
+lymphatic,unspecified lymphatic,lymphatic,lymphatic
+lymphoid,primary lymphoid,lymphatic,lymphatic
+lymphoid,secondary lymphoid,lymphatic,lymphatic
+primary lymphoid,thymus,lymphatic,lymphatic
+primary lymphoid,bone marrow,lymphatic,lymphatic
+secondary lymphoid,spleen,lymphatic,lymphatic
+secondary lymphoid,germinal center,lymphatic,lymphatic
+secondary lymphoid,tonsil,lymphatic,lymphatic
+secondary lymphoid,lymph node,lymphatic,lymphatic
+lymph node,sinus,lymphatic,lymphatic
+endocrine,adrenal,endocrine,other
+endocrine,neuroendocrine,endocrine,other
+endocrine,thyroid,endocrine,thyroid
+endocrine,unspecified endocrine,endocrine,other
+thyroid,parathyroid,endocrine,thyroid
+thyroid,thyroid gland,endocrine,thyroid
+mammary,mammary gland,mammary,mammary
+mammary,breast duct,mammary,mammary
+mammary,unspecified mammary,mammary,mammary
+cardiovascular,heart,cardiovascular,other
+cardiovascular,vascular,cardiovascular,vascular
+cardiovascular,unspecified cardiovascular,cardiovascular,other
+heart,myocardium,cardiovascular,other
+heart,valve,cardiovascular,other
+vascular,blood,cardiovascular,vascular
+vascular,blood vessel,cardiovascular,vascular
+blood vessel,artery,cardiovascular,vascular
+blood vessel,microvascular,cardiovascular,vascular
+blood vessel,perivascular niche,cardiovascular,vascular
+artery,aorta,cardiovascular,vascular
+respiratory,mucociliary,respiratory,other
+respiratory,airway,respiratory,other
+respiratory,lung,respiratory,lung
+respiratory,pleura,respiratory,other
+respiratory,unspecified respiratory,respiratory,other
+airway,trachea,respiratory,lung
+trachea,tracheosphere,respiratory,other
+lung,alveolus,respiratory,lung
+lung,bronchus,respiratory,lung
+lung,bronchiole,respiratory,lung
+gastrointestinal,esophagus,gastrointestinal,esophagus
+gastrointestinal,gastroesophageal junction,gastrointestinal,other
+gastrointestinal,stomach,gastrointestinal,stomach
+gastrointestinal,intestine,gastrointestinal,other
+gastrointestinal,unspecified gastrointestinal,gastrointestinal,other
+stomach,gastric antrum,gastrointestinal,stomach
+stomach,gastric fundus,gastrointestinal,stomach
+stomach,gastric corpus,gastrointestinal,stomach
+stomach,abomasum,gastrointestinal,other
+gastric corpus,gastric gland,gastrointestinal,stomach
+intestine,small intestine,gastrointestinal,other
+intestine,large intestine,gastrointestinal,large intestine
+intestine,unspecified intestine,gastrointestinal,other
+small intestine,duodenum,gastrointestinal,other
+small intestine,ileum,gastrointestinal,other
+small intestine,jejunum,gastrointestinal,other
+large intestine,caecum,gastrointestinal,large intestine
+large intestine,colon,gastrointestinal,large intestine
+large intestine,rectum,gastrointestinal,large intestine
+"hepatic, pancreatic, biliary",pancreas,"hepatic, pancreatic, biliary",pancreas
+"hepatic, pancreatic, biliary",liver,"hepatic, pancreatic, biliary",liver
+"hepatic, pancreatic, biliary",biliary,"hepatic, pancreatic, biliary",other
+"hepatic, pancreatic, biliary","unspecified hepatic, pancreatic, biliary","hepatic, pancreatic, biliary",other
+pancreas,pancreatic duct,"hepatic, pancreatic, biliary",pancreas
+pancreas,islet,"hepatic, pancreatic, biliary",pancreas
+liver,lobule,"hepatic, pancreatic, biliary",liver
+lobule,sinusoid,"hepatic, pancreatic, biliary",liver
+biliary,bile duct,"hepatic, pancreatic, biliary",other
+biliary,gallbladder,"hepatic, pancreatic, biliary",other
+bile duct,intrahepatic bile duct,"hepatic, pancreatic, biliary",other
+bile duct,extrahepatic bile duct,"hepatic, pancreatic, biliary",other
+reproductive,female reproductive,reproductive,other
+reproductive,male reproductive,reproductive,other
+reproductive,unspecified reproductive,reproductive,other
+female reproductive,ovary,reproductive,ovary
+female reproductive,oviduct,reproductive,other
+female reproductive,uterus,reproductive,corpus uteri
+female reproductive,cervix,reproductive,cervix uteri
+female reproductive,vagina,reproductive,other
+uterus,endometrium,reproductive,corpus uteri
+endometrium,endometrial gland,reproductive,corpus uteri
+endometrium,decidua,reproductive,corpus uteri
+male reproductive,testes,reproductive,other
+male reproductive,epididymis,reproductive,other
+male reproductive,prostate,reproductive,prostate
+urinary,kidney,urinary,kidney
+urinary,bladder,urinary,bladder
+urinary,urethra,urinary,other
+urinary,unspecified urinary,urinary,other
+kidney,nephron,urinary,kidney
+nephron,renal tubule,urinary,kidney
+nephron,glomerulus,urinary,kidney
+renal tubule,collecting duct,urinary,kidney
+renal tubule,proximal tubule,urinary,kidney
+renal tubule,distal tubule,urinary,kidney
+dermal,hair follicle,dermal,dermal
+dermal,sweat gland,dermal,dermal
+dermal,epidermis,dermal,dermal
+dermal,unspecified dermal,dermal,dermal
+hair follicle,dermal papilla,dermal,dermal
+hair follicle,sebaceous gland,dermal,dermal
+musculoskeletal,osteochondral,musculoskeletal,other
+musculoskeletal,joint,musculoskeletal,other
+musculoskeletal,muscle,musculoskeletal,other
+musculoskeletal,tendon,musculoskeletal,other
+musculoskeletal,unspecified musculoskeletal,musculoskeletal,other
+osteochondral,bone,musculoskeletal,other
+osteochondral,cartilage,musculoskeletal,other
+joint,synovial joint,musculoskeletal,other
+joint,anterior cruciate ligament,musculoskeletal,other
+synovial joint,synovium,musculoskeletal,other
+adipose,white adipose tissue,adipose,other
+adipose,omentum,adipose,other
+adipose,unspecified adipose,adipose,other
+prenatal,embryonic,NA,NA
+prenatal,fetal,NA,NA
+prenatal,unspecified prenatal,NA,NA
+embryonic,blastoid and gastruloid,NA,NA
+embryonic,blastocyst,NA,NA
+embryonic,post-implantation,NA,NA
+embryonic,multiple embryonic,NA,NA
+embryonic,unspecified embryonic,NA,NA
+blastoid and gastruloid,blastoid,NA,NA
+blastoid and gastruloid,gastruloid,NA,NA
+blastocyst,blastocyst embryonic,NA,NA
+blastocyst,blastocyst extraembryonic,NA,NA
+blastocyst embryonic,inner cell mass,NA,NA
+inner cell mass,epiblast,NA,NA
+inner cell mass,hypoblast,NA,NA
+blastocyst extraembryonic,trophoblast,NA,NA
+trophoblast,cytotrophoblast,NA,NA
+post-implantation,post-implantation embryonic,NA,NA
+post-implantation,post-implantation extraembryonic,NA,NA
+post-implantation embryonic,neuroectoderm,NA,NA
+post-implantation embryonic,paraxial mesoderm,NA,NA
+post-implantation embryonic,precardiac,NA,NA
+post-implantation embryonic,foregut,NA,NA
+post-implantation embryonic,midgut,NA,NA
+post-implantation embryonic,ureteric bud,NA,NA
+post-implantation embryonic,aorta gonad mesonephros,NA,NA
+neuroectoderm,neural tube,NA,NA
+neural tube,medial ganglionic eminence,NA,NA
+aorta gonad mesonephros,mesonephros,NA,NA
+post-implantation extraembryonic,placenta,NA,NA
+placenta,placental barrier,NA,NA
+placenta,fetal membrane,NA,NA
+fetal membrane,amnion,NA,NA

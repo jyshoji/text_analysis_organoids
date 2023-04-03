@@ -1,0 +1,95 @@
+organ,x,y
+,0,0
+adipose,0,2.5
+cardiovascular,0,0
+dermal,2,0
+endocrine,-8,0
+gastrointestinal,0,0
+"hepatic, pancreatic, biliary",-4,0
+lymphatic,0,3
+mammary,0,6
+multiple organs,6,1
+musculoskeletal,-16,-4
+nasal,2,0
+neural,0,-1
+ocular,0,1
+oral,0.5,0
+otic,-1,-1
+reproductive,0,-0.5
+respiratory,0,-1
+urinary,0,0
+venom gland,0,2
+adrenal,4.5,0.5
+airway,0,0
+barriers,-8,3
+biliary,0,0
+bladder,2,0
+brain,0,0
+breast duct,0,1.5
+cochlea,-2,0.5
+cornea,3,-1
+epidermis,3.5,1
+esophagus,0,0
+female reproductive,-3,0
+hair follicle,-4.5,0.5
+heart,0,0
+intestine,0,0
+joint,0,-1
+kidney,0,-1
+lacrimal gland,8,-0.5
+liver,0,0
+lung,0,0
+lymphatic vessel,9,0.5
+lymphoid,0,0
+male reproductive,3,-1
+mammary gland,0,-1
+mucociliary,5,-1
+muscle,-3,0
+nerve,0,2
+neuroendocrine,6,-0.5
+neuroimmune,3,1.5
+optic cup,5,0.5
+osteochondral,6,0
+pancreas,0,0
+retina,0,-1
+salivary gland,0,-1.5
+spine,4,0
+stomach,0,0
+sweat gland,-6,0
+tendon,-4,0.2
+thyroid,3,0
+tongue,-2,0.5
+tooth,-1.5,0
+umbo,0,1.5
+unspecified adipose,1,0
+unspecified cardiovascular,0,0
+unspecified dermal,0,-0.5
+unspecified gastrointestinal,0,0
+"unspecified hepatic, pancreatic, biliary",0,0
+unspecified lymphatic,1,-1
+unspecified mammary,-2,0
+unspecified musculoskeletal,0,1
+unspecified neural,0,0
+unspecified ocular,0,0.5
+unspecified oral,0,0
+unspecified otic,2,-1
+unspecified reproductive,0,1
+unspecified respiratory,-1,1
+unspecified urinary,-1,1
+urethra,2,-1
+vascular,0,0
+white adipose tissue,-11,0
+blood-brain barrier,-10,-0.5
+brainstem,0,0
+choroid plexus,-8,0
+forebrain,0,0
+ganglion,5,0.2
+large intestine,0,0
+neuromuscular,8,0.3
+neurovascular,8,0.4
+small intestine,0,0
+spinal cord,-6.5,-0.5
+unspecified brain,0,0
+unspecified intestine,0,0
+unspecified nerve,-0.5,-0.5
+unspecified spine,-2,0
