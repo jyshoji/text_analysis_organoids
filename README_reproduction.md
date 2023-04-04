@@ -18,18 +18,23 @@ In addition, guides are provided on how we manually adjusted the data (see the "
 
 # Reproduction
 
-We consider three potential approaches for reproducing the analysis.
+We consider four potential approaches for reproducing the analysis.
 
 1. Partial reproduction using the open-access subset of the academic publications.
 
 - We publish metadata of academic publications under the Creative Commons Attribute licencing, which encompasses about one-third of publications that we used for the analysis. The metadata can be used to run the code with minimal modifications. The metadata is stored as the zip file *./raw_data3.zip*.
 - See the next section **Easy-start guide** for details.
 
-2. Full reproduction of both categorization and visualization of all the academic publications, using our corpus
+2. Partial reproduction of visualization part of the analysis.
+
+- You may use the files of categorization results (files in the *./R_results/* folder) and R script files for visualization (files in *./R/* folder with filenames starting with *fig_*).
+- See the next section **Easy-start guide** for details, and rund the code in the *fig_* R script files.
+
+3. Full reproduction of both categorization and visualization of all the academic publications, using our corpus
 
 - Please contact the lead contact, Stefan Krauss (s.j.k.krauss@medisin.uio.no), and we will provide you with our corpus.
 
-3. Full reproduction of both categorization and visualization of all the academic publications, without using our corpus
+4. Full reproduction of both categorization and visualization of all the academic publications, without using our corpus
 
 - This approach requires readers to obtain publication metadata from EMBASE, PubMed, Scopus, Web of Science and/or bioRxiv.
 - It can be time-consuming, and may take a day or two just to collect the required metadata.
