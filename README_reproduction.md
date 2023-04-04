@@ -68,12 +68,19 @@ In order to run the analysis, you will need to; (1) make a root folder of the an
 - If you use RStudio, go to "tools" in the menu bar, choose "install packages". Write down a name of a package in the "packages" box.
 - You will need "ggpp", "ggraph", "igraph", "revtools", "rworldmap", "tidytext", and "tidyverse".
 - Alternatively, you can run the following lines on RStudio to install these packages.
+
 install.packages("ggpp")
+
 install.packages("ggraph")
+
 install.packages("igraph")
+
 install.packages("revtools")
+
 install.packages("rworldmap")
+
 install.packages("tidytext")
+
 install.packages("tidyverse")
 
 4. Setting file paths in each R script file.
