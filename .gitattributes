@@ -1,7 +1,0 @@
-raw_data2/*.zip filter=lfs diff=lfs merge=lfs -text
-R_results/cell_types_F filter=lfs diff=lfs merge=lfs -text
-R_results/countries_F filter=lfs diff=lfs merge=lfs -text
-R_results/organ_types filter=lfs diff=lfs merge=lfs -text
-R_results/organisms_F filter=lfs diff=lfs merge=lfs -text
-R_results/purpose_F filter=lfs diff=lfs merge=lfs -text
-R_results/all_summary filter=lfs diff=lfs merge=lfs -text
