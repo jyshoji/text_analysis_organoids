@@ -296,11 +296,11 @@ fn_country_pies <- function(x, corpus_type, article_type = "Research article") {
       panel.grid.major = element_blank(), 
       panel.grid.minor = element_blank(), 
       legend.background = element_rect(fill = "transparent"), 
-      legend.title = element_text(size = 8, face = 2), 
-      legend.text = element_text(size = 8), 
-      strip.text.x = element_text(size = 7, face = "bold"), 
+      legend.title = element_text(size = 7, face = 2), 
+      legend.text = element_text(size = 7), 
+      strip.text.x = element_text(size = 7, face = 2), 
       strip.background = element_rect(fill = "transparent"), 
-      legend.key.size = unit(5, "mm")
+      legend.key.size = unit(4, "mm")
     )
 }
 
@@ -309,8 +309,8 @@ fig_organoid_organ7_country20 <- fn_country_pies(adjusted_trends, corpus_type = 
   scale_fill_manual(values = c("orange", "red", "blue", "green", "magenta", "purple", "pink", "grey75", "grey50"))
 
 ggsave(fig_organoid_organ7_country20, 
-       filename = paste0(root_path, "results/global_trends/pie_charts/fig_organoid_organ7_country20.png"),  
-       bg = "transparent", width = 210, height = 210, units = "mm")
+       filename = paste0(root_path, "results/global_trends/pie_charts/fig_organoid_organ7_country20.png"), 
+       dpi = 1200, bg = "transparent", width = 178, height = 178, units = "mm")
 
 ### For OoCs
 fig_OoC_organ7_country20 <- fn_country_pies(adjusted_trends, corpus_type = "OoC")  + 
@@ -318,7 +318,7 @@ fig_OoC_organ7_country20 <- fn_country_pies(adjusted_trends, corpus_type = "OoC"
 
 ggsave(fig_OoC_organ7_country20, 
        filename = paste0(root_path, "results/global_trends/pie_charts/fig_OoC_organ7_country20.png"),  
-       bg = "transparent", width = 210, height = 210, units = "mm")
+       dpi = 1200, bg = "transparent", width = 178, height = 178, units = "mm")
 
 
 
@@ -388,9 +388,10 @@ fn_country_map <- function(x, y, corpus_type, article_type = "Research article")
       axis.text = element_blank(), 
       axis.ticks = element_blank(), 
       panel.background = element_rect(fill = "transparent"), 
+      legend.background = element_rect(fill = "transparent"),
       legend.title = element_text(size = 7, face = 2, vjust = 2), 
       legend.text = element_text(size = 7), 
-      legend.key.size = unit(4, "mm")
+      legend.key.size = unit(3, "mm")
     ) + 
     coord_equal()
   
@@ -400,11 +401,11 @@ fn_country_map <- function(x, y, corpus_type, article_type = "Research article")
 ### Plotting countries' contributions to organoid research.
 organoid_world_sqrt <- fn_country_map(countries_pop, world_map, corpus_type = "organoid") +
   scale_fill_gradient(low = "grey70", high = "black", na.value = "grey90", guide = "colourbar", 
-                      limits = c(0, 5), breaks = c(0, 2, 4), labels = c(0, 4, 16)) 
+                      limits = c(0, sqrt(30)), breaks = c(0, 2, 4), labels = c(0, 4, 16)) 
 
 ggsave(organoid_world_sqrt, 
        filename = paste0(root_path, "results/global_trends/world_maps/organoid_world_sqrt.png"),  
-       bg = "transparent", width = 210, height = 100, units = "mm")
+       dpi = 1200, bg = "transparent", width = 178, height = 80, units = "mm")
 
 ### Plotting the same graph, without the legend.
 organoid_world_sqrt_NL <- organoid_world_sqrt + 
@@ -412,17 +413,17 @@ organoid_world_sqrt_NL <- organoid_world_sqrt +
 
 ggsave(organoid_world_sqrt_NL, 
        filename = paste0(root_path, "results/global_trends/world_maps/organoid_world_sqrt_NL.png"),  
-       bg = "transparent", width = 210, height = 100, units = "mm")
+       dpi = 1200, bg = "transparent", width = 178, height = 80, units = "mm")
 
 
 ### OoC research
 OoC_world_sqrt <- fn_country_map(countries_pop, world_map, corpus_type = "OoC") + 
   scale_fill_gradient(low = "grey70", high = "black", na.value = "grey90", guide = "colourbar", 
-                      limits = c(0, 2.7), breaks = c(0, 1, 2), labels = c(0, 1, 4))
+                      limits = c(0, sqrt(8)), breaks = c(0, 1, 2), labels = c(0, 1, 4))
 
 ggsave(OoC_world_sqrt, 
        filename = paste0(root_path, "results/global_trends/world_maps/OoC_world_sqrt.png"),  
-       bg = "transparent", width = 210, height = 100, units = "mm")
+       dpi = 1200, bg = "transparent", width = 178, height = 80, units = "mm")
 
 
 ### OoC research, without a legend.
@@ -431,4 +432,4 @@ OoC_world_sqrt_NL <- OoC_world_sqrt +
 
 ggsave(OoC_world_sqrt_NL, 
        filename = paste0(root_path, "results/global_trends/world_maps/OoC_world_sqrt_NL.png"),  
-       bg = "transparent", width = 210, height = 100, units = "mm")
+       dpi = 1200, bg = "transparent", width = 178, height = 80, units = "mm")

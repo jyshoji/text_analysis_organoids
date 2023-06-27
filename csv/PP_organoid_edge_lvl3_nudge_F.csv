@@ -1,77 +1,76 @@
 organ,x,y
 ,0,0
-cardiovascular,0,1.5
-dermal,0,0
-endocrine,0,1.5
-gastrointestinal,-2,-1
+cardiovascular,0,0
+dermal,-4,0
+endocrine,-5,0
+gastrointestinal,0,0
 "hepatic, pancreatic, biliary",0,0
 lymphatic,0,0.5
-mammary,0,0
+mammary,2,0
 multiple organs,0,0
-musculoskeletal,5,0
-nasal,-1.2,0
+musculoskeletal,7,1
+nasal,0,0
 neural,0,0
 ocular,0,0
-oral,0,0.5
-otic,1.7,-0.5
-reproductive,0,0
-respiratory,0,0
+oral,0,2
+otic,0,0
+reproductive,0,2
+respiratory,0,-2
 urinary,0,0
-adrenal,1.5,0
-airway,0,0
-barriers,0,0.4
+adrenal,-2,0
+airway,0,-0.5
+barriers,0,0.5
 biliary,0,0
-bladder,0,0
+bladder,0,0.5
 brain,0,0
-cochlea,0,0
-cornea,0,0
-esophagus,0,-0.4
+cochlea,-1.5,0.5
+cornea,0,-0.5
+epidermis,-2,-0.5
+esophagus,0,1
 female reproductive,0,0
-gastroesophageal junction,5.5,1
-hair follicle,0,-0.5
+gastroesophageal junction,-2,-1
+hair follicle,0,0.5
 heart,0,0
 intestine,0,0
-joint,0,-0.3
-kidney,0,0
+joint,0,0.5
+kidney,0,0.5
 liver,0,0
 lung,0,0
 lymphoid,0,-0.5
-male reproductive,-1,1
-mammary gland,0,0.5
-muscle,-1,0
-nerve,0,0.5
-neuroendocrine,0,0
-optic vesicle,0,0
-osteochondral,0,0.7
+male reproductive,0,0
+mammary gland,0,0
+muscle,1,0
+nerve,0,0
+neuroendocrine,4,0
+osteochondral,-2,0
 pancreas,0,0
-retina,0,-1
-salivary gland,-1,1
+retina,0,1
+salivary gland,2,0
 spine,0,0
-stomach,-0.5,0
+stomach,0.5,0.5
+tendon,1,-0.5
 thyroid,0,0
-tongue,1.1,0
-tooth,0.7,0
-unspecified dermal,0,0.5
+tongue,0,0.5
+tooth,0,-0.5
+unspecified dermal,0,0
 unspecified gastrointestinal,0,0
 "unspecified hepatic, pancreatic, biliary",0,0
-unspecified mammary,0,-0.5
-unspecified musculoskeletal,0,0
+unspecified mammary,0,0
+unspecified musculoskeletal,-0.5,0
 unspecified neural,0,0
 unspecified ocular,0,0
 unspecified otic,0,0
 unspecified reproductive,0,0
 unspecified respiratory,0,0
-unspecified urinary,0,0.2
+unspecified urinary,0,0
 vascular,0,0
-blood-brain barrier,0,-0.4
+blood-brain barrier,0,-0.5
 brainstem,0,0
 forebrain,0,0
 large intestine,0,0
-neuromuscular,3.5,0.5
-neurovascular,3.5,0.5
+neuromuscular,4,0
+neurovascular,0,-0.5
 small intestine,0,0
-spinal cord,0,0.7
 unspecified brain,0,0
 unspecified intestine,0,0
-unspecified nerve,0,-0.5
-unspecified spine,0,-0.7
+unspecified nerve,0,1

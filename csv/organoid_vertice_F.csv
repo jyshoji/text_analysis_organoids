@@ -1,176 +1,190 @@
 name,total,leaf_ID,angle,hjust,vjust,major_organ2,lvl1,lvl1_leaf,lvl2,lvl2_leaf,n,major_organ3
- ,6539,NA,0,0.5,1.5,NA,,, ,,1,other
-abomasum,0,24,82.28571429,1.1,0,gastrointestinal,,,,abomasum,18,not modelled
-adipose,10,NA,0,0.5,1.5,adipose,adipose,,,,2,other
-adrenal,2,12,41.14285714,1.1,0,endocrine,,,,adrenal,6,endocrine
-airway,51,NA,0,0.5,1.5,respiratory,,,airway,,10,respiratory
-alveolus,47,95,325.7142857,1.1,0,respiratory,,,,alveolus,10,respiratory
-anterior cruciate ligament,0,43,327.4285714,-0.1,0,musculoskeletal,,,,anterior cruciate ligament,10,not modelled
-aorta,0,5,17.14285714,1.1,0,cardiovascular,,,,aorta,11,not modelled
-artery,1,NA,0,0.5,1.5,cardiovascular,,,artery,,11,cardiovascular
-barriers,8,NA,0,0.5,1.5,neural,,,barriers,,32,neural
-basal ganglion,1,NA,0,0.5,1.6,neural,,,basal ganglion,,32,neural
-bile duct,38,NA,0,0.5,1.2,"hepatic, pancreatic, biliary",,,bile duct,,12,"hepatic, pancreatic, biliary"
-biliary,61,NA,0,0.5,1.7,"hepatic, pancreatic, biliary",,,biliary,,12,"hepatic, pancreatic, biliary"
-bladder,11,100,342.8571429,1.1,0,urinary,,,,bladder,10,urinary
-blood,14,4,13.71428571,1.1,0,cardiovascular,,,,blood,11,cardiovascular
-blood vessel,10,NA,0,0.5,1.5,cardiovascular,,,blood vessel,,11,cardiovascular
-blood-brain barrier,6,50,351.4285714,-0.1,0,neural,,,,blood-brain barrier,32,neural
-blood-retinal barrier,0,73,430.2857143,-0.1,0,ocular,,,,blood-retinal barrier,11,not modelled
-bone,20,46,337.7142857,-0.1,0,musculoskeletal,,,,bone,10,musculoskeletal
-bone marrow,6,35,300,-0.1,0,lymphatic,,,,bone marrow,12,lymphatic
-brain,697,NA,0,0.5,1.7,neural,,,brain,,32,neural
-brainstem,45,NA,0,0.5,1.5,neural,,,brainstem,,32,neural
-breast duct,1,41,320.5714286,-0.1,0,mammary,,,,breast duct,3,other
-bronchiole,0,96,329.1428571,1.1,0,respiratory,,,,bronchiole,10,not modelled
-bronchus,5,97,332.5714286,1.1,0,respiratory,,,,bronchus,10,respiratory
-caecum,2,18,61.71428571,1.1,0,gastrointestinal,,,,caecum,18,gastrointestinal
-cardiovascular,106,NA,0,0.5,1.5,cardiovascular,cardiovascular,,,,11,cardiovascular
-cartilage,19,47,341.1428571,-0.1,0,musculoskeletal,,,,cartilage,10,musculoskeletal
-cerebellum,10,53,361.7142857,-0.1,0,neural,,,,cerebellum,32,neural
-cerebrum,345,NA,0,0.5,1.5,neural,,,cerebrum,,32,neural
-cervix,4,85,291.4285714,1.1,0,reproductive,,,,cervix,14,reproductive
-choroid,0,66,406.2857143,-0.1,0,ocular,,,,choroid,11,not modelled
-choroid plexus,2,51,354.8571429,-0.1,0,neural,,,,choroid plexus,32,neural
-circumvallate papilla,1,76,440.5714286,-0.1,0,oral,,,,circumvallate papilla,13,oral
-cochlea,10,83,284.5714286,1.1,0,otic,,,,cochlea,3,other
-collecting duct,4,102,349.7142857,1.1,0,urinary,,,,collecting duct,10,urinary
-colon,266,19,65.14285714,1.1,0,gastrointestinal,,,,colon,18,gastrointestinal
-cornea,4,NA,0,0.5,1.5,ocular,,,cornea,,11,ocular
-corneal barrier,0,67,409.7142857,-0.1,0,ocular,,,,corneal barrier,11,not modelled
-corneal limbus,1,68,413.1428571,-0.1,0,ocular,,,,corneal limbus,11,ocular
-cortex,50,NA,0,0.5,1.5,neural,,,cortex,,32,neural
-corticostriatal network,0,56,372,-0.1,0,neural,,,,corticostriatal network,32,not modelled
-decidua,2,88,301.7142857,1.1,0,reproductive,,,,decidua,14,reproductive
-dental follicle,1,78,447.4285714,-0.1,0,oral,,,,dental follicle,13,oral
-dental papilla,3,79,270.8571429,1.1,0,oral,,,,dental papilla,13,oral
-dental pulp,2,80,274.2857143,1.1,0,oral,,,,dental pulp,13,oral
-dermal,68,NA,0,0.5,1.5,dermal,dermal,,,,6,dermal
-dermal papilla,3,9,30.85714286,1.1,0,dermal,,,,dermal papilla,6,dermal
-diencephalon,9,NA,0,0.5,1.5,neural,,,diencephalon,,32,neural
-distal tubule,0,103,353.1428571,1.1,0,urinary,,,,distal tubule,10,not modelled
-dorsal root ganglion,2,61,389.1428571,-0.1,0,neural,,,,dorsal root ganglion,32,neural
-duodenum,15,21,72,1.1,0,gastrointestinal,,,,duodenum,18,gastrointestinal
-enamel organ,0,81,277.7142857,1.1,0,oral,,,,enamel organ,13,not modelled
-endocrine,19,NA,0,0.5,1.5,endocrine,endocrine,,,,6,endocrine
-endometrial gland,1,89,305.1428571,1.1,0,reproductive,,,,endometrial gland,14,reproductive
-endometrium,52,NA,0,0.5,1.5,reproductive,,,endometrium,,14,reproductive
-epidermis,13,8,27.42857143,1.1,0,dermal,,,,epidermis,6,dermal
-epididymis,3,91,312,1.1,0,reproductive,,,,epididymis,14,reproductive
-esophagus,28,16,54.85714286,1.1,0,gastrointestinal,,,,esophagus,18,gastrointestinal
-extrahepatic bile duct,2,28,276,-0.1,0,"hepatic, pancreatic, biliary",,,,extrahepatic bile duct,12,"hepatic, pancreatic, biliary"
-female reproductive,90,NA,0,0.5,1.5,reproductive,,,female reproductive,,14,reproductive
-forebrain,384,NA,0,0.5,1.5,neural,,,forebrain,,32,neural
-gallbladder,7,30,282.8571429,-0.1,0,"hepatic, pancreatic, biliary",,,,gallbladder,12,"hepatic, pancreatic, biliary"
-ganglion,2,NA,0,0.5,1.5,neural,,,ganglion,,32,neural
-gastric antrum,4,25,85.71428571,1.1,0,gastrointestinal,,,,gastric antrum,18,gastrointestinal
-gastric corpus,9,NA,0,0.5,1.8,gastrointestinal,,,gastric corpus,,18,gastrointestinal
-gastric fundus,3,27,272.5714286,-0.1,0,gastrointestinal,,,,gastric fundus,18,gastrointestinal
-gastric gland,3,26,89.14285714,1.1,0,gastrointestinal,,,,gastric gland,18,gastrointestinal
-gastroesophageal junction,0,17,58.28571429,1.1,0,gastrointestinal,,,,gastroesophageal junction,18,not modelled
-gastrointestinal,1837,NA,0,0.5,-1,gastrointestinal,gastrointestinal,,,,18,gastrointestinal
-germinal center,6,37,306.8571429,-0.1,0,lymphatic,,,,germinal center,12,lymphatic
-gliovascular unit,0,52,358.2857143,-0.1,0,neural,,,,gliovascular unit,32,not modelled
-glomerulus,1,101,346.2857143,1.1,0,urinary,,,,glomerulus,10,urinary
-glymphatic,0,NA,0,0.5,1.5,neural,,,glymphatic,,32,not modelled
-hair follicle,12,NA,0,0.5,1.5,dermal,,,hair follicle,,6,dermal
-heart,62,NA,0,0.5,1.5,cardiovascular,,,heart,,11,cardiovascular
-"hepatic, pancreatic, biliary",449,NA,0,0.5,1.5,"hepatic, pancreatic, biliary","hepatic, pancreatic, biliary",,,,12,"hepatic, pancreatic, biliary"
-hindbrain,11,NA,0,0.5,1.5,neural,,,hindbrain,,32,neural
-hippocampus,0,57,375.4285714,-0.1,0,neural,,,,hippocampus,32,not modelled
-hypothalamus,0,58,378.8571429,-0.1,0,neural,,,,hypothalamus,32,neural
-ileum,24,22,75.42857143,1.1,0,gastrointestinal,,,,ileum,18,gastrointestinal
-intestine,1641,NA,0,0.5,1.5,gastrointestinal,,,intestine,,18,gastrointestinal
-intrahepatic bile duct,0,29,279.4285714,-0.1,0,"hepatic, pancreatic, biliary",,,,intrahepatic bile duct,12,"hepatic, pancreatic, biliary"
-islet,42,32,289.7142857,-0.1,0,"hepatic, pancreatic, biliary",,,,islet,12,"hepatic, pancreatic, biliary"
-jejunum,15,23,78.85714286,1.1,0,gastrointestinal,,,,jejunum,18,gastrointestinal
-joint,3,NA,0,0.5,1.5,musculoskeletal,,,joint,,10,musculoskeletal
-kidney,213,NA,0,0.5,1.5,urinary,,,kidney,,10,urinary
-lacrimal gland,2,69,416.5714286,-0.1,0,ocular,,,,lacrimal gland,11,ocular
-large intestine,288,NA,0,0.5,1.5,gastrointestinal,,,large intestine,,18,gastrointestinal
-liver,251,NA,0,0.5,1.6,"hepatic, pancreatic, biliary",,,liver,,12,"hepatic, pancreatic, biliary"
-lobule,0,NA,0,0.5,1.5,"hepatic, pancreatic, biliary",,,lobule,,12,not modelled
-lung,180,NA,0,0.5,1.5,respiratory,,,lung,,10,respiratory
-lymph node,1,NA,0,0.5,1.5,lymphatic,,,lymph node,,12,lymphatic
-lymphatic,43,NA,0,0.5,1.5,lymphatic,lymphatic,,,,12,lymphatic
-lymphatic vessel,1,34,296.5714286,-0.1,0,lymphatic,,,,lymphatic vessel,12,lymphatic
-lymphoid,41,NA,0,0.5,1.5,lymphatic,,,lymphoid,,12,lymphatic
-male reproductive,78,NA,0,0.5,1.5,reproductive,,,male reproductive,,14,reproductive
-mammary,110,NA,0,0.5,1.5,mammary,mammary,,,,3,other
-mammary gland,16,42,324,-0.1,0,mammary,,,,mammary gland,3,other
-meibomian gland,0,70,420,-0.1,0,ocular,,,,meibomian gland,11,not modelled
-microvascular,5,6,20.57142857,1.1,0,cardiovascular,,,,microvascular,11,cardiovascular
-midbrain,33,54,365.1428571,-0.1,0,neural,,,,midbrain,32,neural
-mucociliary,2,98,336,1.1,0,respiratory,,,,mucociliary,10,respiratory
-muscle,12,45,334.2857143,-0.1,0,musculoskeletal,,,,muscle,10,musculoskeletal
-musculoskeletal,61,NA,0,0.5,1.5,musculoskeletal,musculoskeletal,,,,10,musculoskeletal
-myocardium,8,2,6.857142857,1.1,0,cardiovascular,,,,myocardium,11,cardiovascular
-nasal,14,49,348,-0.1,0,nasal,,nasal,,,1,other
-nephron,20,NA,0,0.5,1.5,urinary,,,nephron,,10,urinary
-nerve,59,NA,0,0.5,1.5,neural,,,nerve,,32,neural
-neural,845,NA,0,0.5,1.7,neural,neural,,,,32,neural
-neuroendocrine,2,13,44.57142857,1.1,0,endocrine,,,,neuroendocrine,6,endocrine
-neuroimmune,1,64,399.4285714,-0.1,0,neural,,,,neuroimmune,32,neural
-neuromuscular,4,NA,0,0.5,1.5,neural,,,neuromuscular,,32,neural
-neuromuscular junction,3,62,392.5714286,-0.1,0,neural,,,,neuromuscular junction,32,neural
-neurovascular,2,NA,0,0.5,1.5,neural,,,neurovascular,,32,neural
-neurovascular unit,1,63,396,-0.1,0,neural,,,,neurovascular unit,32,neural
-ocular,252,NA,0,0.5,1.5,ocular,ocular,,,,11,ocular
-optic cup,1,71,423.4285714,-0.1,0,ocular,,,,optic cup,11,ocular
-optic vesicle,0,72,426.8571429,-0.1,0,ocular,,,,optic vesicle,11,not modelled
-oral,70,NA,0,0.5,1.5,oral,oral,,,,13,oral
-osteochondral,40,NA,0,0.5,1.5,musculoskeletal,,,osteochondral,,10,musculoskeletal
-otic,33,NA,0,0.5,1.5,otic,otic,,,,3,other
-ovary,9,86,294.8571429,1.1,0,reproductive,,,,ovary,14,reproductive
-oviduct,18,87,298.2857143,1.1,0,reproductive,,,,oviduct,14,reproductive
-pancreas,114,NA,0,0.4,1.4,"hepatic, pancreatic, biliary",,,pancreas,,12,"hepatic, pancreatic, biliary"
-pancreatic duct,18,33,293.1428571,-0.1,0,"hepatic, pancreatic, biliary",,,,pancreatic duct,12,"hepatic, pancreatic, biliary"
-parathyroid,2,14,48,1.1,0,endocrine,,,,parathyroid,6,endocrine
-parotid gland,0,74,433.7142857,-0.1,0,oral,,,,parotid gland,13,not modelled
-periodontium,1,82,281.1428571,1.1,0,oral,,,,periodontium,13,oral
-perivascular niche,0,7,24,1.1,0,cardiovascular,,,,perivascular niche,11,not modelled
-pituitary,9,59,382.2857143,-0.1,0,neural,,,,pituitary,32,neural
-pleura,0,99,339.4285714,1.1,0,respiratory,,,,pleura,10,not modelled
-primary lymphoid,27,NA,0,0.5,1.5,lymphatic,,,primary lymphoid,,12,lymphatic
-prostate,49,92,315.4285714,1.1,0,reproductive,,,,prostate,14,reproductive
-proximal tubule,5,104,356.5714286,1.1,0,urinary,,,,proximal tubule,10,urinary
-rectum,13,20,68.57142857,1.1,0,gastrointestinal,,,,rectum,18,gastrointestinal
-renal tubule,13,NA,0,0.5,1.5,urinary,,,renal tubule,,10,urinary
-reproductive,174,NA,0,0.5,1.5,reproductive,reproductive,,,,14,reproductive
-respiratory,250,NA,0,0.5,1.5,respiratory,respiratory,,,,10,respiratory
-retina,231,NA,0,0.5,1.5,ocular,,,retina,,11,ocular
-salivary gland,37,NA,0,0.3,-1.5,oral,,,salivary gland,,13,oral
-sebaceous gland,4,10,34.28571429,1.1,0,dermal,,,,sebaceous gland,6,dermal
-secondary lymphoid,13,NA,0,0.5,1.7,lymphatic,,,secondary lymphoid,,12,lymphatic
-sinus,0,38,310.2857143,-0.1,0,lymphatic,,,,sinus,12,not modelled
-sinusoid,0,31,286.2857143,-0.1,0,"hepatic, pancreatic, biliary",,,,sinusoid,12,not modelled
-small intestine,475,NA,0,0.5,1.5,gastrointestinal,,,small intestine,,18,gastrointestinal
-spinal cord,5,65,402.8571429,-0.1,0,neural,,,,spinal cord,32,neural
-spine,11,NA,0,0.5,1.5,neural,,,spine,,32,neural
-spleen,1,39,313.7142857,-0.1,0,lymphatic,,,,spleen,12,lymphatic
-stomach,106,NA,0,0.5,1.5,gastrointestinal,,,stomach,,18,gastrointestinal
-striatum,1,55,368.5714286,-0.1,0,neural,,,,striatum,32,neural
-submandibular gland,0,75,437.1428571,-0.1,0,oral,,,,submandibular gland,13,not modelled
-sweat gland,3,11,37.71428571,1.1,0,dermal,,,,sweat gland,6,dermal
-synovial joint,2,NA,0,0.5,1.5,musculoskeletal,,,synovial joint,,10,musculoskeletal
-synovium,0,44,330.8571429,-0.1,0,musculoskeletal,,,,synovium,10,not modelled
-taste bud,7,77,444,-0.1,0,oral,,,,taste bud,13,oral
-tendon,1,48,344.5714286,-0.1,0,musculoskeletal,,,,tendon,10,musculoskeletal
-testes,26,93,318.8571429,1.1,0,reproductive,,,,testes,14,reproductive
-thalamus,0,60,385.7142857,-0.1,0,neural,,,,thalamus,32,neural
-thymus,21,36,303.4285714,-0.1,0,lymphatic,,,,thymus,12,lymphatic
-thyroid,15,NA,0,0.5,1.5,endocrine,,,thyroid,,6,endocrine
-thyroid gland,0,15,51.42857143,1.1,0,endocrine,,,,thyroid gland,6,not modelled
-tongue,13,NA,0,0.5,1.5,oral,,,tongue,,13,oral
-tonsil,5,40,317.1428571,-0.1,0,lymphatic,,,,tonsil,12,lymphatic
-tooth,14,NA,0,0.5,1.5,oral,,,tooth,,13,oral
-trachea,4,NA,0,0.5,1.5,respiratory,,,trachea,,10,respiratory
-tracheosphere,1,94,322.2857143,1.1,0,respiratory,,,,tracheosphere,10,respiratory
-umbo,2,84,288,1.1,0,otic,,,,umbo,3,other
-urethra,1,105,360,1.1,0,urinary,,,,urethra,10,urinary
-urinary,228,NA,0,0.5,1.5,urinary,urinary,,,,10,urinary
-uterus,56,NA,0,0.5,1.5,reproductive,,,uterus,,14,reproductive
-vagina,2,90,308.5714286,1.1,0,reproductive,,,,vagina,14,reproductive
-valve,1,3,10.28571429,1.1,0,cardiovascular,,,,valve,11,cardiovascular
-vascular,40,NA,0,0.5,1.5,cardiovascular,,,vascular,,11,cardiovascular
-white adipose tissue,1,1,3.428571429,1.1,0,adipose,,,,white adipose tissue,2,other
+ ,7901,NA,0,0.5,1.2,NA,,, ,,1,other
+abomasum,0,25,76.92307692,1.1,0,gastrointestinal,,,,abomasum,19,not modelled
+adipose,13,NA,0,0.5,1.2,adipose,adipose,,,,3,other
+adrenal,2,13,40,1.1,0,endocrine,,,,adrenal,6,endocrine
+airway,69,NA,0,0.5,1.2,respiratory,,,airway,,16,respiratory
+alveolus,63,106,326.1538462,1.1,0,respiratory,,,,alveolus,16,respiratory
+anterior cruciate ligament,0,45,318.4615385,-0.1,0,musculoskeletal,,,,anterior cruciate ligament,12,not modelled
+anulus fibrosus,0,44,315.3846154,-0.1,0,musculoskeletal,,,,anulus fibrosus,12,not modelled
+aorta,0,6,18.46153846,1.1,0,cardiovascular,,,,aorta,11,not modelled
+appendix,0,20,61.53846154,1.1,0,gastrointestinal,,,,appendix,19,not modelled
+artery,1,NA,0,0.5,1.2,cardiovascular,,,artery,,11,cardiovascular
+artificial joint,0,46,321.5384615,-0.1,0,musculoskeletal,,,,artificial joint,12,not modelled
+autonomic ganglion,0,66,383.0769231,-0.1,0,neural,,,,autonomic ganglion,36,not modelled
+barriers,13,NA,0,0.5,1.2,neural,,,barriers,,36,neural
+basal ganglion,3,NA,0,0.5,1.2,neural,,,basal ganglion,,36,neural
+bile duct,43,NA,0,0.5,1.8,"hepatic, pancreatic, biliary",,,bile duct,,12,"hepatic, pancreatic, biliary"
+biliary,69,NA,0,0.5,1.8,"hepatic, pancreatic, biliary",,,biliary,,12,"hepatic, pancreatic, biliary"
+bladder,12,112,344.6153846,1.1,0,urinary,,,,bladder,10,urinary
+blood,16,5,15.38461538,1.1,0,cardiovascular,,,,blood,11,cardiovascular
+blood vessel,15,NA,0,0.5,1.2,cardiovascular,,,blood vessel,,11,cardiovascular
+blood-air barrier,0,107,329.2307692,1.1,0,respiratory,,,,blood-air barrier,16,not modelled
+blood-brain barrier,9,53,343.0769231,-0.1,0,neural,,,,blood-brain barrier,36,neural
+blood-retinal barrier,0,79,423.0769231,-0.1,0,ocular,,,,blood-retinal barrier,11,not modelled
+bone,28,49,330.7692308,-0.1,0,musculoskeletal,,,,bone,12,musculoskeletal
+bone marrow,7,36,290.7692308,-0.1,0,lymphatic,,,,bone marrow,12,lymphatic
+brain,882,NA,0,0.5,1.2,neural,,,brain,,36,neural
+brainstem,52,NA,0,0.7,1.2,neural,,,brainstem,,36,neural
+breast duct,1,42,309.2307692,-0.1,0,mammary,,,,breast duct,3,other
+bronchiole,1,108,332.3076923,1.1,0,respiratory,,,,bronchiole,16,respiratory
+bronchus,8,109,335.3846154,1.1,0,respiratory,,,,bronchus,16,respiratory
+caecum,3,19,58.46153846,1.1,0,gastrointestinal,,,,caecum,19,gastrointestinal
+cardiovascular,147,NA,0,0.5,1.2,cardiovascular,cardiovascular,,,,11,cardiovascular
+cartilage,23,50,333.8461538,-0.1,0,musculoskeletal,,,,cartilage,12,musculoskeletal
+cerebellum,10,56,352.3076923,-0.1,0,neural,,,,cerebellum,36,neural
+cerebrum,439,NA,0,0.5,1.2,neural,,,cerebrum,,36,neural
+cervix,4,92,283.0769231,1.1,0,reproductive,,,,cervix,14,reproductive
+choroid,0,72,401.5384615,-0.1,0,ocular,,,,choroid,11,not modelled
+choroid plexus,4,54,346.1538462,-0.1,0,neural,,,,choroid plexus,36,neural
+circumvallate papilla,1,83,435.3846154,-0.1,0,oral,,,,circumvallate papilla,14,oral
+cochlea,16,90,276.9230769,1.1,0,otic,,,,cochlea,3,other
+collecting duct,5,114,350.7692308,1.1,0,urinary,,,,collecting duct,10,urinary
+colon,329,NA,0,0.5,1.2,gastrointestinal,,,colon,,19,gastrointestinal
+cornea,6,NA,0,0.5,1.2,ocular,,,cornea,,11,ocular
+corneal barrier,0,73,404.6153846,-0.1,0,ocular,,,,corneal barrier,11,not modelled
+corneal limbus,1,74,407.6923077,-0.1,0,ocular,,,,corneal limbus,11,ocular
+cortex,75,NA,0,0.5,1.2,neural,,,cortex,,36,neural
+corticostriatal network,0,59,361.5384615,-0.1,0,neural,,,,corticostriatal network,36,not modelled
+decidua,2,95,292.3076923,1.1,0,reproductive,,,,decidua,14,reproductive
+dental follicle,1,85,441.5384615,-0.1,0,oral,,,,dental follicle,14,oral
+dental papilla,3,86,444.6153846,-0.1,0,oral,,,,dental papilla,14,oral
+dental pulp,3,87,447.6923077,-0.1,0,oral,,,,dental pulp,14,oral
+dermal,83,NA,0,0.5,1.2,dermal,dermal,,,,6,dermal
+dermal papilla,3,10,30.76923077,1.1,0,dermal,,,,dermal papilla,6,dermal
+diencephalon,16,NA,0,0.5,1.2,neural,,,diencephalon,,36,neural
+distal tubule,0,115,353.8461538,1.1,0,urinary,,,,distal tubule,10,not modelled
+dorsal root ganglion,3,67,386.1538462,-0.1,0,neural,,,,dorsal root ganglion,36,neural
+duodenum,19,22,67.69230769,1.1,0,gastrointestinal,,,,duodenum,19,gastrointestinal
+enamel organ,0,88,270.7692308,1.1,0,oral,,,,enamel organ,14,not modelled
+endocrine,26,NA,0,0.5,1.2,endocrine,endocrine,,,,6,endocrine
+endometrial gland,2,96,295.3846154,1.1,0,reproductive,,,,endometrial gland,14,reproductive
+endometrium,68,NA,0,0.5,1.2,reproductive,,,endometrium,,14,reproductive
+enteric nervous system,0,64,376.9230769,-0.1,0,neural,,,,enteric nervous system,36,not modelled
+epidermis,16,9,27.69230769,1.1,0,dermal,,,,epidermis,6,dermal
+epididymis,4,98,301.5384615,1.1,0,reproductive,,,,epididymis,14,reproductive
+esophagus,33,17,52.30769231,1.1,0,gastrointestinal,,,,esophagus,19,gastrointestinal
+extrahepatic bile duct,2,29,89.23076923,1.1,0,"hepatic, pancreatic, biliary",,,,extrahepatic bile duct,12,"hepatic, pancreatic, biliary"
+female reproductive,116,NA,0,0.5,1.2,reproductive,,,female reproductive,,14,reproductive
+forebrain,495,NA,0,0.5,1.2,neural,,,forebrain,,36,neural
+gallbladder,7,31,275.3846154,-0.1,0,"hepatic, pancreatic, biliary",,,,gallbladder,12,"hepatic, pancreatic, biliary"
+ganglion,3,NA,0,0.5,1.2,neural,,,ganglion,,36,neural
+gastric antrum,4,26,80,1.1,0,gastrointestinal,,,,gastric antrum,19,gastrointestinal
+gastric corpus,10,NA,0,0.7,1.2,gastrointestinal,,,gastric corpus,,19,gastrointestinal
+gastric fundus,3,28,86.15384615,1.1,0,gastrointestinal,,,,gastric fundus,19,gastrointestinal
+gastric gland,3,27,83.07692308,1.1,0,gastrointestinal,,,,gastric gland,19,gastrointestinal
+gastroesophageal junction,1,18,55.38461538,1.1,0,gastrointestinal,,,,gastroesophageal junction,19,gastrointestinal
+gastrointestinal,2142,NA,0,0.5,-0.8,gastrointestinal,gastrointestinal,,,,19,gastrointestinal
+germinal center,7,38,296.9230769,-0.1,0,lymphatic,,,,germinal center,12,lymphatic
+gingival crevice,0,80,426.1538462,-0.1,0,oral,,,,gingival crevice,14,not modelled
+gliovascular unit,0,55,349.2307692,-0.1,0,neural,,,,gliovascular unit,36,not modelled
+glomerulus,1,113,347.6923077,1.1,0,urinary,,,,glomerulus,10,urinary
+glymphatic,0,NA,0,0.3,1.2,neural,,,glymphatic,,36,not modelled
+hair follicle,16,NA,0,0.5,1.2,dermal,,,hair follicle,,6,dermal
+heart,90,NA,0,0.5,1.2,cardiovascular,,,heart,,11,cardiovascular
+"hepatic, pancreatic, biliary",528,NA,0,0.5,1.2,"hepatic, pancreatic, biliary","hepatic, pancreatic, biliary",,,,12,"hepatic, pancreatic, biliary"
+hindbrain,11,NA,0,0.5,1.2,neural,,,hindbrain,,36,neural
+hippocampus,0,60,364.6153846,-0.1,0,neural,,,,hippocampus,36,not modelled
+hypopharynx,0,102,313.8461538,1.1,0,respiratory,,,,hypopharynx,16,not modelled
+hypothalamus,2,61,367.6923077,-0.1,0,neural,,,,hypothalamus,36,neural
+ileum,26,23,70.76923077,1.1,0,gastrointestinal,,,,ileum,19,gastrointestinal
+intestine,1922,NA,0,0.5,-0.8,gastrointestinal,,,intestine,,19,gastrointestinal
+intrahepatic bile duct,0,30,272.3076923,-0.1,0,"hepatic, pancreatic, biliary",,,,intrahepatic bile duct,12,"hepatic, pancreatic, biliary"
+islet,51,33,281.5384615,-0.1,0,"hepatic, pancreatic, biliary",,,,islet,12,"hepatic, pancreatic, biliary"
+jejunum,21,24,73.84615385,1.1,0,gastrointestinal,,,,jejunum,19,gastrointestinal
+joint,3,NA,0,0.5,1.2,musculoskeletal,,,joint,,12,musculoskeletal
+kidney,259,NA,0,0.5,1.2,urinary,,,kidney,,10,urinary
+lacrimal gland,4,75,410.7692308,-0.1,0,ocular,,,,lacrimal gland,11,ocular
+large intestine,355,NA,0,0.5,1.2,gastrointestinal,,,large intestine,,19,gastrointestinal
+larynx,0,101,310.7692308,1.1,0,respiratory,,,,larynx,16,not modelled
+liver,298,NA,0,0.5,1.2,"hepatic, pancreatic, biliary",,,liver,,12,"hepatic, pancreatic, biliary"
+lobule,0,NA,0,0.5,1.4,"hepatic, pancreatic, biliary",,,lobule,,12,not modelled
+lung,230,NA,0,0.5,1.2,respiratory,,,lung,,16,respiratory
+lymph node,1,NA,0,0.5,1.2,lymphatic,,,lymph node,,12,lymphatic
+lymphatic,54,NA,0,0.5,1.2,lymphatic,lymphatic,,,,12,lymphatic
+lymphatic vessel,1,35,287.6923077,-0.1,0,lymphatic,,,,lymphatic vessel,12,lymphatic
+lymphoid,52,NA,0,0.5,-0.8,lymphatic,,,lymphoid,,12,lymphatic
+male reproductive,88,NA,0,0.5,1.2,reproductive,,,male reproductive,,14,reproductive
+mammary,120,NA,0,0.5,1.2,mammary,mammary,,,,3,other
+mammary gland,18,43,312.3076923,-0.1,0,mammary,,,,mammary gland,3,other
+meibomian gland,1,76,413.8461538,-0.1,0,ocular,,,,meibomian gland,11,ocular
+meninges,0,65,380,-0.1,0,neural,,,,meninges,36,not modelled
+microvascular,6,7,21.53846154,1.1,0,cardiovascular,,,,microvascular,11,cardiovascular
+midbrain,40,NA,0,0.5,1.2,neural,,,midbrain,,36,neural
+mucociliary,2,110,338.4615385,1.1,0,respiratory,,,,mucociliary,16,respiratory
+muscle,14,48,327.6923077,-0.1,0,musculoskeletal,,,,muscle,12,musculoskeletal
+musculoskeletal,76,NA,0,0.5,1.2,musculoskeletal,musculoskeletal,,,,12,musculoskeletal
+myocardium,10,3,9.230769231,1.1,0,cardiovascular,,,,myocardium,11,cardiovascular
+nasal,19,52,340,-0.1,0,nasal,,nasal,,,1,other
+nasopharynx,1,103,316.9230769,1.1,0,respiratory,,,,nasopharynx,16,respiratory
+nephron,23,NA,0,0.5,1.2,urinary,,,nephron,,10,urinary
+nerve,74,NA,0,0.5,1.2,neural,,,nerve,,36,neural
+neural,1082,NA,0,0.5,1.2,neural,neural,,,,36,neural
+neuroendocrine,2,14,43.07692308,1.1,0,endocrine,,,,neuroendocrine,6,endocrine
+neuroimmune,2,70,395.3846154,-0.1,0,neural,,,,neuroimmune,36,neural
+neuromuscular,4,NA,0,0.5,1.2,neural,,,neuromuscular,,36,neural
+neuromuscular junction,3,68,389.2307692,-0.1,0,neural,,,,neuromuscular junction,36,neural
+neurovascular,2,NA,0,0.5,1.2,neural,,,neurovascular,,36,neural
+neurovascular unit,1,69,392.3076923,-0.1,0,neural,,,,neurovascular unit,36,neural
+ocular,314,NA,0,0.5,1.2,ocular,ocular,,,,11,ocular
+omentum,0,1,3.076923077,1.1,0,adipose,,,,omentum,3,not modelled
+optic cup,1,77,416.9230769,-0.1,0,ocular,,,,optic cup,11,ocular
+oral,80,NA,0,0.5,1.2,oral,oral,,,,14,oral
+oropharynx,0,104,320,1.1,0,respiratory,,,,oropharynx,16,not modelled
+osteochondral,53,NA,0,0.5,1.2,musculoskeletal,,,osteochondral,,12,musculoskeletal
+otic,41,NA,0,0.5,1.2,otic,otic,,,,3,other
+ovary,14,93,286.1538462,1.1,0,reproductive,,,,ovary,14,reproductive
+oviduct,22,94,289.2307692,1.1,0,reproductive,,,,oviduct,14,reproductive
+pancreas,132,NA,0,0,1.2,"hepatic, pancreatic, biliary",,,pancreas,,12,"hepatic, pancreatic, biliary"
+pancreatic duct,18,34,284.6153846,-0.1,0,"hepatic, pancreatic, biliary",,,,pancreatic duct,12,"hepatic, pancreatic, biliary"
+parathyroid,3,15,46.15384615,1.1,0,endocrine,,,,parathyroid,6,endocrine
+parotid gland,0,81,429.2307692,-0.1,0,oral,,,,parotid gland,14,not modelled
+periodontium,1,89,273.8461538,1.1,0,oral,,,,periodontium,14,oral
+perivascular niche,0,8,24.61538462,1.1,0,cardiovascular,,,,perivascular niche,11,not modelled
+pharynx,1,NA,0,0.5,1.2,respiratory,,,pharynx,,16,respiratory
+pituitary,12,62,370.7692308,-0.1,0,neural,,,,pituitary,36,neural
+pleura,1,111,341.5384615,1.1,0,respiratory,,,,pleura,16,respiratory
+primary lymphoid,33,NA,0,0.3,1.2,lymphatic,,,primary lymphoid,,12,lymphatic
+prostate,53,99,304.6153846,1.1,0,reproductive,,,,prostate,14,reproductive
+proximal tubule,7,116,356.9230769,1.1,0,urinary,,,,proximal tubule,10,urinary
+rectum,15,21,64.61538462,1.1,0,gastrointestinal,,,,rectum,19,gastrointestinal
+renal tubule,16,NA,0,0.5,1.2,urinary,,,renal tubule,,10,urinary
+reproductive,213,NA,0,0.5,1.2,reproductive,reproductive,,,,14,reproductive
+respiratory,328,NA,0,0.5,1.2,respiratory,respiratory,,,,16,respiratory
+retina,287,NA,0,0.5,1.2,ocular,,,retina,,11,ocular
+salivary gland,40,NA,0,0.5,1.2,oral,,,salivary gland,,14,oral
+sebaceous gland,4,11,33.84615385,1.1,0,dermal,,,,sebaceous gland,6,dermal
+secondary lymphoid,17,NA,0,0.5,1.2,lymphatic,,,secondary lymphoid,,12,lymphatic
+sinus,0,39,300,-0.1,0,lymphatic,,,,sinus,12,not modelled
+sinusoid,0,32,278.4615385,-0.1,0,"hepatic, pancreatic, biliary",,,,sinusoid,12,not modelled
+small intestine,540,NA,0,0.5,1.2,gastrointestinal,,,small intestine,,19,gastrointestinal
+spinal cord,10,71,398.4615385,-0.1,0,neural,,,,spinal cord,36,neural
+spine,17,NA,0,0.5,1.2,neural,,,spine,,36,neural
+spleen,1,40,303.0769231,-0.1,0,lymphatic,,,,spleen,12,lymphatic
+stomach,118,NA,0,0.5,1.2,gastrointestinal,,,stomach,,19,gastrointestinal
+striatum,2,58,358.4615385,-0.1,0,neural,,,,striatum,36,neural
+submandibular gland,0,82,432.3076923,-0.1,0,oral,,,,submandibular gland,14,not modelled
+sweat gland,3,12,36.92307692,1.1,0,dermal,,,,sweat gland,6,dermal
+synovial joint,2,NA,0,0.5,1.2,musculoskeletal,,,synovial joint,,12,musculoskeletal
+synovium,0,47,324.6153846,-0.1,0,musculoskeletal,,,,synovium,12,not modelled
+taste bud,9,84,438.4615385,-0.1,0,oral,,,,taste bud,14,oral
+tendon,1,51,336.9230769,-0.1,0,musculoskeletal,,,,tendon,12,musculoskeletal
+testes,31,100,307.6923077,1.1,0,reproductive,,,,testes,14,reproductive
+thalamus,2,63,373.8461538,-0.1,0,neural,,,,thalamus,36,neural
+thymus,26,37,293.8461538,-0.1,0,lymphatic,,,,thymus,12,lymphatic
+thyroid,20,NA,0,0.5,1.2,endocrine,,,thyroid,,6,endocrine
+thyroid gland,0,16,49.23076923,1.1,0,endocrine,,,,thyroid gland,6,not modelled
+tongue,16,NA,0,0.5,-0.8,oral,,,tongue,,14,oral
+tonsil,8,41,306.1538462,-0.1,0,lymphatic,,,,tonsil,12,lymphatic
+tooth,17,NA,0,0.5,1.2,oral,,,tooth,,14,oral
+trachea,3,NA,0,0.5,1.2,respiratory,,,trachea,,16,respiratory
+tracheosphere,1,105,323.0769231,1.1,0,respiratory,,,,tracheosphere,16,respiratory
+umbo,2,91,280,1.1,0,otic,,,,umbo,3,other
+urethra,1,117,360,1.1,0,urinary,,,,urethra,10,urinary
+urinary,275,NA,0,0.5,1.2,urinary,urinary,,,,10,urinary
+uterus,73,NA,0,0.5,1.2,reproductive,,,uterus,,14,reproductive
+vagina,2,97,298.4615385,1.1,0,reproductive,,,,vagina,14,reproductive
+valve,1,4,12.30769231,1.1,0,cardiovascular,,,,valve,11,cardiovascular
+vascular,53,NA,0,0.5,1.2,cardiovascular,,,vascular,,11,cardiovascular
+ventral midbrain,0,57,355.3846154,-0.1,0,neural,,,,ventral midbrain,36,not modelled
+white adipose tissue,1,2,6.153846154,1.1,0,adipose,,,,white adipose tissue,3,other

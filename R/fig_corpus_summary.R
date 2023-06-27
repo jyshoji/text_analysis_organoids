@@ -84,7 +84,7 @@ organoid_average_growth <- organoid_publication_count %>%
   # (publication counts in a "year + 1" / publication counts in a year).
   mutate(growth = year_plus_one / n) %>% 
   # Only selecting the years between 2011 and 2020.
-  filter(year %in% c(2011:2020)) %>% 
+  filter(year %in% c(2011:2021)) %>% 
   # calculating average growth for each corpus.
   group_by(type, corpus_F) %>% 
   mutate(average_growth = mean(growth)) %>% 
@@ -118,7 +118,8 @@ publication_by_corpus <- organ_types_G %>%
   ggplot(aes(x = year, fill = type)) + 
   geom_bar() + 
   facet_wrap(~ corpus_F, ncol = 4) + 
-  labs(title = "The number of academic publications on 3D culture model systems", y = "The number of publications") + 
+  labs(#title = "The number of academic publications on 3D culture model systems", 
+       y = "The number of publications") + 
   scale_fill_manual(values = c("royalblue3", "gold2", "green4"), name = "Publication types") + 
   scale_x_discrete(breaks = c(2012, 2014, 2016, 2018, 2020, 2022)) + 
   theme(text = element_text(size = 7), 
@@ -127,7 +128,7 @@ publication_by_corpus <- organ_types_G %>%
         legend.key.size = unit(2, "mm")) 
 
 ### Saving as a png file.
-ggsave(publication_by_corpus, filename = paste0(root_path, "results/corpus_summary/publication_by_corpus.png"), 
-       width = 210, height = 80, units = "mm")
+ggsave(publication_by_corpus, filename = paste0(root_path, "results/corpus_summary/publication_by_corpus.pdf"), 
+       width = 178, height = 50, units = "mm")
 
 

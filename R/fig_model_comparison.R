@@ -31,19 +31,19 @@ corpus_overlap <- organ_types_P %>%
   group_by(doi) %>% 
   mutate(no_copy = n()) %>% 
   ungroup() %>% 
-  ### The documents on organoid-on-a-chip are present as two copies in the entire corpus, 
+  ### The documents on organoid-on-chip are present as two copies in the entire corpus, 
   ### one in the organoid corpus and the other in the OoC corpus.
   ### Note that organ type classifications in the pair of copies are different, as the organ classification in organoid corpus 
   ### is based on organ names that occur with "organoid", whereas that in OoC corpus is based on organ names that occur with "onchip".
   ### As we are interested in types of "organoids" researched in OoC setups, we will select the copy in the orgnaoid corpus, and use 
   ### its organ type classification for subsequent analysis.
   ###
-  ### Making a new column (corpus_D) which shows if a document is on organoid-on-a-chip.
+  ### Making a new column (corpus_D) which shows if a document is on organoid-on-chip.
   ### If a document is in the "organoid" corpus (including tumor organoid) and has an extra copy in the "OoC" corpus, the column value 
-  ### is "organoid-on-a-chip".
+  ### is "organoid-on-chip".
   ### If a document is in the "OoC" corpus (including ToC) and has an extra copy in the "organoid" corpus, the column value 
   ### is "duplicate".  
-  mutate(corpus_D = ifelse(no_copy == 2 & corpus == "organoid", "organoid-on-a-chip", 
+  mutate(corpus_D = ifelse(no_copy == 2 & corpus == "organoid", "organoid-on-chip", 
                            ifelse(no_copy == 2 & corpus == "OoC", "duplicate", corpus)))
 
 colnames(corpus_overlap)
@@ -113,7 +113,7 @@ adjusted_trend_overlap <- organ_trend_overlap %>%
   ### Changing the major_organ column to factor, so that the organ categories are plotted later in a desired order. 
   mutate(major_organ = factor(major_organ, levels = unique(major_organ))) %>% 
   ### Changing the corpus_D to the factor class to order the figure columns.
-  mutate(corpus_D = factor(corpus_D, levels = c("OoC", "organoid-on-a-chip", "organoid"))) 
+  mutate(corpus_D = factor(corpus_D, levels = c("OoC", "organoid-on-chip", "organoid"))) 
 
 ### Plotting a bubble plot to compare organid and OoC models of organs.
 organ_model_comparison <- adjusted_trend_overlap %>% 
@@ -134,8 +134,8 @@ organ_model_comparison <- adjusted_trend_overlap %>%
 
 ### Saving
 ggsave(organ_model_comparison, 
-       filename = paste0(root_path, "results/model_comparison/organ_model_comparison.png"),  
-       width = 130, height = 210, units = "mm")
+       filename = paste0(root_path, "results/model_comparison/organ_model_comparison.pdf"),  
+       width = 140, height = 190, units = "mm")
 
 
 
@@ -257,25 +257,25 @@ topic_model_point <- topic_total_counts_selected %>%
                        breaks = c(-1, 0, 1), labels = c("OoC", "", "organoid"), name = "Model system preference") + 
   scale_y_discrete(limits = rev) + 
   scale_x_discrete(position = "top") + 
-  scale_size_continuous(range = c(0.5, 4), breaks = c(sqrt(10), sqrt(100), sqrt(1000)), labels = c(10, 100, 1000), 
+  scale_size_continuous(range = c(0.5, 3), breaks = c(sqrt(10), sqrt(100), sqrt(1000)), labels = c(10, 100, 1000), 
                         name = "Total publication counts") + 
   facet_grid(rows = vars(group_name), scales = "free", space = "free", switch = "y") + 
   theme(strip.placement = "outside", 
-        text = element_text(size = 8), 
-        axis.text.x.top = element_text(angle = 90, face = 2, vjust = 0.3, hjust = 0, size = 9), 
+        text = element_text(size = 7), 
+        axis.text.x.top = element_text(angle = 90, face = 2, vjust = 0.3, hjust = 0, size = 7), 
         strip.text.y.left = element_text(angle = 360, vjust = 0.5, hjust = 1, face = 2), 
         legend.key = element_rect(fill = "grey80"), 
-        legend.key.size = unit(4, "mm"),
-        legend.title = element_text(size = 7, face = 2, vjust = 2), 
-        legend.text = element_text(size = 7), 
+        legend.key.size = unit(3, "mm"),
+        legend.title = element_text(size = 6, face = 2, vjust = 2), 
+        legend.text = element_text(size = 6), 
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         axis.title = element_blank(), 
         axis.ticks = element_blank())
 
 ggsave(topic_model_point, 
-       filename = paste0(root_path, "results/model_comparison/topic_model_point.png"),  
-       width = 210, height = 297, units = "mm")
+       filename = paste0(root_path, "results/model_comparison/topic_model_point.pdf"),  
+       width = 178, height = 270, units = "mm")
 
 
 
@@ -357,24 +357,24 @@ topic_trends_bubble <- topic_trends %>%
   #labs(color = "Model preference") + 
   #scale_y_discrete(limits = rev) + 
   scale_x_discrete(position = "top", labels = function(x) gsub("_.*$", "", x)) + 
-  scale_size_continuous(range = c(0.3, 3.5), breaks = c(sqrt(10), sqrt(100), sqrt(1000)), labels = c(10, 100, 1000), name = "Publication counts") + 
+  scale_size_continuous(range = c(0.3, 3), breaks = c(sqrt(10), sqrt(100), sqrt(1000)), labels = c(10, 100, 1000), name = "Publication counts") + 
   facet_grid(rows = vars(group_name), cols = vars(top_major_organ), scales = "free", space = "free", switch = "y") + 
   theme(strip.placement = "outside", 
-        text = element_text(size = 8), 
+        text = element_text(size = 7), 
         axis.text.x.top = element_text(angle = 90, vjust = 0.3, hjust = 0, size = 7), 
         strip.text.x.top = element_text(angle = 90, face = 2, vjust = 0.3, hjust = 0), 
         strip.text.y.left = element_text(angle = 360, vjust = 0.5, hjust = 1, face = 2), 
-        legend.key.size = unit(4, "mm"),
-        legend.title = element_text(size = 7, face = 2), 
-        legend.text = element_text(size = 7), 
+        legend.key.size = unit(3, "mm"),
+        legend.title = element_text(size = 6, face = 2), 
+        legend.text = element_text(size = 6), 
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         axis.title = element_blank(), 
         axis.ticks = element_blank())
 
 ggsave(topic_trends_bubble, 
-       filename = paste0(root_path, "results/model_comparison/topic_trends_bubble.png"),  
-       width = 210, height = 297, units = "mm")
+       filename = paste0(root_path, "results/model_comparison/topic_trends_bubble.pdf"),  
+       width = 178, height = 270, units = "mm")
   
 
 
@@ -416,21 +416,21 @@ topic_trends_bubble_all_disease <- topic_trends_all_disease %>%
   #labs(color = "Model preference") + 
   #scale_y_discrete(limits = rev) + 
   scale_x_discrete(position = "top", labels = function(x) gsub("_.*$", "", x)) + 
-  scale_size_continuous(range = c(0.3, 3.5), breaks = c(sqrt(10), sqrt(100), sqrt(1000)), labels = c(10, 100, 1000), name = "Publication counts") + 
+  scale_size_continuous(range = c(0.3, 3), breaks = c(sqrt(10), sqrt(100), sqrt(1000)), labels = c(10, 100, 1000), name = "Publication counts") + 
   facet_grid(rows = vars(group_name), cols = vars(top_major_organ), scales = "free", space = "free", switch = "y") + 
   theme(strip.placement = "outside", 
-        text = element_text(size = 8), 
+        text = element_text(size = 7), 
         axis.text.x.top = element_text(angle = 90, vjust = 0.3, hjust = 0, size = 7), 
         strip.text.x.top = element_text(angle = 90, face = 2, vjust = 0.3, hjust = 0), 
         strip.text.y.left = element_text(angle = 360, vjust = 0.5, hjust = 1, face = 2), 
-        legend.key.size = unit(4, "mm"),
-        legend.title = element_text(size = 7, face = 2), 
-        legend.text = element_text(size = 7), 
+        legend.key.size = unit(3, "mm"),
+        legend.title = element_text(size = 6, face = 2), 
+        legend.text = element_text(size = 6), 
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         axis.title = element_blank(), 
         axis.ticks = element_blank())
 
 ggsave(topic_trends_bubble_all_disease, 
-       filename = paste0(root_path, "results/model_comparison/topic_trends_bubble_all_disease.png"),  
-       width = 210, height = 600, units = "mm")
+       filename = paste0(root_path, "results/model_comparison/topic_trends_bubble_all_disease.pdf"),  
+       width = 178, height = 550, units = "mm")

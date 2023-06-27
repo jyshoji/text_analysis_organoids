@@ -65,6 +65,8 @@ data_all_ms <- read_bibliography(file_names_ms)
 
 
 ### Making a custom function for cleaning up the metadata corpus. 
+### Note that files containing the publication metadata are expected to have character strings in the file names that show
+### the database (pubmed, savedrecs, scorpus, em, BR) and article types (RA or RV).
 fn_cleanup_metadata <- function(x) {
   x %>% 
     ### adding a "database" column" showing the database origin of documents.
@@ -677,7 +679,7 @@ pre_organoid_corpus <- fn_keywords_abstract_adjustment(unique_or_F) %>%
 ### Papers on "nevus sebaceus" (aka "organoid nevus") are removed.
 ### These papers are retrieved primarily from PubMed even if they don't contain the term "organoid", because of how MeSH works.
 ### First "nevus sebaceus" and its synonyms are stored in a vector.
-nevus_sebaceus_w <- c("na?evus sebaceus", "sebaceus na?evus", "sebaceus na?evi", 
+nevus_sebaceus_w <- c("na?evus sebaceo?us", "sebaceo?us na?evus", "sebaceo?us na?evi", 
                       "organoid na?evus", "organoid na?evi", "angora hair na?evus", 
                       "angora hair na?evi", "organoid epidermal na?evus", 
                       "organoid epidermal na?evi")
@@ -687,7 +689,7 @@ pre_organoid_corpus2 <- pre_organoid_corpus %>%
   filter(!grepl(paste(nevus_sebaceus_w, collapse = "|"), text_all, ignore.case = TRUE))
 
 dim(pre_organoid_corpus2)
-### [1] 12603   20
+### [1] 12601   20
 
 colnames(pre_organoid_corpus2)
 

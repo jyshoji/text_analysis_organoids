@@ -225,7 +225,7 @@ organ_counts <- organ_types_P %>%
   mutate(hierarchical_organ_type = gsub("body", " ", hierarchical_organ_type)) 
 
 ### From the edge list, organ categories (i.e., excluding prenatal categories) are selected. 
-edge_organ <- edge_all[1:197, 1:2] %>% 
+edge_organ <- edge_all[1:212, 1:2] %>% 
   filter(!grepl("unspecified", to)) %>% 
   filter(!to %in% c("prenatal", "multiple organs", "venom gland", "unidentified")) %>% 
   mutate(from = gsub("body", " ", from))
@@ -293,7 +293,7 @@ fn_network_vertice <- function(count_data, corpus_type, article_type = "Research
     left_join(., edge_network_arranged[, 7:10], by = c("name" = "lvl6")) %>% 
     mutate(angle = replace_na(angle, 0), 
            hjust = replace_na(hjust, 0.5)) %>% 
-    mutate(vjust = ifelse(angle == 0, 1.5, 0)) %>% 
+    mutate(vjust = ifelse(angle == 0, 1.2, 0)) %>% 
     ### major_organ2 category is added, which will be used for grouping organ categories.
     left_join(., edge_all[, 2:3], by = c("name" = "to")) %>%  
     ### Organ categories are assigned to one of four categories, depending on their levels and whether or not they are leaf 
@@ -364,30 +364,30 @@ fn_draw_network_links <- function(vertice_data, edge_list, corpus_type, size_max
     scale_size_continuous(range = c(0.5, 6), limits = c(0.1, sqrt(size_max)), breaks = c(sqrt(10), sqrt(100), sqrt(1000)), 
                           labels = c(10, 100, 1000), name = "Publication counts") + 
     guides(size = "none") + 
-    labs(title = paste0("Collectively researched ", corpus_type_converted, " models of organs and organ substructures"), 
-         color = "Level 1 organ categories") + 
+    labs(color = NULL) + 
     coord_flip(clip = "off") + 
     scale_x_reverse() + 
     scale_y_reverse(expand = expansion(mult = 0.1)) + 
     theme(panel.background = element_rect(fill = "transparent"), 
           legend.box = "horizontal", 
-          legend.position = c(-0.04, 0.92), 
+          legend.position = c(-0.04, 0.97), 
           legend.title = element_text(size = 6, face = 2), 
           legend.text = element_text(size = 5), 
-          legend.key.size = unit(3, "mm"), 
+          legend.key.size = unit(2.5, "mm"), 
           plot.margin = margin(2, 2, 2, 2, "cm"), 
           plot.title = element_text(hjust = 0, vjust = 16)
     )
 }
 
 ### Plotting and saving organ links of organoid research.
-organoid_network_links <- fn_draw_network_links(organoid_vertice, edge_organ, corpus_type = "organoid", size_max = 7000) + 
+organoid_network_links <- fn_draw_network_links(organoid_vertice, edge_organ, corpus_type = "organoid", size_max = 8000) + 
   scale_color_manual(values = c("seagreen", "deepskyblue2", "maroon4", "orange", "red", "steelblue3", "aquamarine3", "blue", "grey80", "springgreen3", 
                                 "violetred1", "grey40", "magenta", "purple", "pink2"))
 
 ggsave(organoid_network_links, 
-       filename = paste0(root_path, "results/organ_links/organoid_network_links.png"),  
-       width = 190, height = 190, units = "mm")
+       filename = paste0(root_path, "results/organ_links/organoid_network_links.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 178, units = "mm")
 
 
 
@@ -400,10 +400,35 @@ OoC_vertice <- fn_network_vertice(organ_counts, corpus_type = "OoC", position_ad
 
 OoC_vertice <- read.csv(paste0(root_path, "csv/OoC_vertice_F.csv"))
 
-OoC_network_links <- fn_draw_network_links(OoC_vertice, edge_organ, corpus_type = "OoC", size_max = 2000) + 
+OoC_network_links <- fn_draw_network_links(OoC_vertice, edge_organ, corpus_type = "OoC", size_max = 2500) + 
   scale_color_manual(values = c("seagreen", "deepskyblue2", "maroon4", "orange", "red", "steelblue3", "aquamarine3", "blue", "grey80", "springgreen3", 
                                 "violetred1", "grey40", "magenta", "purple", "pink2"))
 
 ggsave(OoC_network_links, 
-       filename = paste0(root_path, "results/organ_links/OoC_network_links.png"),  
-       width = 190, height = 190, units = "mm")
+       filename = paste0(root_path, "results/organ_links/OoC_network_links.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 178, units = "mm")
+
+
+
+
+
+
+##########
+###
+### Writing a supplementary csv file showing publications on multiple organ models.
+###
+########## 
+load(paste0(root_path, "R_results/organ_types_F"))
+
+multi_model_metadata <- left_join(combined_counted, 
+                                  organ_types_F %>% select(ID, author, year, title, doi), 
+                                  by = "ID")
+
+multi_models <- multi_model_metadata %>% 
+  filter(type == "Research article", 
+         n > 1) %>% 
+  select(author, year, title, doi, phase, corpus_F, organ_1, organ_2, n) %>% 
+  arrange(corpus_F, - n, organ_2, organ_1, year, author)
+
+write.csv(multi_models, file = paste0(root_path, "results/csv/multi_models.csv"), row.names = FALSE)

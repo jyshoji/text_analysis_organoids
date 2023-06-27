@@ -2,6 +2,7 @@
 R_temps
 R_unused
 raw_data
+raw_data_update
 raw_data2/
 raw_data3/
 R/*_old.R
@@ -18,6 +19,7 @@ VOSviewer/
 results/global_trends/parts
 results/prenatal_classifications/*_bubble.png
 results/TF_tile_F
+results/ToC
 results/organ_types
 R_results/all_corpus
 bfg-1.14.0.jar

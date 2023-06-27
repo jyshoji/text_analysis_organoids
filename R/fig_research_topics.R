@@ -64,7 +64,7 @@ cell_sources_area <- cell_types_simplified %>%
   facet_wrap(~ factor(corpus_F, levels = c("organoid", "OoC")))
 
 ggsave(cell_sources_area, 
-       filename = paste0(root_path, "results/research_topics/cell_sources_area.png"),  
+       filename = paste0(root_path, "results/research_topics/cell_sources_area.pdf"),  
        width = 120, height = 60, units = "mm")
 
 
@@ -114,7 +114,7 @@ organisms_area <- organisms_count %>%
   facet_wrap(~ factor(corpus_F, levels = c("organoid", "OoC")))
 
 ggsave(organisms_area, 
-       filename = paste0(root_path, "results/research_topics/organisms_area.png"),  
+       filename = paste0(root_path, "results/research_topics/organisms_area.pdf"),  
        width = 120, height = 60, units = "mm")
 
 
@@ -217,7 +217,7 @@ covid_organs_yearly <- covid_papers_recategorized %>%
        x = "Year", 
        y = "The number of research articles", 
        fill = "Organ models") + 
-  scale_x_discrete(limits = factor(c(2017:2022))) + 
+  scale_x_discrete(limits = factor(c(2017:2023))) + 
   scale_fill_manual(values = c("seagreen", "orange","red",  "blue", "springgreen3", "mediumpurple", "magenta3", "purple", "pink", "grey60")) + 
   facet_wrap(~ corpus_F) + 
   theme(text = element_text(size = 8), 
@@ -225,5 +225,5 @@ covid_organs_yearly <- covid_papers_recategorized %>%
         legend.key.size = unit(2.5, "mm"))
 
 ggsave(covid_organs_yearly, 
-       filename = paste0(root_path, "results/research_topics/covid_organs_yearly.png"),  
-       width = 210, height = 70, units = "mm")
+       filename = paste0(root_path, "results/research_topics/covid_organs_yearly.pdf"),  
+       width = 178, height = 60, units = "mm")

@@ -182,46 +182,31 @@ fn_prenatal_celtic_circles <- function(edge_list, vertice_data, random_seed = 1)
 }
 
 
-### Drawing a graph of human organoid prenatal models
-organoid_prenatal_human_edge_lvl3 <- fn_prenatal_edge_lvl3(combined_prenatal_trends, edge_list = edge_all[, 1:2], organism_type = "human")
-
-organoid_prenatal_human_counts_lvl3 <- fn_prenatal_counts_lvl3(combined_prenatal_trends, organoid_prenatal_human_edge_lvl3, organism_type = "human")
-
-organoid_EM_human_bubble <- fn_prenatal_celtic_circles(organoid_prenatal_human_edge_lvl3, organoid_prenatal_human_counts_lvl3)
-
+### Drawing a graph of human organoid prenatal models.
 ### Not saved at the moment, as the figure won't be included in the paper.
-#ggsave(organoid_EM_human_bubble, 
-#       filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_human_bubble.png"),  
-#       width = 60, height = 60, units = "mm")
-
+### organoid_prenatal_human_edge_lvl3 <- fn_prenatal_edge_lvl3(combined_prenatal_trends, edge_list = edge_all[, 1:2], organism_type = "human")
+### organoid_prenatal_human_counts_lvl3 <- fn_prenatal_counts_lvl3(combined_prenatal_trends, organoid_prenatal_human_edge_lvl3, organism_type = "human")
+### organoid_EM_human_bubble <- fn_prenatal_celtic_circles(organoid_prenatal_human_edge_lvl3, organoid_prenatal_human_counts_lvl3)
+### ggsave(organoid_EM_human_bubble, 
+###        filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_human_bubble.png"),  
+###        width = 60, height = 60, units = "mm")
 
 ### mouse organoid prenatal models.
-organoid_prenatal_mouse_edge_lvl3 <- fn_prenatal_edge_lvl3(combined_prenatal_trends, edge_list = edge_all[, 1:2], organism_type = "mouse")
-
-organoid_prenatal_mouse_counts_lvl3 <- fn_prenatal_counts_lvl3(combined_prenatal_trends, organoid_prenatal_mouse_edge_lvl3, organism_type = "mouse")
-
-
-organoid_EM_mouse_bubble <- fn_prenatal_celtic_circles(organoid_prenatal_mouse_edge_lvl3, organoid_prenatal_mouse_counts_lvl3, random_seed = 3)
-
-### Not saved at the moment, as the figure won't be included in the paper.
-#ggsave(organoid_EM_mouse_bubble, 
-#       filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_mouse_bubble.png"),  
-#       width = 60, height = 60, units = "mm")
-
-
+### organoid_prenatal_mouse_edge_lvl3 <- fn_prenatal_edge_lvl3(combined_prenatal_trends, edge_list = edge_all[, 1:2], organism_type = "mouse")
+### organoid_prenatal_mouse_counts_lvl3 <- fn_prenatal_counts_lvl3(combined_prenatal_trends, organoid_prenatal_mouse_edge_lvl3, organism_type = "mouse")
+### organoid_EM_mouse_bubble <- fn_prenatal_celtic_circles(organoid_prenatal_mouse_edge_lvl3, organoid_prenatal_mouse_counts_lvl3, random_seed = 3)
+### ggsave(organoid_EM_mouse_bubble, 
+###        filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_mouse_bubble.png"),  
+###        width = 60, height = 60, units = "mm")
 
 ### OoC prenatal models including both human and mouse
-OoC_prenatal_HM_edge_lvl3 <- fn_prenatal_edge_lvl3(combined_prenatal_trends, edge_list = edge_all[, 1:2], corpus_type = "OoC", organism_type = "both")
-
-OoC_prenatal_HM_counts_lvl3 <- fn_prenatal_counts_lvl3(combined_prenatal_trends, OoC_prenatal_HM_edge_lvl3, corpus_type = "OoC", organism_type = "both")
-
-
-OoC_EM_HM_bubble <- fn_prenatal_celtic_circles(OoC_prenatal_HM_edge_lvl3, OoC_prenatal_HM_counts_lvl3)
-
-### Not saved at the moment, as the figure won't be included in the paper.
-#ggsave(OoC_EM_HM_bubble, 
-#       filename = paste0(root_path, "results/prenatal_classifications/OoC_EM_HM_bubble.png"),  
-#       width = 60, height = 60, units = "mm")
+### OoC_prenatal_HM_edge_lvl3 <- fn_prenatal_edge_lvl3(combined_prenatal_trends, edge_list = edge_all[, 1:2], corpus_type = "OoC", organism_type = "both")
+### 
+### OoC_prenatal_HM_counts_lvl3 <- fn_prenatal_counts_lvl3(combined_prenatal_trends, OoC_prenatal_HM_edge_lvl3, corpus_type = "OoC", organism_type = "both")
+### OoC_EM_HM_bubble <- fn_prenatal_celtic_circles(OoC_prenatal_HM_edge_lvl3, OoC_prenatal_HM_counts_lvl3)
+### ggsave(OoC_EM_HM_bubble, 
+###        filename = paste0(root_path, "results/prenatal_classifications/OoC_EM_HM_bubble.png"),  
+###        width = 60, height = 60, units = "mm")
 
 
 
@@ -279,9 +264,10 @@ fn_prenatal_network <- function(edge_list, vertice_data) {
     geom_edge_link(color = "grey50", alpha = 0.15) +
     geom_node_point(aes(size = sqrt(prenatal_total), color = adjusted_trend2), alpha = 0.8) + 
     geom_node_text(aes(label = name), size = 1.6, fontface = 2, vjust = -0.5) + 
-    scale_size_continuous(limits = c(0, 18), breaks = c(sqrt(10), sqrt(50), sqrt(200)), labels = c(10, 50, 200)) + 
-    scale_color_gradient2(low = "darkblue", mid = "paleturquoise", high = "orange", midpoint = 1, guide = "colorbar", name = "Trends") + 
-    labs(title = title_label, 
+    scale_size_continuous(limits = c(0, 20), breaks = c(sqrt(10), sqrt(50), sqrt(200)), labels = c(10, 50, 200)) + 
+    scale_color_gradient2(low = "darkblue", mid = "paleturquoise", high = "orange", midpoint = 1, guide = "colorbar", name = "Trends", 
+                          breaks = c(0, 1, 2, 3)) + 
+    labs(#title = title_label, 
          size = "Publication counts") + 
     coord_flip() + 
     scale_x_reverse() + 
@@ -289,7 +275,7 @@ fn_prenatal_network <- function(edge_list, vertice_data) {
     theme(
       panel.background = element_rect(fill = "transparent"), 
       plot.title = element_text(size = 12, face = "bold"),
-      legend.position = c(0.1, 0.16), 
+      legend.position = c(0.1, 0.14), 
       legend.title = element_text(size = 7, face = 2), 
       legend.text = element_text(size = 6), 
       legend.key.size = unit(3, "mm"), 
@@ -303,16 +289,13 @@ organoid_prenatal_human_counts_SP <- fn_prenatal_counts_SP(combined_prenatal_tre
 
 organoid_prenatal_human_edge_SP <- fn_prenatal_edge_SP(organoid_prenatal_human_counts_SP, edge_all[, 1:2])
 
-organoid_EM_human_network <- fn_prenatal_network(organoid_prenatal_human_edge_SP, organoid_prenatal_human_counts_SP)
-
-
+organoid_EM_human_network <- fn_prenatal_network(organoid_prenatal_human_edge_SP, organoid_prenatal_human_counts_SP) + 
+  labs(title = "A. Prenatal structures modelled as organoids in human")
 
 ggsave(organoid_EM_human_network, 
-       filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_human_network.png"),  
-       width = 190, height = 90, units = "mm")
-
-
-
+       filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_human_network.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 70, units = "mm")
 
 
 
@@ -322,13 +305,13 @@ organoid_prenatal_mouse_counts_SP <- fn_prenatal_counts_SP(combined_prenatal_tre
 
 organoid_prenatal_mouse_edge_SP <- fn_prenatal_edge_SP(organoid_prenatal_mouse_counts_SP, edge_all[, 1:2])
 
-organoid_EM_mouse_network <- fn_prenatal_network(organoid_prenatal_mouse_edge_SP, organoid_prenatal_mouse_counts_SP)
+organoid_EM_mouse_network <- fn_prenatal_network(organoid_prenatal_mouse_edge_SP, organoid_prenatal_mouse_counts_SP) + 
+  labs(title = "B. Prenatal structures modelled as organoids in mice")
 
 ggsave(organoid_EM_mouse_network, 
-       filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_mouse_network.png"),  
-       width = 190, height = 90, units = "mm")
-
-
+       filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_mouse_network.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 70, units = "mm")
 
 
 
@@ -337,8 +320,10 @@ OoC_prenatal_HM_counts_SP <- fn_prenatal_counts_SP(combined_prenatal_trends, cor
 
 OoC_prenatal_HM_edge_SP <- fn_prenatal_edge_SP(OoC_prenatal_HM_counts_SP, edge_all[, 1:2])
 
-OoC_EM_HM_network <- fn_prenatal_network(OoC_prenatal_HM_edge_SP, OoC_prenatal_HM_counts_SP)
+OoC_EM_HM_network <- fn_prenatal_network(OoC_prenatal_HM_edge_SP, OoC_prenatal_HM_counts_SP) + 
+  labs(title = "C. Prenatal structures modelled as OoC in human and mouse")
 
 ggsave(OoC_EM_HM_network, 
-       filename = paste0(root_path, "results/prenatal_classifications/OoC_EM_HM_network.png"),  
-       width = 190, height = 90, units = "mm")
+       filename = paste0(root_path, "results/prenatal_classifications/OoC_EM_HM_network.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 70, units = "mm")

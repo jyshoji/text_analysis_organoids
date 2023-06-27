@@ -33,7 +33,6 @@ The number of research articles in the tumor research area between 2011 and 2022
 
 Search: ((((tumor[Text Word] OR cancer[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("journal article"[Publication Type])) NOT ("retracted publication"[Publication Type] OR "retraction of publication"[Publication Type] OR "review"[Publication Type] OR "comment"[Publication Type])
 
-(("tumor"[Text Word] OR "cancer"[Text Word]) AND "english"[Language] AND 2011/01/01:3000/12/31[Date - Publication] AND "journal article"[Publication Type]) NOT ("retracted publication"[Publication Type] OR "retraction of publication"[Publication Type] OR "review"[Publication Type] OR "comment"[Publication Type])
 
 ## README_csv.md
 

@@ -115,7 +115,7 @@ combined_trends <- organ_trends %>%
 
 ### Below, organs will be plotted as two-level hierarchical categories, with an extra level included for intestinal and neural organs.
 ### For this purpose, making a vector containing the names of organs, whose lower categories are to be plotted.
-lvl2_5_organs <- c("brain", "barriers", "nerve", "neuroimmune", "spine", "intestine")
+lvl2_5_organs <- c("brain", "barriers", "nerve", "intestine")
 
 ### Making a custom function to make edge lists, which show connections between organs 
 ### (e.g., showing lung is a lower category of respiratory).
@@ -212,18 +212,18 @@ fn_celtic_circles <- function(edge_list, vertice_data, nudge_file, random_seed =
   graph_object <- graph_from_data_frame(edge_list, vertices = vertice_data)
   ### Plotting
   celtic_circle <- ggraph(graph_object, layout = "circlepack", weight = organ_total) + 
-    geom_node_circle(aes(fill = adjusted_trend2), size = 0.05, alpha = 0.7) + 
+    geom_node_circle(aes(fill = adjusted_trend2), size = 0.05, color = "grey30", alpha = 0.7) + 
     ### Adding texts showing organ names.
-    geom_node_text(aes(label = lvl2), size = 2.4, fontface = "bold.italic", color = "black", show.legend = FALSE, 
+    geom_node_text(aes(label = lvl2), size = 3.2, fontface = "bold.italic", color = "black", show.legend = FALSE, 
                    position = position_nudge_center(x = nudge_file$x, y = nudge_file$y, direction = "none")) + 
-    geom_node_text(aes(label = lvl2_5), size = 2, fontface = "bold", color = "grey10", show.legend = FALSE, 
+    geom_node_text(aes(label = lvl2_5), size = 2.8, fontface = "bold", color = "grey10", show.legend = FALSE, 
                    position = position_nudge_center(x = nudge_file$x, y = nudge_file$y, direction = "none")) +   
-    geom_node_text(aes(label = lvl3), size = 2, color = "grey10", show.legend = FALSE, 
+    geom_node_text(aes(label = lvl3), size = 2.5, color = "grey10", show.legend = FALSE, 
                    position = position_nudge_center(x = nudge_file$x, y = nudge_file$y, direction = "none")) + 
-    geom_node_text(aes(label = UN), size = 1.5, color = "grey10", show.legend = FALSE, 
+    geom_node_text(aes(label = UN), size = 2, color = "grey10", show.legend = FALSE, 
                    position = position_nudge_center(x = nudge_file$x, y = nudge_file$y, direction = "none")) +  
     scale_fill_gradient2(low = "darkblue", mid = "paleturquoise", high = "orange", midpoint = 1, guide = "colorbar", name = "Trends") + 
-    labs(title = title_label) + 
+    #labs(title = title_label) + 
     theme_void() + 
     theme(
       plot.title = element_text(size = 8, face = 2, vjust = - 5), 
@@ -256,8 +256,9 @@ organoid_bubble <- fn_celtic_circles(organoid_edge_lvl3, organoid_organ_lvl3_cou
 
 
 ggsave(organoid_bubble, 
-       filename = paste0(root_path, "results/organ_classifications/organoid_bubble.png"),  
-       width = 135, height = 135, units = "mm")
+       filename = paste0(root_path, "results/organ_classifications/organoid_bubble.pdf"), 
+       device = cairo_pdf, 
+       width = 178, height = 178, units = "mm")
 
 
 
@@ -280,8 +281,9 @@ OoC_bubble <- fn_celtic_circles(OoC_edge_lvl3, OoC_organ_lvl3_count, OoC_nudge, 
 
 
 ggsave(OoC_bubble, 
-       filename = paste0(root_path, "results/organ_classifications/OoC_bubble.png"),  
-       width = 135, height = 135, units = "mm")
+       filename = paste0(root_path, "results/organ_classifications/OoC_bubble.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 178, units = "mm")
 
 
 
@@ -302,12 +304,13 @@ PP_organoid_nudge <- fn_write_nudge_positions(PP_organoid_edge_lvl3, position_ad
 
 PP_organoid_nudge <- read.csv(paste0(root_path, "csv/PP_organoid_edge_lvl3_nudge_F.csv"))
 
-PP_organoid_bubble <- fn_celtic_circles(PP_organoid_edge_lvl3, PP_organoid_organ_lvl3_count, PP_organoid_nudge, random_seed = 32) 
+PP_organoid_bubble <- fn_celtic_circles(PP_organoid_edge_lvl3, PP_organoid_organ_lvl3_count, PP_organoid_nudge, random_seed = 1) 
 
 
 ggsave(PP_organoid_bubble, 
-       filename = paste0(root_path, "results/organ_classifications/PP_organoid_bubble.png"),  
-       width = 135, height = 135, units = "mm")
+       filename = paste0(root_path, "results/organ_classifications/PP_organoid_bubble.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 178, units = "mm")
 
 
 
@@ -371,9 +374,9 @@ fn_organ_network <- function(vertice_data, edge_list) {
   organ_network <- ggraph(g_network, layout = "igraph", algorithm = "tree") + 
     geom_edge_link(color = "grey50", alpha = 0.15) +
     geom_node_point(aes(size = sqrt(organ_total), color = adjusted_trend2), alpha = 0.8) + 
-    geom_node_text(aes(label = name), size = 2.2, fontface = 2, vjust = -0.5) + 
+    geom_node_text(aes(label = name), size = 2.1, fontface = 2, vjust = -0.5) + 
     scale_color_gradient2(low = "darkblue", mid = "paleturquoise", high = "orange", midpoint = 1, guide = "colorbar", name = "Trends") + 
-    labs(title = title_label, 
+    labs(#title = title_label, 
          size = "Publication counts") + 
     coord_flip() + 
     scale_x_reverse() + 
@@ -389,14 +392,15 @@ organoid_edge_SP <- fn_edge_SP(organoid_counts_SP, edge_all[, 1:2])
 organoid_network <- fn_organ_network(organoid_counts_SP, organoid_edge_SP) + 
   scale_size_continuous(limits = c(0, sqrt(10000)), breaks = c(sqrt(10), sqrt(100), sqrt(1000), sqrt(10000)), labels = c(10, 100, 1000, 10000)) + 
   theme(panel.background = element_rect(fill = "transparent"), 
-        legend.position = c(0.08, 0.12), 
+        legend.position = c(0.08, 0.17), 
         legend.title = element_text(size = 7, face = 2), 
         legend.text = element_text(size = 6), 
         legend.key.size = unit(5, "mm"))
 
 ggsave(organoid_network, 
-       filename = paste0(root_path, "results/organ_classifications/organoid_network.png"),  
-       width = 190, height = 270, units = "mm")
+       filename = paste0(root_path, "results/organ_classifications/organoid_network.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 250, units = "mm")
 
 
 
@@ -417,6 +421,7 @@ OoC_network <- fn_organ_network(OoC_counts_SP, OoC_edge_SP) +
     legend.key.size = unit(5, "mm"))
 
 ggsave(OoC_network, 
-       filename = paste0(root_path, "results/organ_classifications/OoC_network.png"),  
-       width = 190, height = 180, units = "mm")
+       filename = paste0(root_path, "results/organ_classifications/OoC_network.pdf"),  
+       device = cairo_pdf, 
+       width = 178, height = 190, units = "mm")
 

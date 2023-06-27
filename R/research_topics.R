@@ -140,6 +140,7 @@ research_topics_w <- list(
   HPV = c("human papillomavirus", "hpvs?"), 
   
   ## neural diseases
+  ADHD = c("adhd", "attention deficit[ /]hyperactivity disorders?"), 
   epilepsy = c("epilepsy", "epilepsies", "epileptic"), 
   guillain_barre_syndrome = c("guillain[- ]barre? syndromes?"), 
   hypertonia = c("hypertonia"), 
@@ -176,6 +177,8 @@ research_topics_w <- list(
   chronic_obstructive_pulmonary_disease = c("chronic obstructive pulmonary diseases?", "chronic obstructive lung diseases?", 
                                             "chronic obstructive airway diseases?"), 
   pulmonary_hypertension = c("pulmonary hypertensions?", "pulmonary[- ]arterial hypertensions?"), 
+  pulmonary_vascular_disease = c("pulmonary vascular diseases?"), 
+  respiratory_distress = c("respiratory distress"), 
   emphysema = c("emphysema"), 
   asthma = c("asthma"), 
   
@@ -183,9 +186,12 @@ research_topics_w <- list(
   aneurysm = c("aneurysms?", "microaneurysms?"), 
   arrhythmia = c("arrhythmias?", "dysrhythmias?"), 
   atherosclerosis = c("atherosclerosis", "atherosclerotic"), 
+  congenital_heart_disease = c("congenital heart diseases?", "congenital heart disorders?", "congenital heart anomaly", "single ventricle"), 
+  single_ventricle = c("single ventricle"), 
   endocarditis = c("endocarditis"), 
   hemolytic_uremic_syndrome = c("ha?emolytic[- ]uremic syndromes?"), 
   hypoplastic_left_heart_syndrome = c("hypoplastic left heart", "cyanotic heart diseases?"), 
+  Long_QT_syndrome = c("long qt syndromes?"), 
   sickle_cell_disease = c("sickle cell diseases?", "sickle cell disorders?", "sickle cell anaemias?"), 
   thrombosis = c("thrombos[ei]s"), 
   extravasation = c("extravasations?"), 
@@ -203,6 +209,7 @@ research_topics_w <- list(
   crohns_disease = c("crohn'?s diseases?"), 
   coeliac_disease = c("co?eliac diseases?"), 
   microvillous_inclusion_disease = c("microvillo?us inclusion diseases?"), 
+  mucositis = c("mucosit[ei]s"), 
   irritable_bowel_syndrome = c("irritable bowel syndromes?"), 
   short_bowel_syndrome = c("short bowel syndromes?"), 
   diarrhea = c("diarrho?eal?"), 
@@ -239,7 +246,10 @@ research_topics_w <- list(
   ## genetic disorder
   alagille_syndrome = c("alagille syndromes?", "alagille[- ]watson syndromes?", "hepatic ductular hypoplasia"), 
   alport_syndrome = c("alport syndromes?"), 
+  charcot_marie_tooth = c("charcot-marie-tooth", "peroneal muscular atrophy", "Dejerine-sottas syndromes?"), 
   ciliopathy = c("ciliopathy"), 
+  creatine_transporter_deficiency = c("creatine transporter deficiency", "creatine transporter deficiencies", "creatine transporter defects?"), 
+  dravet_syndrome = c("dravet syndromes?", "severe myoclonic epilepsy of infancy"), 
   Friedreichs_ataxia = c("friedreich's ataxia"), 
   fragile_X_syndrome = c("fragile x syndromes?"), 
   hermansky_pudlak_syndrome = c("hermansky[- ]pudlak syndromes?"), 
@@ -249,18 +259,22 @@ research_topics_w <- list(
   microcephaly = c("microcephaly"), 
   niemann_pick_disease = c("niemann[- ]pick diseases?"), 
   Nijmegen_breakage_syndrome = c("nijmegen breakage syndromes?"), 
+  primary_ciliary_dyskinesia = c("primary ciliary dyskinesia", "immotile ciliary syndromes?", "kartagener syndromes?"), 
   progeria = c("progeria"), 
   down_syndrome = c("down'?s? syndromes?"),   
   rett_syndrome = c("rett syndromes?"), 
+  usher_syndrome = c("usher syndromes?", "hallgren syndromes?", "dysacusis syndromes?"), 
   wilson_disease = c("wilson'?s? diseases?"), 
   
   ## other disease
+  autoimmune_disease = c("autoimmune diseases?", "autoimmune disorders?"), 
   atresia = c("atresia"), 
   callus = c("callus", "calluses"), 
   dystrophy = c("dystrophy", "dystrophies"), 
   endometriosis = c("endometriosis"), 
   graft_versus_host_disease = c("graft[- ]versus[- ]host diseases?"), 
   helminthiasis = c("helminthias[ei]s", "helminthosis", "helminth infections?", "worm infections?"), 
+  hyperplasia = c("hyperplasia", "hypergenesis"), 
   hypoxia = c("hypoxia"), 
   ischemia = c("ischa?emi[ac]"),   
   reperfusion_injury = c("reperfusion injury", "reperfusion injuries", "reoxygenation injury", "reoxygenation injuries"), 
@@ -268,6 +282,7 @@ research_topics_w <- list(
   radiation_injury = c("radiation injury", "radiation injuries", "radiation[- ]induced [a-z]* ?injury", "radiation[- ]induced [a-z]* ?injuries", 
                        "radiation syndromes?", "radiation[- ]induced [a-z]* ?syndromes?"), 
   refractory_disease = c("refractory diseases?"), 
+  metaplasia = c("metaplasia"), 
   obesity = c("obesity"), 
   polyposis = c("polyposis"), 
   pre_eclampsia = c("pre[- ]?eclampsia"), 
@@ -294,7 +309,7 @@ research_topics_w <- list(
   tuberculosis = c("tuberculosis", "phthisis"), 
   Cryptosporidium = c("cryptosporidium"), 
   malaria = c("malaria"), 
-  nematode = c("nematodes?"), 
+  nematode = c("nematodes?", "helminth"), 
   Toxoplasma = c("toxoplasma"), 
   
   ## tumor words
@@ -470,10 +485,10 @@ colnames(TF_purpose)
 ### Adjusting the logical columns.
 ### Basically, an upper category is changed to TRUE if any of the lower categories are TRUE.
 TF_purpose2 <- TF_purpose %>% 
-  mutate(TF_disease = ifelse(rowSums(.[, 55:174]) > 0, TRUE, TF_disease)) %>% 
-  mutate(TF_host_microbe_interactions = as.logical(rowSums(.[, 175:189]))) %>% 
-  mutate(TF_neurodegenerative_disorder = as.logical(rowSums(.[, 72:76]))) %>% 
-  mutate(TF_mental_disorder = as.logical(rowSums(.[, 77:81]))) %>% 
+  mutate(TF_disease = ifelse(rowSums(.[, 55:189]) > 0, TRUE, TF_disease)) %>% 
+  mutate(TF_host_microbe_interactions = as.logical(rowSums(.[, 190:204]))) %>% 
+  mutate(TF_neurodegenerative_disorder = as.logical(rowSums(.[, 73:77]))) %>% 
+  mutate(TF_mental_disorder = as.logical(rowSums(.[, 78:82]))) %>% 
   mutate(TF_retinal_dystrophy = ifelse(TF_retinitis_pigmentosa == TRUE, TRUE, TF_retinal_dystrophy)) %>% 
   mutate(TF_retinal_degenerative_disease = ifelse(TF_retinal_dystrophy == TRUE, TRUE, TF_retinal_degenerative_disease)) %>% 
   mutate(TF_inflammatory_bowel_disease = 
@@ -508,3 +523,28 @@ research_topics_P <- research_topics_F %>%
   select(!c(7:25))
 
 save(research_topics_P, file = paste0(root_path, "R_results/research_topics_P"))
+
+
+##########
+###
+### Writing a summary csv file.
+### 
+########## 
+load(paste0(root_path, "R_results/research_topics_F"))
+
+category_names_F <- read.csv(paste0(root_path, "csv/category_names_F.csv")) 
+
+selected_topics <- category_names_F %>% 
+  filter(A_filter == "A")
+
+selected_publications <- research_topics_F %>% 
+  filter(rowSums(across(starts_with("TF_"))) > 0, 
+         !major_organ == "unidentified", 
+         type == "Research article", 
+         corpus_F %in% c("organoid", "OoC")) %>% 
+  select(author, year, title, doi, corpus_F, major_organ, any_of(selected_topics$category_colname)) %>% 
+  mutate(across(starts_with("TF_"), ~ ifelse(. == FALSE, "", "X"))) %>% 
+  rename(any_of(setNames(selected_topics$category_colname, selected_topics$category_renamed))) %>% 
+  arrange(corpus_F, major_organ, year, author)
+
+write.csv(selected_publications, file = paste0(root_path, "results/csv/research_topics.csv"), row.names = FALSE)

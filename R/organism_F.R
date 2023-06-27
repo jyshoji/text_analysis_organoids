@@ -30,7 +30,7 @@ animals_w <- c("canines?", "dogs?", "bovines?", "cows?", "calf",
                "chickens?", "poultry", "avians?", "birds?", "felines?", "zebrafish", "fish", "fly", "flies", 
                "drosophila", "horses?", "equines?", "monkeys?", "macaques?", 
                "primates?", "catarrhines?", "apes?", "gorillas?", "chimpanzees?", 
-               "orangutans?", "rabbits?", "cone?ys?", "snakes?", "ophidia", "hares?")
+               "orangutans?", "rabbits?", "cone?ys?", "snakes?", "ophidia", "hares?", "turtles?", "bats?")
 
 
 
@@ -170,11 +170,14 @@ organisms_names <- list(
   equine_w = c("[Hh]orses?", "[Ee]quines?"),  
   sheep_w = c("[Ss]heep", "[Oo]vines?"), 
   rabbit_w = c("[Rr]abbits?", "[Cc]one?ys?", "[Hh]ares?"), 
+  bat_w = c("[Bb]ats?", "[Cc]arollia", "[Rr]ousettus", "[Rr]hinolophus", "[Ee]onycteris"), 
   avian_w = c("[Cc]hickens?", "[Pp]oultry", "[Aa]vians?", "[Bb]irds?", "[Cc]hicks?"), 
   snake_w = c("[Ss]nakes?", "[Oo]phidia"), 
   zebrafish_w = c("[Zz]ebrafish", "[Ff]ish"), 
   fly_w = c("[Ff]ly", "[Ff]lies", "Drosophila"), 
-  xenopus_w = c("[Xx]enopus", "[Ff]rogs?")
+  xenopus_w = c("[Xx]enopus", "[Ff]rogs?"), 
+  turtle_w = c("[Tt]urtles?"), 
+  plant_w = c("[Bb]rassica", "[Pp]lants?")
   ) %>% 
   lapply(., function(x) paste0("\\b", x, "\\b", collapse = "|"))
 
@@ -220,9 +223,9 @@ colnames(TF_organisms)
 ### Basically, classification is made with priority in the order of key_title > key_KA > mod_title > mode_KA.
 ### If there is TRUE for a higher priority classification, then lower classifications are all changed to FALSE.
 modified_TF_organisms <- TF_organisms %>% 
-  mutate(across(c(48:95), ~ ifelse(rowSums(across(ends_with("_key_title"))) > 0, FALSE, .))) %>% 
-  mutate(across(c(64:95), ~ ifelse(rowSums(across(ends_with("_key_KA"))) > 0, FALSE, .))) %>% 
-  mutate(across(c(80:95), ~ ifelse(rowSums(across(ends_with("_mod_title"))) > 0, FALSE, .)))
+  mutate(across(c(51:107), ~ ifelse(rowSums(across(ends_with("_key_title"))) > 0, FALSE, .))) %>% 
+  mutate(across(c(70:107), ~ ifelse(rowSums(across(ends_with("_key_KA"))) > 0, FALSE, .))) %>% 
+  mutate(across(c(89:107), ~ ifelse(rowSums(across(ends_with("_mod_title"))) > 0, FALSE, .)))
 
 ### Making summary TF_ columns, where the value is TRUE if any of the columns for the corresponding organism is TRUE.
 pre_organism <- modified_TF_organisms %>% 
@@ -237,13 +240,18 @@ pre_organism <- modified_TF_organisms %>%
   mutate(TF_horse = rowSums(across(starts_with("equine_")))) %>% 
   mutate(TF_sheep = rowSums(across(starts_with("sheep_")))) %>%   
   mutate(TF_rabbit = rowSums(across(starts_with("rabbit_")))) %>% 
+  mutate(TF_bat = rowSums(across(starts_with("bat_")))) %>% 
   mutate(TF_bird = rowSums(across(starts_with("avian_")))) %>% 
   mutate(TF_snake = rowSums(across(starts_with("snake_")))) %>% 
   mutate(TF_fish = rowSums(across(starts_with("zebrafish_")))) %>% 
   mutate(TF_fly = rowSums(across(starts_with("fly_")))) %>% 
-  mutate(TF_frog = rowSums(across(starts_with("xenopus_"))))
+  mutate(TF_frog = rowSums(across(starts_with("xenopus_")))) %>% 
+  mutate(TF_turtle = rowSums(across(starts_with("turtle_")))) %>% 
+  mutate(TF_plant = rowSums(across(starts_with("plant_")))) 
 
 colnames(pre_organism)
+
+
 
 ### !!! Note !!!
 ### This step is for manually checking and correcting organism classification for minor research organisms.
@@ -257,25 +265,42 @@ minor_organisms <- pre_organism %>%
   ### Selecting research articles
   filter(type == "Research article") %>% 
   ### Selecting papers that are TRUE for minor organisms
-  filter(rowSums(.[, c(98:111)]) > 0) %>% 
+  filter(rowSums(.[, c(110:126)]) > 0) %>% 
   ### selecting relevant columns
-  select(1, 10, 6, 98:111) %>% 
+  select(1, 10, 6, 110:126) %>% 
   ### Making a new column
   mutate(checked = "") 
 
 ### Saving as a csv file.
-write.csv(minor_organisms, file = paste0(root_path, "csv/temps/minor_organisms.csv"), row.names = FALSE)
+### write.csv(minor_organisms, file = paste0(root_path, "csv/temps/minor_organisms.csv"), row.names = FALSE)
 ### This file was manually checked, and TRUE/FALSE were modified so that the paper is TRUE only when 
 ### the organism mentioned is used as a source for organoid/onchip.
 ### The file was saved as "./csv/minor_organisms_F.csv"
 
+### The lines below are to manually check the classifications when the corpus is updated.
 minor_organisms_F <- read.csv(paste0(root_path, "csv/minor_organisms_F.csv")) 
+
+minor_organisms_previous <- minor_organisms %>% 
+  filter(ID %in% minor_organisms_F$ID)
+
+minor_organisms_update <- minor_organisms_F %>% 
+  mutate(TF_bat = minor_organisms_previous$TF_bat, 
+         TF_turtle = minor_organisms_previous$TF_turtle, 
+         TF_plant = minor_organisms_previous$TF_plant) %>% 
+  select(any_of(colnames(minor_organisms_previous))) %>% 
+  rbind(., 
+        minor_organisms %>% filter(!ID %in% minor_organisms_F$ID)) %>% 
+  arrange(ID)
+  
+write.csv(minor_organisms_update, file = paste0(root_path, "csv/temps/minor_organisms_update.csv"), row.names = FALSE)
+
+minor_organisms_F <- read.csv(paste0(root_path, "csv/minor_organisms_F.csv"))
 
 colnames(pre_organism)
 colnames(minor_organisms_F)
 
 ### Checking the number of articles where the classifications were manually changed.
-changed_papers <- data.frame(before = rowSums(minor_organisms[, 4:17]), after = rowSums(minor_organisms_F[, 4:17])) %>% 
+changed_papers <- data.frame(before = rowSums(minor_organisms[, 4:20]), after = rowSums(minor_organisms_F[, 4:20])) %>% 
   filter(!before == after)
 
 ### Replacing the corresponding columns/rows with the manually checked data frame.
@@ -283,8 +308,8 @@ changed_papers <- data.frame(before = rowSums(minor_organisms[, 4:17]), after = 
 ### TF_" columns for minor organisms are then replaced with the manually checked TF_" columns.
 minor_organisms_replaced <- pre_organism %>% 
   filter(ID %in% minor_organisms_F$ID) %>% 
-  select(!c(98:111)) %>% 
-  left_join(., minor_organisms_F[, c(1, 4:17)], by = "ID")
+  select(!c(110:126)) %>% 
+  left_join(., minor_organisms_F[, c(1, 4:20)], by = "ID")
 
 ### Then, the corresponding rows in the pre_organism data frame are replaced with the above data frame.
 pre_organism_replaced <- pre_organism %>% 
@@ -298,15 +323,17 @@ pre_organism_replaced <- pre_organism %>%
 ### 4.2. Summarizing the organism classification.
 ###
 
+colnames(pre_organism_replaced)
+
 ### Making a summary data frame.
 organisms_F <- pre_organism_replaced %>% 
   ### "TF_" columns are changed from integer to logical
-  mutate(across(c(96:111), ~ as.logical(.))) %>% 
+  mutate(across(c(108:126), ~ as.logical(.))) %>% 
   ### Making a summary column "organism".
   mutate(organism = 
-           ifelse(TF_human == TRUE & rowSums(.[, 97:111]) > 0, "mixed (human and non-human)", 
-                  ifelse(rowSums(.[, 97:111]) > 1, "mixed (non-human)", 
-                         ifelse(rowSums(.[, 96:111]) == 1, colnames(.[, 96:111])[max.col(.[, 96:111])], NA)))) %>% 
+           ifelse(TF_human == TRUE & rowSums(.[, 109:126]) > 0, "mixed (human and non-human)", 
+                  ifelse(rowSums(.[, 109:126]) > 1, "mixed (non-human)", 
+                         ifelse(rowSums(.[, 108:126]) == 1, colnames(.[, 108:126])[max.col(.[, 108:126])], NA)))) %>% 
   mutate(organism = gsub("TF_", "", organism))
 
 ### Saving the result.

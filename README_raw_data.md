@@ -20,6 +20,7 @@ These metadata files were imported into R using the code in *./R/formatting.R* a
 6. However, research articles on organoid from PubMed and research articles on blastoids from EMBASE could not be imported to R for unknown reasons. Therefore, research articles and reviews were collectively imported, and review articles were later marked as such.
 7. Publications from bioRxiv were defined as *preprints*.
 8. Metadata of academic publications under Creative Commons Attribution Licenses was also collected from PubMed, by inserting **AND ("pmc cc license"[Filter])** at the end of each search string.
+9. The literature corpus was updated upon revision of our submitted paper. For this, metadata of the academic publications was collected again on the 5th June, 2023, with the same search conditions, except that the date range was set to Jan-01-2022 to present. The collected metadata documents were stored in "raw_data4" folder. Duplicate publications (published between Jan-01-2022 and Sep-06-2022) were later removed on R. 
 
 # Organoid literature
 
@@ -66,29 +67,31 @@ limit 9 to "review"
 1. Query words were searched in *Text Word* field of the database.
 2. Search builder was used.
 3. For unknown reason, the metadata of research articles were unable to be imported into R. Therefore, metadata of both research articles and reviews were collectively imported instead, after which metadata of reviews was deduplicated.
+4. Exported through "Save to", "Citation manager", "All results".
 
 ### Research articles + reviews (organoids)
 
-Search: ((((organoid[Text Word] OR organoids[Text Word] OR enteroid[Text Word] OR enteroids[Text Word] OR gastruloid[Text Word] OR gastruloids[Text Word] OR colonoid[Text Word] OR colonoids[Text Word] OR assembloid[Text Word] OR assembloids[Text Word] OR iblastoid[Text Word] OR iblastoids[Text Word] OR tumoroid[Text Word] OR tumoroids[Text Word] OR tumouroid[Text Word] OR tumouroids[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+((((organoid[Text Word] OR organoids[Text Word] OR enteroid[Text Word] OR enteroids[Text Word] OR gastruloid[Text Word] OR gastruloids[Text Word] OR colonoid[Text Word] OR colonoids[Text Word] OR assembloid[Text Word] OR assembloids[Text Word] OR iblastoid[Text Word] OR iblastoids[Text Word] OR tumoroid[Text Word] OR tumoroids[Text Word] OR tumouroid[Text Word] OR tumouroids[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 ### Reviews only (organoids)
 
-Search: ((((organoid[Text Word] OR organoids[Text Word] OR enteroid[Text Word] OR enteroids[Text Word] OR gastruloid[Text Word] OR gastruloids[Text Word] OR colonoid[Text Word] OR colonoids[Text Word] OR assembloid[Text Word] OR assembloids[Text Word] OR iblastoid[Text Word] OR iblastoids[Text Word] OR tumoroid[Text Word] OR tumoroids[Text Word] OR tumouroid[Text Word] OR tumouroids[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+((((organoid[Text Word] OR organoids[Text Word] OR enteroid[Text Word] OR enteroids[Text Word] OR gastruloid[Text Word] OR gastruloids[Text Word] OR colonoid[Text Word] OR colonoids[Text Word] OR assembloid[Text Word] OR assembloids[Text Word] OR iblastoid[Text Word] OR iblastoids[Text Word] OR tumoroid[Text Word] OR tumoroids[Text Word] OR tumouroid[Text Word] OR tumouroids[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 
 ### Research articles (blastoids)
 
-Search: (((((blastoid[Text Word] OR blastoids[Text Word]) AND (embryo[Text Word] OR embryonic[Text Word])) AND ("english"[Language])) AND (("2018/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "review"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+(((((blastoid[Text Word] OR blastoids[Text Word]) AND (embryo[Text Word] OR embryonic[Text Word])) AND ("english"[Language])) AND (("2018/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "review"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 ### Reviews (blastoids)
 
-Search: (((((blastoid[Text Word] OR blastoids[Text Word]) AND (embryo[Text Word] OR embryonic[Text Word])) AND ("english"[Language])) AND (("2018/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+(((((blastoid[Text Word] OR blastoids[Text Word]) AND (embryo[Text Word] OR embryonic[Text Word])) AND ("english"[Language])) AND (("2018/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 
 ## Scopus
 
 1. Only up to 2,000 papers can be exported as a csv file from a search. Therefore, documents were filtered by year and country to make the number of hits to be smaller than 2,000.
 2. Query words were searched in the *TITLE-ABS-KEY* field.
+3. BibTeX export, including "Citation information", "Bibliographical information", "Abstract & keywords", and "Funding details".
 
 ### Research articles (organoids)
 
@@ -111,6 +114,7 @@ Search: (((((blastoid[Text Word] OR blastoids[Text Word]) AND (embryo[Text Word]
 
 1. Query words were searched in “topic”.
 2. Using only “Web of Science Core Collection”
+3. "Full record" (without cited references) of the metadata was exported in a "BibTeX" format.
 
 ### Research articles (organoids)
 
@@ -143,6 +147,7 @@ Where 1 is;
 1. Searched both “bioRxiv” and “medRxiv” (NOT “bioRxiv and medRxiv”)
 2. Advanced search -> Abstract or Title -> any (check box next to search box.)
 3. As the search box had a stingy word limit, the search string was split into two.
+4. Exported as BibTeX.
 
 ### Preprints - 1 (organoids)
 
@@ -195,21 +200,23 @@ limit 2 to "review"
 1. Query words were searched in *Text Word* field of the database.
 2. Search builder was used
 3. “-“ between "on" and "chip" wasn’t really necessary, as phrase search is automatically performed when search field is specified.
+4. Exported through "Save to", "Citation manager", "All results".
 
 
 ### Research articles 
 
-Search: ((((on-chip[Text Word] OR on-chips[Text Word] OR on-a-chip[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "review"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+((((on-chip[Text Word] OR on-chips[Text Word] OR on-a-chip[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "review"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 ### Reviews 
 
-Search: ((((on-chip[Text Word] OR on-chips[Text Word] OR on-a-chip[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+((((on-chip[Text Word] OR on-chips[Text Word] OR on-a-chip[Text Word]) AND ("english"[Language])) AND (("2011/01/01"[Date - Publication] : "3000"[Date - Publication]))) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 
 ## Scopus
 
 1. Only up to 2,000 papers can be exported as csv from a search. Therefore, documents were filtered by year and country to make the number of hits to be smaller than 2,000.
 2. Query words were searched in the *TITLE-ABS-KEY* field.
+3. BibTeX export, including "Citation information", "Bibliographical information", "Abstract & keywords", and "Funding details".
 
 ### Research articles
 
@@ -224,6 +231,7 @@ Search: ((((on-chip[Text Word] OR on-chips[Text Word] OR on-a-chip[Text Word]) A
 
 1. Query words were searched in “topic”.
 2. Using only “Web of Science Core Collection”
+3. "Full record" (without cited references) of the metadata was exported in a "BibTeX" format.
 
 ### Research articles
 
@@ -246,6 +254,7 @@ where 1 is:
 3. The search box doesn’t accept Boolean operators. For this reason, “on-chip”, “on-chips” and “on-a-chip” were searched for separately.
 4. Apparently, the search is special character insensitive,
 as on-chip and on chip (phrase) gave the same results.
+5. Exported as BibTeX.
 
 ### Preprints
 
@@ -291,21 +300,23 @@ limit 2 to "review"
 ## PubMed
 
 1. Query words were searched in *Text Word* field of the database.
-2. Search builder was used
+2. Search builder was used. 
+3. Exported through "Save to", "Citation manager", "All results".
 
 ### Research articles
 
-Search: ((("microphysiological system*"[Text Word] OR "microphysiology system*"[Text Word] OR "microphysiologic system*"[Text Word] OR "micro physiological system*"[Text Word]) AND "english"[Language] AND 2011/01/01:3000/12/31[Date - Publication]) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "review"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+((("microphysiological system*"[Text Word] OR "microphysiology system*"[Text Word] OR "microphysiologic system*"[Text Word] OR "micro physiological system*"[Text Word]) AND "english"[Language] AND 2011/01/01:3000/12/31[Date - Publication]) AND ("journal article"[Publication Type])) NOT ("comment"[Publication Type] OR "editorial"[Publication Type] OR "review"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 ### Reviews
 
-Search: ((("microphysiological system*"[Text Word] OR "microphysiology system*"[Text Word] OR "microphysiologic system*"[Text Word] OR "micro physiological system*"[Text Word]) AND "english"[Language] AND 2011/01/01:3000/12/31[Date - Publication]) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
+((("microphysiological system*"[Text Word] OR "microphysiology system*"[Text Word] OR "microphysiologic system*"[Text Word] OR "micro physiological system*"[Text Word]) AND "english"[Language] AND 2011/01/01:3000/12/31[Date - Publication]) AND ("review"[Publication Type])) NOT ("comment"[Publication Type] OR "retracted publication"[Publication Type] OR "retraction of publication"[Publication Type])
 
 
 ## Scopus
 
 1. Only up to 2,000 papers can be exported as csv from a search. Therefore, documents were filtered by year to make the number of hits to be smaller than 2,000.
 2. Query words were searched in the *TITLE-ABS-KEY* field.
+3. BibTeX export, including "Citation information", "Bibliographical information", "Abstract & keywords", and "Funding details".
 
 ### Research articles
 
@@ -320,6 +331,7 @@ Search: ((("microphysiological system*"[Text Word] OR "microphysiology system*"[
 
 1. Query words were searched in “topic”.
 2. Using only “Web of Science Core Collection”
+3. "Full record" (without cited references) of the metadata was exported in a "BibTeX" format.
 
 ### Research articles
 
@@ -337,3 +349,4 @@ where 1 is
 1. Searched both “BioRxiv” and “MedRxiv” (NOT “bioRxiv and Medrxiv”)
 2. Advanced search -> Abstract and Title -> phrase 
 3. The search box doesn’t accept Boolean operators. For this reason, each phrase was searched for separately, one by one.
+

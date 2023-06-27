@@ -94,7 +94,12 @@ write.csv(pre_words_list, file = paste0(root_path, "csv/temps/pre_words_list.csv
 ### The result is saved as:
 ### "./csv/pre_words_F.csv"
 
-
+### The code below is to update the existing word list.
+### pre_words_F <- read.csv(paste0(root_path, "csv/pre_words_F.csv"))
+### pre_words_list[, 1:2] %>% 
+###   left_join(., pre_words_F[, 2:3], by = "pre_word") %>% 
+###   arrange(include) %>% 
+###   write.csv(., file = paste0(root_path, "csv/temps/pre_words_list.csv"), row.names = FALSE)
 
 
 
@@ -182,6 +187,8 @@ modified_corpus <- all_corpus_lower %>%
   mutate(across(ends_with("_lower"), 
                 ~ str_replace_all(., "blood[- ]retinal?[- ]barriers?", "bloodretinalbarrier"))) %>% 
   mutate(across(ends_with("_lower"), 
+                ~ str_replace_all(., "blood[- ]air[- ]barriers?|air[- ]blood[- ]barriers?|alveolar[- ]capillary barriers?", "bloodairbarrier"))) %>% 
+  mutate(across(ends_with("_lower"), 
                 ~ str_replace_all(., "placental[- ]barriers?", "placentalbarrier"))) %>%  
   mutate(across(ends_with("_lower"), 
                 ~ str_replace_all(., "basal ganglion|basal ganglia", "basalganglion"))) %>%    
@@ -254,7 +261,8 @@ pre_2words_w <- c("pancreaticduct", "bileduct", "collectingduct", "breastduct", 
                  "corticostriatalnetwork", "cornealbarrier", "bloodbrainbarrier", "placentalbarrier", "dorsalrootganglion", 
                  "bloodvessel", "lymphaticvessel", "tumorvessel", "perivascularniche", "metastaticniche", "tastebud", 
                  "circumvallatepapilla", "spinalcord", "opticcup", "bonemarrow", "synovialjoint", "choroidplexus", 
-                 "dentalpulp", "neuromuscularjunction", "neurovascularunit", "lymphnode", "fetalmembrane", "opticvesicle")
+                 "dentalpulp", "neuromuscularjunction", "neurovascularunit", "lymphnode", "fetalmembrane", "opticvesicle", 
+                 "bloodairbarrier")
 
 ### Loading the list of words before organoid/onchip, generated in the above section 1.
 pre_words_F <- read.csv(paste0(root_path, "csv/pre_words_F.csv"))
@@ -447,25 +455,28 @@ all_terms <- list(
   pituitary_w = c("pituitary", "pituitaries", "hypophys[ei]s", "hypophyseal"), 
   brainstem_w = c("brain ?stems?"), 
   midbrain_w = c("midbrains?"), 
+  ventral_midbrain_w = c("ventral midbrains?", "vm"), 
   hindbrain_w = c("hindbrains?"), 
   cerebellum_w = c("cerebellums?", "cerebellar?"), 
   
-  ### barriers and neuroimmune
-  bbb_w = c("bloodbrainbarrier", "bbbs?"), 
+  ### barriers, meninges, and  neuroimmune
+  bbb_w = c("bloodbrainbarrier", "h?bbbs?"), 
   choroid_plexus_w = c("choroidplexus", "choroidplexuses", "chps?", "cerebrospinal fluids?", "csfs?"),
   # Capturing only when either "choroidplexus" or "cerebrospinal fluid" appears.
   glymphatic_w = c("glymphatics?"), 
-  gliovascular_unit_w = c("gliovascular units?", "gvus?"),   
+  gliovascular_unit_w = c("gliovascular units?", "gvus?"), 
+  meninges_w = c("meninges", "meninx", "meninge?al"), 
   neuroimmune_w = c("neuroimmune"), 
   
   ### nerve
   nerve_w = c("nerves?", "nervous", "neuro", "neuroepithelial", "neurons?", "neuronal", 
               "axons?", "synapses?", "synaptic"), 
   ganglion_w = c("ganglion", "ganglia"), 
-  # Another term to capture with perl = TRUE  
+  # Another term to capture with perl = TRUE
+  autonomic_ganglion_w = c("autonomic ganglion", "autonomic ganglia", "i?ags?"), 
   dorsal_root_ganglion_w = c("drgs?", "dorsalrootganglion", "i?sgs?"), 
   # abbreviation
-  neurovascular_w = c("neurovascular"), 
+  neurovascular_w = c("neurovascular", "neurovasculatures?"), 
   neurovascular_unit_w = c("neurovascularunit", "nvus?"), 
   # abbreviation
   neuromuscular_w = c("neuromuscular"), 
@@ -476,18 +487,20 @@ all_terms <- list(
   spine_w = c("spines?", "spinal", "intervertebral dis[ck]s?"), 
   spinal_cord_w = c("spinalcord"), 
   
+  ### other neural
+  enteric_nervous_system_w = c("enteric nervous systems?", "enteric neurons?", "ens"), 
+  
   ### ear
   cochlea_w = c("cochlea[rs]?", "hair[- ]cells?"), 
   umbo_w = c("umbos?", "umbones"), 
   
   ### ocular 
-  optic_vesicle_w = c("opticvesicle"),   
   optic_cup_w = c("opticcup"),   
   retina_w = c("retina[els]?"), 
   blood_retinal_barrier_w = c("bloodretinalbarrier", "o?brb"), 
   lacrimal_gland_w = c("lacrimalgland", "lacrimal", "lg"), 
   # abbreviation
-  meibomian_gland_w = c("meibomian glands?", "mgs?"), 
+  meibomian_gland_w = c("meibomian glands?", "meibocytes?", "mgs?"), 
   # abbreviation
   cornea_w = c("cornea[ls]?", "minicornea[ls]?"), 
   corneal_limbus_w = c("limbal", "limbus", "limbi", "limbuses"), 
@@ -513,6 +526,7 @@ all_terms <- list(
   # abbreviation
   parotid_gland_w = c("parotidgland"), 
   submandibular_gland_w = c("submandibulargland"), 
+  gingival_crevice_w = c("gingival crevices?", "gingival sulcus"), 
   
   ### lymphatic
   lymphoid_w = c("lymphoids?"), 
@@ -558,18 +572,24 @@ all_terms <- list(
   ### respiratory
   mucociliary_w = c("mucociliary"), 
   airway_w = c("airways?"), 
+  pharynx_w = c("pharynx", "pharynxes", "pharynges", "pharynge?al"), 
+  nasopharynx_w = c("nasopharynx", "nasopharynxes", "nasopharynges", "nasopharynge?al"), 
+  oropharynx_w = c("oropharynx", "oropharynxes", "oropharynges", "oropharynge?al"), 
+  hypopharynx_w = c("hypopharynx", "hypopharynxes", "hypopharynges", "hypopharynge?al"), 
+  larynx_w = c("larynx", "larynxes", "larynges", "larynge?al"), 
   trachea_w = c("trachea[els]?", "windpipes?"), 
   tracheosphere_w = c("tracheospheres?"), 
   lung_w = c("lungs?", "pulmonary", "bronchioalveolar"), 
-  alveolus_w = c("alveolus", "alveoli", "alveolar", "pneumocytes?"), 
+  alveolus_w = c("alveolus", "alveoli", "alveolar", "alveolospheres?", "pneumocytes?"), 
   bronchus_w = c("bronchus", "bronchi", "bronchial"), 
   bronchiole_w = c("bronchioles?", "bronchiolar"), 
+  blood_air_barrier = c("bloodairbarrier", "abb"), 
   pleura_w = c("pleura[el]?"), 
   
   ### gastrointestinal
-  esophagus_w = c("o?esophagus", "o?esophagi", "o?esophageal", "o?esophagical"), 
-  gastroesophageal_junction_w = c("gastroesophageal junctions?", "gej"), 
-  stomach_w = c("stomachs?", "gastric"), 
+  esophagus_w = c("o?esophagus", "o?esophagi", "o?esophage?al", "o?esophagical"), 
+  gastroesophageal_junction_w = c("gastroesophage?al junctions?", "gej"), 
+  stomach_w = c("stomachs?", "gastric", "gins"), 
   gastric_antrum_w = c("antrum", "antral?"), 
   gastric_fundus_w = c("fundus", "fundic?"), 
   gastric_corpus_w = c("corpus", "corporal?"), 
@@ -577,7 +597,7 @@ all_terms <- list(
   gastric_gland_w = c("gastricgland"), 
   abomasum_w = c("abomasums?", "abomasal?"), 
   intestine_w = c("intestines?", "intestinal", "bowels?", "guts?", "enteral", "enteric", "enterocytes?"), 
-  small_intestine_w = c("smallintestines?", "si"), 
+  small_intestine_w = c("smallintestines?", "h?si"), 
   # abbreviation
   duodenum_w = c("duodenum", "duodenal?"), 
   ileum_w = c("ileum", "ileal?"), 
@@ -585,13 +605,14 @@ all_terms <- list(
   large_intestine_w = c("largeintestines?", "colorectal?", "colorectum"), 
   caecum_w = c("ca?ecums?", "ca?ecal?"), 
   colon_w = c("colons?", "colonic"), 
+  appendix_w = c("appendix", "appendixes", "appendices", "appendiceal"), 
   rectum_w = c("rectums?", "rectal?"), 
   
   ### biliary
   pancreas_w = c("pancreas", "pancreases", "pancreatic"), 
   pancreatic_duct_w = c("pancreaticduct"), 
   islet_w = c("islets?"), 
-  liver_w = c("livers?", "hepatic", "lsc", "hepatocytes?", "h?ihep", "hepatostellate"), 
+  liver_w = c("livers?", "hepatic", "lsc", "hepatocytes?", "h?ihep", "hepatostellate", "hepatic progenitor cells?", "hpcs?"), 
   # abbreviation
   lobule_w = c("lobules?", "lobular", "vlsll", "very large-scale liver-lobules?"), 
   # Only capture when liver or hepatic appears.
@@ -609,7 +630,7 @@ all_terms <- list(
   ### reproductive
   female_reproductive_w = c("reproductivetract"), 
   ovary_w = c("ovary", "ovaries", "ovarian"), 
-  oviduct_w = c("oviducts?", "oviductal", "salpinx", "salpinges", "salpinxes"), 
+  oviduct_w = c("oviducts?", "oviductal", "salpinx", "salpinges", "salpinxes", "ftec"), 
   uterus_w = c("uterus", "uteri", "uteruses", "uterine", "wombs?"), 
   endometrium_w = c("endometrium", "endometrial?", "adenomyosis"), 
   endometrial_gland_w = c("endometrialgland"), 
@@ -648,14 +669,16 @@ all_terms <- list(
   
   ### musculoskeletal
   osteochondral_w = c("osteochondral"), 
-  bone_w = c("bones?", "osteogenic"), 
+  bone_w = c("bones?", "osteogenic", "osteo", "osteogenes[ei]s", "osteoclastogenes[ei]s"), 
   cartilage_w = c("cartilages?", "cartilaginous", "chondrogenic", "chondral", "chondrocytes?"), 
   joint_w = c("joints?"), 
   synovial_joint_w = c("synovialjoint", "synovial"), 
   synovium_w = c("synovium", "synovial membranes?", "synovial stratum", "synovial strata", "stratum synoviales?"), 
   anterior_cruciate_ligament_w = c("anterior cruciate ligaments?", "acls?"), 
-  muscle_w = c("muscles?", "myotubes?", "muscular"), 
+  artificial_joint_w = c("periprosthetic joints?", "artificial joints?", "prosthes[ei]s", "pji"), 
+  muscle_w = c("muscles?", "myotubes?", "muscular", "smcs?"), 
   tendon_w = c("tendons?", "tendinous"), 
+  anulus_fibrosus_w = c("ann?ulus fibrosus", "ann?ulus"), 
   
   ### adipose
   white_adipose_tissue_w = c("wats?", "white adipose tissues?"), 
@@ -680,7 +703,7 @@ all_terms <- list(
   # abbreviation
   reproductive_w = c("reproductive", "gonads?", "gonadal"), 
   # make it FALSE if TRUE for "aorta-gonad-mesonephros"
-  urinary_w = c("urinary", "urines?", "usc", "urothelial"), 
+  urinary_w = c("urinary", "urines?", "usc", "urothelial?", "urothelium"), 
   # abbreviation
   dermal_w = c("skins?", "dermal", "dermis", "cutaneous"), 
   musculoskeletal_w = c("musculoskeletal"), 
@@ -702,14 +725,17 @@ all_terms <- list(
   cytotrophoblast_w = c("cytotrophoblasts?", "ctbs?"), 
   # abbreviation
   neuroectoderm_w = c("neuroectoderms?", "neuroectodermal"), 
+  neuromesoderm_w = c("neuromesoderms?", "neuromesodermal"), 
   neural_tube_w = c("neuraltube"), 
-  mge_w = c("medial ganglionic eminences?", "mge"), 
+  ganglionic_eminence_w = c("ganglionic eminences?", "m?ge"), 
+  optic_vesicle_w = c("opticvesicle"), 
   # abbreviation
   paraxial_mesoderm_w = c("paraxial mesoderms?", "pm"), 
   # abbreviation
   precardiac_w = c("precardiac"), 
   foregut_w = c("foreguts?"), 
   midgut_w = c("midguts?"), 
+  hindgut_w = c("hindguts?"), 
   ureteric_bud_w = c("ureteric buds?", "i?ub"), 
   # abbreviation
   aorta_gonad_mesonephros_w = c("aorta[- ]gonad[- ]mesonephros", "agm"), 
@@ -746,6 +772,8 @@ all_terms <- list(
   ### Words in the following vectors will be captured and later assigned to corresponding organs (if there is any).
   ### For example, callus will be treated as "dermal", and "disease".
   disease_w = c("diseases?", "infections?", "syndromes?", "inflammation", "allergy", "allergies", "allergic"), 
+  atherosclerosis_w = c("atheroscleros[ei]s"), 
+  # vascular
   alzheimer_w = c("alzheimer'?s diseases?", "ad"), 
   # abbreviation, brain
   arrhythmia_w = c("arrhythmia"), 
@@ -761,16 +789,24 @@ all_terms <- list(
   # dermal
   cavd_w = c("calcific aortic valve diseases?", "cavd"), 
   # valve
+  cmt_w = c("charcot[- ]marie[ -]tooth", "cmt", "cmt1a"), 
+  # peripheral nervous
+  copd_w = c("chronic obstructive pulmonary diseases?", "copd"), 
+  # respiratory
   cystic_fibrosis_w = c("cystic fibrosis", "cf"), 
   ulcerative_colitis_w = c("ulcerative coliti[cs]", "uc"), 
   # abbreviation, large intestine, colitis
   colitis_w = c("coliti[cs]"), 
   # colon, colitis
+  drvt_w = c("dravet syndromes?", "drvt"), 
+  # neural
   endometriosis_w = c("endometriosis", "endometriotic"), 
   # endometrium
   enterocolitis_w = c("enterocoliti[cs]"), 
   # intestine, colitis
   epilepsy_w = c("epilepsy"), 
+  fatal_familial_insomnia_w = c("fatal familial insomnia", "fii"), 
+  # brain
   focal_cortical_dysplasia_w = c("focal cortical dysplasia", "fcd"), 
   # abbreviation, brain, disease
   fibrosis_w = c("fibrosis", "fibrotic"), 
@@ -792,6 +828,8 @@ all_terms <- list(
   ie_w = c("infective endocarditis", "ie"), 
   # abbreviation, myocardium
   ischemia_w = c("ischemia"), 
+  # cardiovascular
+  long_qt_syndrome_w = c("long qt syndromes?", "lqts2"), 
   # cardiovascular
   aneurysm_w = c("aneurysms?", "microaneurysms?"), 
   # blood vessel
@@ -830,14 +868,16 @@ all_terms <- list(
   
   ### Tumor
   tumor_w = c("tumou?rs?", "tumou?ral", "metastas[ei]s", "metastatic", "circulating tumou?r cells?", "ctcs?", 
-              "tumou?r[- ]microenvironment", "tme", "tumou?roids?"), 
+              "tumou?r[- ]microenvironment", "tme", "tumou?roids?", "carcinomatos[ei]s"), 
   # abbreviation
   cancer_w = c("cancers?", "cancerous"), 
   adenocarcinoma_w = c("adenocarcinomas?", "ac"), 
   # abbreviation
   adenoma_w = c("adenomas?"), 
+  ameloblastoma_w = c("ameloblastomas?", "am"), 
+  # tooth
   carcinoma_w = c("carcinomas?"), 
-  cholangiocarcinoma_w = c("cholangiocarcinomas?", "cca?", "ihcc", "icc"), 
+  cholangiocarcinoma_w = c("cholangiocarcinomas?", "i?cca?", "ihcc"), 
   # abbreviation, bile duct, chlangiocarcinoma
   chondrosarcoma_w = c("chondrosarcomas?"), 
   # cartilage
@@ -849,7 +889,9 @@ all_terms <- list(
   # abbreviation, brain (may occur in spine as well), 
   glioma_w = c("gliomas?", "lgg"), 
   # abbreviation, brain tumor, lgg being "lower grade glioma
-  hepatoblastoma_w = c("hepatoblastomas?"), 
+  hemangioma_w = c("hemangiomas?", "nichs?"), 
+  # vascular tumor
+  hepatoblastoma_w = c("hepatoblastomas?", "hb"), 
   # liver, blastoma
   hepatocarcinoma_w = c("hepatocarcinomas?"), 
   # liver, carcinoma
@@ -869,8 +911,11 @@ all_terms <- list(
   # Brain or spine, not to classify for organs at the moment
   metastatic_niche_w = c("metastaticniche", "emns?"), 
   # abbreviation
+  mesothelioma_w = c("mesothelioma", "c?mm"), 
   neoplasm_w = c("neoplastic", "neoplasms?"), 
   neuroblastoma_w = c("neuroblastomas?", "nb"), 
+  # nerve tumor
+  neurofibroma_w = c("neurofibromas?", "cnfs?"), 
   # nerve tumor
   osteosarcoma_w = c("osteosarcomas?", "os"), 
   # abbreviation, bone, cancer
@@ -883,11 +928,13 @@ all_terms <- list(
   tumor_vessel_w = c("tumorvessel"), 
   
   ### abbreviations
+  acc_w = c("adrenocortical carcinomas?", "accs?"), 
+  # adrenal, carcinoma
   ba_w = c("biliary atresia", "ba"), 
   # bile duct, atresia
-  bladder_cancer_w = c("bladder cancers?", "bc"), 
+  bladder_cancer_w = c("bladder cancers?", "bc", "nmibc"), 
   # bladder, cancer
-  breast_cancer_w = c("breast cancers?", "bc", "mammary tumors?", "c?mts?"), 
+  breast_cancer_w = c("breast cancers?", "bca?", "mammary tumors?", "c?mts?", "phyllodes tumors?", "mpt"), 
   # breast, cancer
   btc_w = c("biliary tract carcinoma", "btc"), 
   # biliary carcinoma
@@ -899,7 +946,7 @@ all_terms <- list(
   # kidney, carcinoma
   cho_w = c("cholangiocytes?", "cho", "clcs?"), 
   # bile duct
-  crc_w = c("colorectal cancers?", "h?crc", "crpm", "colorectal adenomas?", "cra"), 
+  crc_w = c("colorectal cancers?", "[hm]?crc", "crpm", "colorectal adenomas?", "cra", "t1crc"), 
   # large intestine, cancer
   crlm_w = c("colorectal cancer liver metastasis", "crlm"), 
   # liver, cancer
@@ -973,6 +1020,8 @@ all_terms <- list(
   # pancreas, cancer
   pdac_w = c("pancreaticduct adenocarcinomas?", "pdac"), 
   # pancreatic duct, adenocarcinoma
+  pitnet_w = c("pituitary neuroendocrine tumors?", "pitnets?"), 
+  # pituitary, tumor
   plc_w = c("primary liver cancers?", "plc"), 
   # liver, cancer
   ptc_w = c("papillary thyroid cancers?", "ptc"), 
@@ -981,8 +1030,12 @@ all_terms <- list(
   # rectum, cancer
   rpe_w = c("retinal pigment epithelial", "rpe"), 
   # retina, epithelial
-  scc_w = c("squamous cell carcinomas?", "scc", "cscc"), 
+  scc_w = c("squamous cell carcinomas?", "c?scc"), 
   # epithelial, tumor
+  sccc_w = c("small cell[a-z -]*cervi[a-z]+", "sccc"), 
+  # cancer, cervix
+  sgc_w = c("salivarygland carcinomas?", "sgcs?"), 
+  # salivary gland, carcinoma
   srcc_w = c("signet-ring cell carcinomas?", "srcc"), 
   # carcinoma
   sys_w = c("synovial sarcomas?", "sys"), 
@@ -994,8 +1047,10 @@ all_terms <- list(
   tsa_w = c("traditional serrated adenomas", "tsa"), 
   # large intestine, adenoma
   oe_w = c("olfactory epithelium", "olfactory epithelial", "oe"), 
-  utuc_w = c("urothelial carcinomas?", "utucs?")
+  utuc_w = c("urothelial carcinomas?", "utucs?"), 
   # urothelial, carcinoma
+  vc_w = c("vessel co-?option", "vc")
+  # blood vessel, tumor
 ) %>% 
   lapply(., function(x) paste0("\\b", x, "\\b", collapse = "|"))
 
@@ -1020,15 +1075,17 @@ full_terms <- list(
   cortex_w = c("brains?", "cerebrums?", "cerebral?", "telencephalons?", "telencephalic", "endbrains?"), 
   basal_ganglion_w = c("basalganglion"), 
   hypothalamus_w = c("hypothalamus", "hypothalamic?"), 
-  optic_vesicle_w = c("opticvesicle"), 
+  ventral_midbrain_w = c("ventral midbrains?"), 
   bbb_w = c("bloodbrainbarrier"), 
-  choroid_plexus_w = c("choroidplexus", "choroidplexuses", "cerebrospinal fluids?"),
+  choroid_plexus_w = c("choroidplexus", "choroidplexuses", "cerebrospinal fluids?"), 
+  autonomic_ganglion_w = c("autonomic ganglion", "autonomic ganglia"), 
   dorsal_root_ganglion_w = c("dorsalrootganglion"), 
   neurovascular_unit_w = c("neurovascularunit"), 
   gliovascular_unit_w = c("gliovascular units?"), 
+  enteric_nervous_system_w = c("enteric nervous systems?", "enteric neurons?"), 
   blood_retinal_barrier_w = c("bloodretinalbarrier"), 
   lacrimal_gland_w = c("lacrimalgland", "lacrimal"), 
-  meibomian_gland_w = c("meibomian glands?"), 
+  meibomian_gland_w = c("meibomian glands?", "meibocytes?"), 
   dental_follicle_w = c("dental follicles?"), 
   dental_papilla_w = c("dental papillae?", "apical papillae?"), 
   dental_pulp_w = c("dentalpulps?"), 
@@ -1040,18 +1097,21 @@ full_terms <- list(
   sinus_w = c("lymphatic", "lymphs?", "lympho", "lymphoids?", "lymphnode"), 
   lymphatic_vessel_w = c("lymphaticvessel"), 
   thyroid_w = c("thyroids?"), 
-  valve_w = c("hearts?", "cardiac"),   
+  valve_w = c("hearts?", "cardiac"), 
+  blood_air_barrier = c("bloodairbarrier"), 
   gastroesophageal_junction_w = c("gastroesophageal junctions?"), 
+  stomach_w = c("stomachs?", "gastric"), 
   gastric_antrum_w = c("stomachs?", "gastric"), 
   gastric_fundus_w = c("stomachs?", "gastric"), 
   gastric_corpus_w = c("stomachs?", "gastric"), 
   small_intestine_w = c("smallintestines?"), 
-  liver_w = c("livers?", "hepatic", "hepatocytes?", "hepatostellate"), 
+  liver_w = c("livers?", "hepatic", "hepatocytes?", "hepatostellate", "hepatic progenitor cells?"), 
   lobule_w = c("livers?", "hepatic"), 
   sinusoid_w = c("livers?", "hepatic"), 
   ihbd_w = c("intrahepatic bileduct", "intrahepatic ducts?"), 
   ehbd_w = c("extrahepatic bileduct", "extrahepatic ducts?"), 
   gallbladder_w = c("gallbladders?"), 
+  oviduct_w = c("oviducts?", "oviductal", "salpinx", "salpinges", "salpinxes"), 
   collecting_duct_w = c("collectingduct"), 
   glomerulus_w = c("kidneys?", "renal", "nephrons?", "nephronal"), 
   dermal_papilla_w = c("dermal papillae?"), 
@@ -1059,6 +1119,9 @@ full_terms <- list(
   sweat_gland_w = c("sweatgland"), 
   hair_follicle_w = c("hair follicles?", "hfscs?"), 
   anterior_cruciate_ligament_w = c("anterior cruciate ligaments?"), 
+  artificial_joint_w = c("periprosthetic joints?", "artificial joints?", "prosthes[ei]s"), 
+  muscle_w = c("muscles?", "myotubes?", "muscular"), 
+  anulus_fibrosus_w = c("ann?ulus fibrosus"), 
   white_adipose_tissue_w = c("white adipose tissues?"), 
   
   ### Major organs
@@ -1072,7 +1135,7 @@ full_terms <- list(
   ### embryonic
   inner_cell_mass_w = c("inner cell mass", "inner cell masses"), 
   cytotrophoblast_w = c("cytotrophoblasts?"), 
-  mge_w = c("medial ganglionic eminences?"), 
+  ganglionic_eminence_w = c("ganglionic eminences?"), 
   paraxial_mesoderm_w = c("paraxial mesoderms?"), 
   ureteric_bud_w = c("ureteric buds?"), 
   aorta_gonad_mesonephros_w = c("aorta[- ]gonad[- ]mesonephros"), 
@@ -1083,8 +1146,12 @@ full_terms <- list(
   asd_w = c("autism spectrum disorder"), 
   bph_w = c("benign prostatic hyperplasia"), 
   cavd_w = c("calcific aortic valve diseases?"), 
+  cmt_w = c("charcot[- ]marie[ -]tooth"), 
+  copd_w = c("chronic obstructive pulmonary diseases?"), 
   cystic_fibrosis_w = c("cystic fibrosis"), 
+  drvt_w = c("dravet syndromes?"), 
   ulcerative_colitis_w = c("ulcerative coliti[cs]"), 
+  fatal_familial_insomnia_w = c("fatal familial insomnia"), 
   focal_cortical_dysplasia_w = c("focal cortical dysplasia"), 
   fxs_w = c("fragile x syndromes?"), 
   huntington_w = c("huntington'?s diseases?"), 
@@ -1092,6 +1159,7 @@ full_terms <- list(
   hyperuricemia_w = c("hyperuricemia"), 
   ibd_w = c("inflammatory bowel diseases?"), 
   ie_w = c("infective endocarditis"), 
+  long_qt_syndrome_w = c("long qt syndromes?"), 
   multiple_sclerosis_w = c("multiple sclerosis"), 
   nafld_w = c("non[- ]?alcoholic fatty liver disease", "steatohepatitis"), 
   nbs_w = c("nijmegen breakage syndromes?"), 
@@ -1111,22 +1179,28 @@ full_terms <- list(
   tumor_w = c("tumou?rs?", "tumou?ral", "metastas[ei]s", "metastatic", "circulating tumou?r cells?", 
               "tumou?r[- ]microenvironment", "tumou?roids?"), 
   adenocarcinoma_w = c("adenocarcinomas?"), 
+  ameloblastoma_w = c("ameloblastomas?"), 
   cholangiocarcinoma_w = c("cholangiocarcinomas?"), 
   glioblastoma_w = c("glioblastomas?"), 
   glioma_w = c("gliomas?"), 
+  hemangioma_w = c("hemangiomas?"), 
+  hepatoblastoma_w = c("hepatoblastomas?"), 
   lymphoma_w = c("lymphomas?"), 
   mpd_w = c("mammary paget’s diseases?"), 
   medulloblastoma_w = c("medulloblastomas?"), 
+  mesothelioma_w = c("mesothelioma"), 
   metastatic_niche_w = c("metastaticniche"), 
   neuroblastoma_w = c("neuroblastomas?"), 
+  neurofibroma_w = c("neurofibromas?"), 
   osteosarcoma_w = c("osteosarcomas?"), 
   retinoblastoma_w = c("retinoblastomas?"), 
   raird_w = c("refractory diseases?"), 
   
   ### abbreviations
+  acc_w = c("adrenocortical carcinomas?"), 
   ba_w = c("biliary atresia"), 
   bladder_cancer_w = c("bladder cancers?"), 
-  breast_cancer_w = c("breast cancers?", "mammary tumors?"), 
+  breast_cancer_w = c("breast cancers?", "mammary tumors?", "phyllodes tumors?"), 
   btc_w = c("biliary tract carcinoma"), 
   cac_w = c("colitis[- ]associated cancer"), 
   cccc_w = c("cervical clear cell carcinomas?"), 
@@ -1170,18 +1244,22 @@ full_terms <- list(
   pca_w = c("prostate cancers?"), 
   pcc_w = c("pancreatic cancers?", "pancreatic intraepithelial neoplasia"), 
   pdac_w = c("pancreaticduct adenocarcinomas?"), 
+  pitnet_w = c("pituitary neuroendocrine tumors?"), 
   plc_w = c("primary liver cancers?"), 
   ptc_w = c("papillary thyroid cancers?"), 
   rectal_cancer_w = c("rectal cancers?"), 
   rpe_w = c("retinal pigment epithelial"), 
   scc_w = c("squamous cell carcinomas?"), 
+  sccc_w = c("small cell[a-z -]*cervi[a-z]+"), 
+  sgc_w = c("salivarygland carcinomas?"), 
   srcc_w = c("signet-ring cell carcinomas?"), 
   sys_w = c("synovial sarcomas?"), 
   tcc_w = c("transitional cell carcinomas?"), 
   tnbc_w = c("triple negative breast cancers?"), 
   tsa_w = c("traditional serrated adenomas"), 
   oe_w = c("olfactory epithelium", "olfactory epithelial"), 
-  utuc_w = c("urothelial carcinomas?")
+  utuc_w = c("urothelial carcinomas?"), 
+  vc_w = c("vessel co-?option")
 )  %>% 
   lapply(., function(x) paste0("\\b", x, "\\b", collapse = "|"))
 
@@ -1257,17 +1335,20 @@ fn_adjust_TF <- function(x) {
     mutate(sarcoma_w = ifelse(sys_w == TRUE | chondrosarcoma_w == TRUE | 
                                 osteosarcoma_w == TRUE, TRUE, sarcoma_w)) %>% 
     mutate(colitis_w = ifelse(cac_w == TRUE, TRUE, colitis_w)) %>% 
-    mutate(neural_w = ifelse(asd_w == TRUE | multiple_sclerosis_w == TRUE, TRUE, neural_w)) %>% 
+    mutate(neural_w = ifelse(asd_w == TRUE | multiple_sclerosis_w == TRUE | drvt_w == TRUE, TRUE, neural_w)) %>% 
     mutate(brain_w = ifelse(glioma_w == TRUE | alzheimer_w == TRUE | parkinson_w == TRUE | 
                               glioblastoma_w == TRUE | huntington_w == TRUE | focal_cortical_dysplasia_w == TRUE | 
-                              medulloblastoma_w == TRUE | traumatic_brain_injury_w == TRUE, 
+                              medulloblastoma_w == TRUE | traumatic_brain_injury_w == TRUE | fatal_familial_insomnia_w == TRUE, 
                             TRUE, brain_w)) %>% 
-    mutate(nerve_w = ifelse(neuroblastoma_w == TRUE, TRUE, nerve_w)) %>% 
+    mutate(pituitary_w = ifelse(pitnet_w == TRUE, TRUE, pituitary_w)) %>% 
+    mutate(nerve_w = ifelse(neuroblastoma_w == TRUE | neurofibroma_w == TRUE | cmt_w == TRUE, TRUE, nerve_w)) %>% 
     mutate(spine_w = ifelse(chordoma_w == TRUE, TRUE, spine_w)) %>%     
     mutate(ocular_w = ifelse(glaucoma_w == TRUE, TRUE, ocular_w)) %>%   
     mutate(retina_w = ifelse(retinoblastoma_w == TRUE | rpe_w == TRUE, TRUE, retina_w)) %>%   
     mutate(nasal_w = ifelse(hne_w == TRUE | nem_w == TRUE | oe_w == TRUE, TRUE, nasal_w)) %>% 
     mutate(oral_w = ifelse(oscc_w == TRUE, TRUE, oral_w)) %>% 
+    mutate(tooth_w = ifelse(ameloblastoma_w == TRUE, TRUE, tooth_w)) %>% 
+    mutate(salivary_gland_w = ifelse(sgc_w == TRUE, TRUE, salivary_gland_w)) %>% 
     mutate(lymphatic_w = ifelse(lymphoma_w == TRUE, TRUE, lymphatic_w)) %>% 
     mutate(neuroendocrine_w = ifelse(nec_w == TRUE | nen_w == TRUE | 
                                        net_w == TRUE | nepc_w == TRUE, 
@@ -1276,12 +1357,14 @@ fn_adjust_TF <- function(x) {
     mutate(mammary_w = ifelse(breast_cancer_w == TRUE | fibroadenoma_w == TRUE | tnbc_w == TRUE | 
                                 mpd_w == TRUE | mec_w == TRUE,
                               TRUE, mammary_w)) %>% 
-    mutate(cardiovascular_w = ifelse(ischemia_w == TRUE, TRUE, cardiovascular_w)) %>%    
+    mutate(cardiovascular_w = ifelse(ischemia_w == TRUE | long_qt_syndrome_w == TRUE, TRUE, cardiovascular_w)) %>%    
     mutate(heart_w = ifelse(arrhythmia_w == TRUE, TRUE, heart_w)) %>%     
     mutate(myocardium_w = ifelse(ie_w == TRUE, TRUE, myocardium_w)) %>%   
     mutate(valve_w = ifelse(cavd_w == TRUE, TRUE, valve_w)) %>% 
-    mutate(vascular_w = ifelse(thrombosis_w == TRUE, TRUE, vascular_w)) %>% 
-    mutate(blood_vessel_w = ifelse(arteriovenous_malformation_w == TRUE | aneurysm_w == TRUE, TRUE, blood_vessel_w)) %>% 
+    mutate(vascular_w = ifelse(thrombosis_w == TRUE | hemangioma_w == TRUE | atherosclerosis_w == TRUE, TRUE, vascular_w)) %>% 
+    mutate(blood_vessel_w = ifelse(arteriovenous_malformation_w == TRUE | aneurysm_w == TRUE | vc_w == TRUE, 
+                                   TRUE, blood_vessel_w)) %>% 
+    mutate(respiratory_w = ifelse(copd_w == TRUE, TRUE, respiratory_w)) %>% 
     mutate(lung_w = ifelse(luad_w == TRUE | nsclc_w == TRUE | lusc_w == TRUE | 
                              pulmonary_hypertension_w == TRUE, 
                            TRUE, lung_w)) %>% 
@@ -1308,7 +1391,7 @@ fn_adjust_TF <- function(x) {
     mutate(ovary_w = ifelse(hgsoc_w == TRUE | ovarian_cancer_w == TRUE, TRUE, ovary_w)) %>% 
     mutate(oviduct_w = ifelse(fte_w == TRUE, TRUE, oviduct_w)) %>%   
     mutate(endometrium_w = ifelse(endometriosis_w == TRUE | endometrial_cancer_w == TRUE, TRUE, endometrium_w)) %>%  
-    mutate(cervix_w = ifelse(cccc_w == TRUE, TRUE, cervix_w)) %>%  
+    mutate(cervix_w = ifelse(cccc_w == TRUE | sccc_w == TRUE, TRUE, cervix_w)) %>%  
     mutate(epididymis_w = ifelse(hee_w == TRUE, TRUE, epididymis_w)) %>%   
     mutate(prostate_w = ifelse(pca_w == TRUE | nepc_w == TRUE, 
                                TRUE, prostate_w)) %>% 
@@ -1321,7 +1404,8 @@ fn_adjust_TF <- function(x) {
     mutate(bone_w = ifelse(osteosarcoma_w == TRUE, TRUE, bone_w)) %>% 
     mutate(cartilage_w = ifelse(chondrosarcoma_w == TRUE | osteoarthritis_w == TRUE, 
                                 TRUE, cartilage_w)) %>% 
-    mutate(muscle_w = ifelse(hypertonia_w == TRUE, TRUE, muscle_w)) %>%   
+    mutate(muscle_w = ifelse(hypertonia_w == TRUE, TRUE, muscle_w)) %>% 
+    mutate(adrenal_w = ifelse(acc_w == TRUE, TRUE, adrenal_w)) %>% 
     mutate(epithelium_w = 
              ifelse(iec_w == TRUE | hee_w == TRUE | hne_w == TRUE | oscc_w == TRUE | 
                       fte_w == TRUE | mec_w == TRUE | lusc_w == TRUE | hnscc_w == TRUE | 
@@ -1336,7 +1420,7 @@ fn_adjust_TF <- function(x) {
                     TRUE, adenocarcinoma_w)) %>% 
     mutate(adenoma_w = ifelse(tsa_w == TRUE, TRUE, adenoma_w)) %>% 
     mutate(carcinoma_w = 
-             ifelse(btc_w == TRUE | hcc_w == TRUE | nec_w == TRUE | oscc_w == TRUE | 
+             ifelse(acc_w == TRUE | btc_w == TRUE | hcc_w == TRUE | nec_w == TRUE | oscc_w == TRUE | sgc_w == TRUE | 
                       srcc_w == TRUE | hnscc_w == TRUE | cccc_w == TRUE | tcc_w == TRUE | 
                       lusc_w == TRUE | ccrcc_w == TRUE | cholangiocarcinoma_w == TRUE | gbc_w == TRUE | 
                       utuc_w == TRUE, TRUE, carcinoma_w)) %>% 
@@ -1345,95 +1429,96 @@ fn_adjust_TF <- function(x) {
                       ga_w == TRUE | pca_w == TRUE | tnbc_w == TRUE | ptc_w == TRUE | nsclc_w == TRUE | 
                       hgsoc_w == TRUE | nepc_w == TRUE | plc_w == TRUE | rectal_cancer_w == TRUE | 
                       pcc_w == TRUE | ovarian_cancer_w == TRUE | gastric_cancer_w == TRUE | cac_w == TRUE | 
-                      endometrial_cancer_w == TRUE | crlm_w == TRUE | medulloblastoma_w == TRUE, 
+                      endometrial_cancer_w == TRUE | crlm_w == TRUE | medulloblastoma_w == TRUE | sccc_w == TRUE, 
                     TRUE, cancer_w)) %>% 
     mutate(tumor_w = ifelse(net_w == TRUE | mrt_w == TRUE | scc_w == TRUE | gist_w == TRUE | 
-                              mpm_w == TRUE, TRUE, tumor_w)) %>% 
-    
+                              mpm_w == TRUE | pitnet_w == TRUE | vc_w == TRUE, TRUE, tumor_w)) %>% 
+
     ### Below, only keeping the lowest-level categories as TRUE.
     ### For example, "brain" is changed to FALSE if the document is TRUE for cerebrum.
     ### This is because a paper may use different terms such as "brain organoid" and "cerebral organoid" to describe the same entity.
-    mutate(brain_w = ifelse(rowSums(.[2:16]) > 0, FALSE, brain_w)) %>% 
+    mutate(brain_w = ifelse(rowSums(.[2:17]) > 0, FALSE, brain_w)) %>% 
     mutate(forebrain_w = ifelse(rowSums(.[3:12]) > 0, FALSE, forebrain_w)) %>% 
     mutate(cerebrum_w = ifelse(rowSums(.[4:8]) > 0, FALSE, cerebrum_w)) %>% 
     mutate(cortex_w = ifelse(corticostriatal_network_w == TRUE, FALSE, cortex_w)) %>% 
     mutate(basal_ganglion_w = ifelse(striatum_w == TRUE, FALSE, basal_ganglion_w)) %>%     
     mutate(diencephalon_w = ifelse(rowSums(.[10:12]) > 0, FALSE, diencephalon_w)) %>% 
     mutate(hypothalamus_w = ifelse(pituitary_w == TRUE, FALSE, hypothalamus_w)) %>% 
-    mutate(brainstem_w = ifelse(rowSums(.[14:16]) > 0, FALSE, brainstem_w)) %>% 
+    mutate(brainstem_w = ifelse(rowSums(.[14:17]) > 0, FALSE, brainstem_w)) %>% 
     mutate(hindbrain_w = ifelse(cerebellum_w == TRUE, FALSE, hindbrain_w)) %>% 
     mutate(glymphatic_w = ifelse(gliovascular_unit_w == TRUE, FALSE, glymphatic_w)) %>% 
-    mutate(nerve_w = ifelse(rowSums(.[23:28]) > 0, FALSE, nerve_w)) %>%   
+    mutate(nerve_w = ifelse(rowSums(.[25:31]) > 0, FALSE, nerve_w)) %>%   
     mutate(ganglion_w = ifelse(dorsal_root_ganglion_w == TRUE, FALSE, ganglion_w)) %>%   
     mutate(neurovascular_w = ifelse(neurovascular_unit_w == TRUE, FALSE, neurovascular_w)) %>% 
     mutate(neuromuscular_w = ifelse(neuromuscular_junction_w == TRUE, FALSE, neuromuscular_w)) %>%  
     mutate(spine_w = ifelse(spinal_cord_w == TRUE, FALSE, spine_w)) %>%    
     mutate(retina_w = ifelse(blood_retinal_barrier_w == TRUE, FALSE, retina_w)) %>% 
     mutate(cornea_w = ifelse(corneal_limbus_w == TRUE | corneal_barrier_w == TRUE, FALSE, cornea_w)) %>% 
-    mutate(tooth_w = ifelse(rowSums(.[44:48]) > 0, FALSE, tooth_w)) %>% 
+    mutate(tooth_w = ifelse(rowSums(.[47:51]) > 0, FALSE, tooth_w)) %>% 
     mutate(tongue_w = ifelse(taste_bud_w == TRUE | circumvallate_papilla_w == TRUE, FALSE, tongue_w)) %>% 
     mutate(salivary_gland_w = ifelse(parotid_gland_w == TRUE | submandibular_gland_w == TRUE, FALSE, salivary_gland_w)) %>% 
-    mutate(lymphoid_w = ifelse(rowSums(.[56:62]) > 0, FALSE, lymphoid_w)) %>% 
+    mutate(lymphoid_w = ifelse(rowSums(.[60:66]) > 0, FALSE, lymphoid_w)) %>% 
     mutate(lymph_node_w = ifelse(sinus_w == TRUE, FALSE, lymph_node_w)) %>% 
     mutate(thyroid_w = ifelse(parathyroid_w == TRUE | thyroid_gland_w == TRUE, FALSE, thyroid_w)) %>% 
     mutate(heart_w = ifelse(myocardium_w == TRUE | valve_w == TRUE, FALSE, heart_w)) %>% 
-    mutate(vascular_w = ifelse(rowSums(.[75:80]) > 0, FALSE, vascular_w)) %>% 
-    mutate(blood_vessel_w = ifelse(rowSums(.[77:80]) > 0, FALSE, blood_vessel_w)) %>% 
+    mutate(vascular_w = ifelse(rowSums(.[79:84]) > 0, FALSE, vascular_w)) %>% 
+    mutate(blood_vessel_w = ifelse(rowSums(.[81:84]) > 0, FALSE, blood_vessel_w)) %>% 
     mutate(artery_w = ifelse(aorta_w == TRUE, FALSE, artery_w)) %>%      
-    mutate(airway_w = ifelse(trachea_w == TRUE | tracheosphere_w == TRUE, FALSE, airway_w)) %>% 
+    mutate(airway_w = ifelse(rowSums(.[87:93]) > 0, FALSE, airway_w)) %>% 
+    mutate(pharynx_w = ifelse(rowSums(.[88:90]) > 0, FALSE, pharynx_w)) %>% 
     mutate(trachea_w = ifelse(tracheosphere_w == TRUE, FALSE, trachea_w)) %>% 
-    mutate(lung_w = ifelse(rowSums(.[86:88]) > 0, FALSE, lung_w)) %>% 
-    mutate(stomach_w = ifelse(rowSums(.[93:97]) > 0, FALSE, stomach_w)) %>% 
+    mutate(lung_w = ifelse(rowSums(.[95:98]) > 0, FALSE, lung_w)) %>% 
+    mutate(stomach_w = ifelse(rowSums(.[103:107]) > 0, FALSE, stomach_w)) %>% 
     mutate(gastric_corpus_w = ifelse(gastric_gland_w == TRUE, FALSE, gastric_corpus_w)) %>%     
-    mutate(intestine_w = ifelse(rowSums(.[99:106]) > 0, FALSE, intestine_w)) %>% 
-    mutate(small_intestine_w = ifelse(rowSums(.[100:102]) > 0, FALSE, small_intestine_w)) %>% 
-    mutate(large_intestine_w = ifelse(rowSums(.[104:106]) > 0, FALSE, large_intestine_w)) %>% 
+    mutate(intestine_w = ifelse(rowSums(.[109:117]) > 0, FALSE, intestine_w)) %>% 
+    mutate(small_intestine_w = ifelse(rowSums(.[110:112]) > 0, FALSE, small_intestine_w)) %>% 
+    mutate(large_intestine_w = ifelse(rowSums(.[114:117]) > 0, FALSE, large_intestine_w)) %>% 
     mutate(pancreas_w = ifelse(pancreatic_duct_w == TRUE | islet_w == TRUE, FALSE, pancreas_w)) %>% 
     mutate(liver_w = ifelse(lobule_w == TRUE | sinusoid_w == TRUE, FALSE, liver_w)) %>% 
     mutate(lobule_w = ifelse(sinusoid_w == TRUE, FALSE, lobule_w)) %>%     
-    mutate(biliary_w = ifelse(rowSums(.[114:117]) > 0, FALSE, biliary_w)) %>% 
+    mutate(biliary_w = ifelse(rowSums(.[125:128]) > 0, FALSE, biliary_w)) %>% 
     mutate(bile_duct_w = ifelse(ihbd_w == TRUE | ehbd_w == TRUE, FALSE, bile_duct_w)) %>% 
-    mutate(female_reproductive_w = ifelse(rowSums(.[119:126]) > 0, FALSE, female_reproductive_w)) %>%   
-    mutate(uterus_w = ifelse(rowSums(.[122:124]) > 0, FALSE, uterus_w)) %>% 
+    mutate(female_reproductive_w = ifelse(rowSums(.[130:137]) > 0, FALSE, female_reproductive_w)) %>%   
+    mutate(uterus_w = ifelse(rowSums(.[133:135]) > 0, FALSE, uterus_w)) %>% 
     mutate(endometrium_w = ifelse(endometrial_gland_w == TRUE | decidua_w == TRUE, FALSE, endometrium_w)) %>% 
-    mutate(kidney_w = ifelse(rowSums(.[131:136]) > 0, FALSE, kidney_w)) %>% 
-    mutate(nephron_w = ifelse(rowSums(.[132:136]) > 0, FALSE, nephron_w)) %>% 
-    mutate(renal_tubule_w = ifelse(rowSums(.[133:135]) > 0, FALSE, renal_tubule_w)) %>%   
+    mutate(kidney_w = ifelse(rowSums(.[142:147]) > 0, FALSE, kidney_w)) %>% 
+    mutate(nephron_w = ifelse(rowSums(.[143:147]) > 0, FALSE, nephron_w)) %>% 
+    mutate(renal_tubule_w = ifelse(rowSums(.[144:146]) > 0, FALSE, renal_tubule_w)) %>%   
     mutate(hair_follicle_w = ifelse(dermal_papilla_w == TRUE | sebaceous_gland_w == TRUE, FALSE, hair_follicle_w)) %>% 
     mutate(osteochondral_w = ifelse(bone_w == TRUE | cartilage_w == TRUE, FALSE, osteochondral_w)) %>% 
-    mutate(joint_w = ifelse(rowSums(.[148:150]) > 0, FALSE, joint_w)) %>% 
+    mutate(joint_w = ifelse(rowSums(.[159:162]) > 0, FALSE, joint_w)) %>% 
     mutate(synovial_joint_w = ifelse(synovium_w == TRUE, FALSE, synovial_joint_w)) %>%  
     
     ## Changing the first-level categories to TRUE if any of the lower categories are TRUE.
-    mutate(neural_w = ifelse(rowSums(.[1:30]) > 0, TRUE, neural_w)) %>% 
-    mutate(otic_w = ifelse(rowSums(.[31:32]) > 0, TRUE, otic_w)) %>% 
-    mutate(ocular_w = ifelse(rowSums(.[33:42]) > 0, TRUE, ocular_w)) %>% 
-    mutate(oral_w = ifelse(rowSums(.[43:54]) > 0, TRUE, oral_w)) %>%  
-    mutate(lymphatic_w = ifelse(rowSums(.[55:63]) > 0, TRUE, lymphatic_w)) %>% 
-    mutate(endocrine_w = ifelse(rowSums(.[64:68]) > 0, TRUE, endocrine_w)) %>% 
-    mutate(mammary_w = ifelse(rowSums(.[69:70]) > 0, TRUE, mammary_w)) %>% 
-    mutate(cardiovascular_w = ifelse(rowSums(.[71:80]) > 0, TRUE, cardiovascular_w)) %>% 
-    mutate(respiratory_w = ifelse(rowSums(.[81:89]) > 0, TRUE, respiratory_w)) %>% 
-    mutate(gastrointestinal_w = ifelse(rowSums(.[90:106]) > 0, TRUE, gastrointestinal_w)) %>% 
-    mutate(hpb_w = ifelse(rowSums(.[107:117]) > 0, TRUE, hpb_w)) %>% 
-    mutate(reproductive_w = ifelse(rowSums(.[118:129]) > 0, TRUE, reproductive_w)) %>% 
-    mutate(urinary_w = ifelse(rowSums(.[130:138]) > 0, TRUE, urinary_w)) %>% 
-    mutate(dermal_w = ifelse(rowSums(.[139:143]) > 0, TRUE, dermal_w)) %>% 
-    mutate(musculoskeletal_w = ifelse(rowSums(.[144:152]) > 0, TRUE, musculoskeletal_w)) %>% 
-    mutate(adipose_w = ifelse(rowSums(.[153:154]) > 0, TRUE, adipose_w)) %>% 
+    mutate(neural_w = ifelse(rowSums(.[1:34]) > 0, TRUE, neural_w)) %>% 
+    mutate(otic_w = ifelse(rowSums(.[35:36]) > 0, TRUE, otic_w)) %>% 
+    mutate(ocular_w = ifelse(rowSums(.[37:45]) > 0, TRUE, ocular_w)) %>% 
+    mutate(oral_w = ifelse(rowSums(.[46:58]) > 0, TRUE, oral_w)) %>%  
+    mutate(lymphatic_w = ifelse(rowSums(.[59:67]) > 0, TRUE, lymphatic_w)) %>% 
+    mutate(endocrine_w = ifelse(rowSums(.[68:72]) > 0, TRUE, endocrine_w)) %>% 
+    mutate(mammary_w = ifelse(rowSums(.[73:74]) > 0, TRUE, mammary_w)) %>% 
+    mutate(cardiovascular_w = ifelse(rowSums(.[75:84]) > 0, TRUE, cardiovascular_w)) %>% 
+    mutate(respiratory_w = ifelse(rowSums(.[85:99]) > 0, TRUE, respiratory_w)) %>% 
+    mutate(gastrointestinal_w = ifelse(rowSums(.[100:117]) > 0, TRUE, gastrointestinal_w)) %>% 
+    mutate(hpb_w = ifelse(rowSums(.[118:128]) > 0, TRUE, hpb_w)) %>% 
+    mutate(reproductive_w = ifelse(rowSums(.[129:140]) > 0, TRUE, reproductive_w)) %>% 
+    mutate(urinary_w = ifelse(rowSums(.[141:149]) > 0, TRUE, urinary_w)) %>% 
+    mutate(dermal_w = ifelse(rowSums(.[150:154]) > 0, TRUE, dermal_w)) %>% 
+    mutate(musculoskeletal_w = ifelse(rowSums(.[155:165]) > 0, TRUE, musculoskeletal_w)) %>% 
+    mutate(adipose_w = ifelse(rowSums(.[166:167]) > 0, TRUE, adipose_w)) %>% 
     
     ### adjusting embryonic, disease, and tumor classifications.
-    mutate(blastocyst_w = ifelse(rowSums(.[177:181]) > 0, FALSE, blastocyst_w)) %>% 
+    mutate(blastocyst_w = ifelse(rowSums(.[190:194]) > 0, FALSE, blastocyst_w)) %>% 
     mutate(inner_cell_mass_w = ifelse(epiblast_w == TRUE | hypoblast_w == TRUE, FALSE, inner_cell_mass_w)) %>%   
     mutate(trophoblast_w = ifelse(cytotrophoblast_w == TRUE, FALSE, trophoblast_w)) %>% 
-    mutate(neuroectoderm_w = ifelse(neural_tube_w == TRUE | mge_w == TRUE, FALSE, neuroectoderm_w)) %>% 
-    mutate(neural_tube_w = ifelse(mge_w == TRUE, FALSE, neural_tube_w)) %>% 
+    mutate(neuroectoderm_w = ifelse(neural_tube_w == TRUE | ganglionic_eminence_w == TRUE, FALSE, neuroectoderm_w)) %>% 
+    mutate(neural_tube_w = ifelse(ganglionic_eminence_w == TRUE, FALSE, neural_tube_w)) %>% 
     mutate(aorta_gonad_mesonephros_w = ifelse(mesonephros_w == TRUE, FALSE, aorta_gonad_mesonephros_w)) %>% 
-    mutate(placenta_w = ifelse(rowSums(.[193:195]) > 0, FALSE, placenta_w)) %>% 
+    mutate(placenta_w = ifelse(rowSums(.[209:211]) > 0, FALSE, placenta_w)) %>% 
     mutate(fetal_membrane_w = ifelse(amnion_w == TRUE, FALSE, fetal_membrane_w)) %>% 
-    mutate(embryonic_w = as.logical(rowSums(.[174:196]))) %>%   
-    mutate(disease_w = as.logical(rowSums(.[211:255]))) %>% 
-    mutate(tumor_w = as.logical(rowSums(.[256:283])))
+    mutate(embryonic_w = as.logical(rowSums(.[188:212]))) %>%   
+    mutate(disease_w = as.logical(rowSums(.[227:277]))) %>% 
+    mutate(tumor_w = as.logical(rowSums(.[278:309])))
 }
 
 ### Running the custom function on the data frame
@@ -1615,16 +1700,16 @@ colnames(pw_title_organ_modified)
 ###
 ### From the pw_title data frame, selecting rows that have "TRUE" in any of the organ names.
 pw_title_organ_positive <- pw_title_organ_modified %>% 
-  filter(rowSums(.[155:172]) > 0)
+  filter(rowSums(.[168:185]) > 0)
 
 ### From the pw_KA data frame, selecting rows that have not been picked up from the pw_title above, and have "TRUE" in any of the organs.
 pw_KA_organ_positive <- pw_KA_organ_modified %>% 
-  filter(rowSums(.[155:172]) > 0) %>% 
+  filter(rowSums(.[168:185]) > 0) %>% 
   filter(!ID %in% pw_title_organ_positive$ID)
 
 ### From key_title, selecting rows that have not been picked up above, and have "TRUE".
 key_title_organ_positive <- key_title_organ_modified %>% 
-  filter(rowSums(.[155:172]) > 0) %>% 
+  filter(rowSums(.[168:185]) > 0) %>% 
   filter(!ID %in% c(pw_title_organ_positive$ID, pw_KA_organ_positive$ID))
 
 ### From key_KA, selecting rows that have not been picked up. 
@@ -1642,16 +1727,16 @@ organ_positive <- rbind(pw_title_organ_positive, pw_KA_organ_positive, key_title
 ###
 ### From the pw_title data frame, selecting rows that are TRUE for any of the prenatal structures.
 pw_title_prenatal_positive <- pw_title_organ_modified %>% 
-  filter(rowSums(.[174:197]) > 0)
+  filter(rowSums(.[187:213]) > 0)
 
 ### Selecting from pw_KA.
 pw_KA_prenatal_positive <- pw_KA_organ_modified %>% 
-  filter(rowSums(.[174:197]) > 0) %>% 
+  filter(rowSums(.[187:213]) > 0) %>% 
   filter(!ID %in% pw_title_prenatal_positive$ID)
 
 ### Selecting from key_title
 key_title_prenatal_positive <- key_title_organ_modified %>% 
-  filter(rowSums(.[174:197]) > 0) %>% 
+  filter(rowSums(.[187:213]) > 0) %>% 
   filter(!ID %in% c(pw_title_prenatal_positive$ID, pw_KA_prenatal_positive$ID))
 
 ### Selecting from key_KA.
@@ -1674,7 +1759,7 @@ colnames(organ_positive)
 ### and prenatal classification columns are taken from the reconstructed data frame for prenatal classification.
 ### Then, these two are combined.
 ### Note that "tumor_w" classification column is taken from the organ classification data frame.
-all_positive <- left_join(organ_positive[, c(1:173, 256, 341, 342)], prenatal_positive[, c(174:197, 341, 342)], by = "ID")
+all_positive <- left_join(organ_positive[, c(1:186, 278, 372, 373)], prenatal_positive[, c(187:213, 372, 373)], by = "ID")
 
 colnames(all_positive)
 
@@ -1682,26 +1767,25 @@ colnames(all_positive)
 all_classified <- all_positive %>% 
   ### Making columns that show the number of organs detected.
   ### "n_organ_major" shows the number of first organ categories, and "n_organ_minor" shows the number of lower organ categories.
-  mutate(n_organ_minor = rowSums(.[1:154]), 
-         n_organ_major = rowSums(.[155:172])) %>% 
+  mutate(n_organ_minor = rowSums(.[1:167]), 
+         n_organ_major = rowSums(.[168:185])) %>% 
   ###  Summarizing whether a paper talks about blastoid and/or gastruloid.
   ### If a document talks about both blastoids and gastruloids, then the column value will be "blastoid and gastruloid".
-  mutate(blastoid_gastruloid = ifelse(rowSums(.[177:178]) > 1, "blastoid and gastruloid", 
-                                      ifelse(rowSums(.[177:178]) == 1, colnames(.[177:178])[max.col(.[177:178])], NA))) %>% 
+  mutate(blastoid_gastruloid = ifelse(rowSums(.[190:191]) > 1, "blastoid and gastruloid", 
+                                      ifelse(rowSums(.[190:191]) == 1, colnames(.[190:191])[max.col(.[190:191])], NA))) %>% 
   mutate(blastoid_gastruloid = gsub("_w$", "", blastoid_gastruloid)) %>% 
   ### Summarizing prenatal organoid types.
   ### If a paper studies both embryonic and fetal organoid, then it is classified as "prenatal".
   ### If a paper studies multiple embryonic organoids, then it is classified as "multiple embryonic".
   ### If a paper studies only one embryonic organoid type, then the corresponding embryonic organoid types is used for classification.
   mutate(prenatal = 
-           ifelse(rowSums(.[199:200]) > 1, "prenatal", 
-                  ifelse(rowSums(.[179:198]) > 1, "multiple_embryonic", 
-                         ifelse(rowSums(.[179:198]) == 1, colnames(.[179:198])[max.col(.[179:198])], 
-                                ifelse(rowSums(.[199:200]) == 1, colnames(.[199:200])[max.col(.[199:200])], NA))))) %>% 
+           ifelse(rowSums(.[215:216]) > 1, "prenatal", 
+                  ifelse(rowSums(.[192:214]) > 1, "multiple_embryonic", 
+                         ifelse(rowSums(.[192:214]) == 1, colnames(.[192:214])[max.col(.[192:214])], 
+                                ifelse(rowSums(.[215:216]) == 1, colnames(.[215:216])[max.col(.[215:216])], NA))))) %>% 
   ### Adjusting writing styles.
   mutate(prenatal = gsub("_w$", "", prenatal)) %>% 
   mutate(prenatal = gsub("_", " ", prenatal)) %>% 
-  mutate(prenatal = gsub("mge", "medial ganglionic eminence", prenatal)) %>% 
   ### Combining prenatal and blastoid_gastruloid classification.
   ### If a paper uses blastoid/gastruloid, it is classified according to it.
   ### If not, classification is based on prenatal types.
@@ -1725,20 +1809,21 @@ colnames(all_classified)
 
 minor_organs <- all_classified %>% 
   ### Converting the data frame to the long format based on the columns for non-first level organ categories.
-  pivot_longer(., c(1:154), names_to = "minor_organ") %>% 
+  pivot_longer(., c(1:167), names_to = "minor_organ") %>% 
   filter(value == TRUE) %>% 
   ### Adjusting writing styles
   mutate(minor_organ = gsub("_w$", "", minor_organ)) %>% 
   mutate(minor_organ = gsub("_", " ", minor_organ)) %>% 
   mutate(minor_organ = gsub("bbb", "blood-brain barrier", minor_organ)) %>% 
   mutate(minor_organ = gsub("blood retinal barrier", "blood-retinal barrier", minor_organ)) %>% 
+  mutate(minor_organ = gsub("blood air barrier", "blood-air barrier", minor_organ)) %>% 
   mutate(minor_organ = gsub("ehbd", "extrahepatic bile duct", minor_organ)) %>% 
   mutate(minor_organ = gsub("ihbd", "intrahepatic bile duct", minor_organ)) %>% 
   ### Making a column that lists all the detected non-first level organ categories in the same document.
   group_by(ID) %>% 
   mutate(all_minor_organ = paste0(minor_organ, collapse = ";")) %>% 
   ungroup() %>% 
-  select(!c(53, 54)) %>% 
+  select(!c(minor_organ, value)) %>% 
   distinct() %>% 
   ### Duplicating the generated column.
   mutate(all_minor_organ2 = all_minor_organ) %>% 
@@ -1751,7 +1836,7 @@ minor_organs <- all_classified %>%
 
 ### Doing the same for the first-level organ category.
 major_organs <- all_classified %>% 
-  pivot_longer(., c(155:172), names_to = "major_organ") %>% 
+  pivot_longer(., c(168:185), names_to = "major_organ") %>% 
   filter(value == TRUE) %>% 
   mutate(major_organ = gsub("_w$", "", major_organ)) %>% 
   mutate(major_organ = gsub("_", " ", major_organ)) %>% 
@@ -1759,7 +1844,7 @@ major_organs <- all_classified %>%
   group_by(ID) %>% 
   mutate(all_major_organ = paste0(major_organ, collapse = ";")) %>% 
   ungroup() %>% 
-  select(!c(189:190)) %>% 
+  select(!c(major_organ, value)) %>% 
   distinct() %>% 
   mutate(all_major_organ2 = all_major_organ) %>% 
   separate(all_major_organ2, paste0("major_organ_", c(1:max(all_classified$n_organ_major))), sep = ";", fill = "right") %>% 
@@ -1800,7 +1885,6 @@ pre_organ_classification <- pre_word_corpus %>%
 save(pre_organ_classification, 
      file = paste0(root_path, "R_temps/pre_organ_classification"))
 
-
 colnames(pre_organ_classification)
 
 
@@ -1822,8 +1906,19 @@ rare_organ_papers <- pre_organ_classification %>%
   filter(organ_type %in% rare_organs$organ_type) %>% 
   select(ID, author, text_all, title_key_lower, KA_key_lower, organ_type)
 
-### saving the above as a csv file.
+### Saved as csv.
 write.csv(rare_organ_papers, file = paste0(root_path, "csv/temps/rare_organ_papers.csv"), row.names = FALSE)
+### The above file was manually checked, and saved as "./csv/rare_organ_papers_checked.csv".
+
+### The below lines are to manually check classifications when the corpus is updated.
+###
+### Loading the manually corrected file
+### rare_organ_papers_checked <- read.csv(paste0(root_path, "csv/rare_organ_papers_checked.csv"))
+### rare_organ_papers_combined <- rbind(rare_organ_papers_checked, 
+###                                     rare_organ_papers %>% 
+###                                       mutate(checked = "", major_organ = "")) %>% 
+###   arrange(ID)
+### write.csv(rare_organ_papers_combined, file = paste0(root_path, "csv/temps/rare_organ_papers_combined.csv"), row.names = FALSE)
 
 ### The above file was manually checked, and saved as "./csv/rare_organ_papers_checked.csv".
 ### Loading the manually corrected file
@@ -1964,3 +2059,31 @@ organ_types_P <- organ_types_F %>%
 
 save(organ_types_P, file = paste0(root_path, "R_results/organ_types_P"))
 
+
+
+
+
+##########
+###
+### Writing supplementary csv file showing organ types of publications.
+###
+##########
+
+organ_models_organoid <- organ_types_F %>% 
+  filter(type == "Research article", 
+         corpus_F == "organoid", 
+         !major_organ == "unidentified") %>% 
+  select(author, year, title, doi, major_organ, organ_type) %>% 
+  arrange(major_organ, organ_type, year, author)
+
+write.csv(organ_models_organoid, file = paste0(root_path, "results/csv/organ_models_organoid.csv"), row.names = FALSE)
+
+
+organ_models_OoC <- organ_types_F %>% 
+  filter(type == "Research article", 
+         corpus_F == "OoC", 
+         !major_organ == "unidentified") %>% 
+  select(author, year, title, doi, major_organ, organ_type) %>% 
+  arrange(major_organ, organ_type, year, author)
+
+write.csv(organ_models_OoC, file = paste0(root_path, "results/csv/organ_models_OoC.csv"), row.names = FALSE)

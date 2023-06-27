@@ -1,95 +1,97 @@
 organ,x,y
 ,0,0
-adipose,0,2.5
-cardiovascular,0,0
-dermal,2,0
-endocrine,-8,0
+adipose,8,0
+cardiovascular,-5,0
+dermal,0,-5
+endocrine,11,1
 gastrointestinal,0,0
-"hepatic, pancreatic, biliary",-4,0
-lymphatic,0,3
-mammary,0,6
-multiple organs,6,1
-musculoskeletal,-16,-4
-nasal,2,0
+"hepatic, pancreatic, biliary",0,1.5
+lymphatic,0,-3
+mammary,0,-3
+multiple organs,0,0
+musculoskeletal,0,5
+nasal,0,-1
 neural,0,-1
-ocular,0,1
-oral,0.5,0
-otic,-1,-1
-reproductive,0,-0.5
-respiratory,0,-1
+ocular,0,5
+oral,9,0
+otic,9,1
+reproductive,0,-4
+respiratory,0,-5
 urinary,0,0
-venom gland,0,2
+venom gland,0,-1
 adrenal,4.5,0.5
 airway,0,0
-barriers,-8,3
-biliary,0,0
-bladder,2,0
+barriers,-14,0
+biliary,0,1.5
+bladder,0,1
 brain,0,0
-breast duct,0,1.5
-cochlea,-2,0.5
-cornea,3,-1
-epidermis,3.5,1
-esophagus,0,0
-female reproductive,-3,0
-hair follicle,-4.5,0.5
+breast duct,-6,1
+cochlea,0,0.5
+cornea,0,-0.5
+epidermis,0,2.5
+esophagus,-1,1
+female reproductive,-3,1
+gastroesophageal junction,0,-1
+hair follicle,-1,0
 heart,0,0
 intestine,0,0
-joint,0,-1
+joint,3,0
 kidney,0,-1
-lacrimal gland,8,-0.5
+lacrimal gland,8,0
 liver,0,0
 lung,0,0
 lymphatic vessel,9,0.5
 lymphoid,0,0
 male reproductive,3,-1
-mammary gland,0,-1
-mucociliary,5,-1
-muscle,-3,0
-nerve,0,2
-neuroendocrine,6,-0.5
-neuroimmune,3,1.5
-optic cup,5,0.5
-osteochondral,6,0
+mammary gland,3,-1
+meibomian gland,9,0.5
+mucociliary,0,1
+muscle,1,-1
+nerve,0,0.5
+neuroendocrine,0,-1
+neuroimmune,0,1
+optic cup,-5,0.5
+osteochondral,0,0
 pancreas,0,0
-retina,0,-1
-salivary gland,0,-1.5
-spine,4,0
+pleura,0,-1
+retina,0,0
+salivary gland,0,0.5
+spine,0,1
 stomach,0,0
-sweat gland,-6,0
-tendon,-4,0.2
-thyroid,3,0
-tongue,-2,0.5
-tooth,-1.5,0
-umbo,0,1.5
-unspecified adipose,1,0
+sweat gland,0,-0.5
+tendon,-0.5,1.5
+thyroid,0,0
+tongue,0,-1
+tooth,0,0.5
+umbo,3.5,0
+unspecified adipose,0,0
 unspecified cardiovascular,0,0
-unspecified dermal,0,-0.5
+unspecified dermal,0,0
+unspecified endocrine,-1,0
 unspecified gastrointestinal,0,0
 "unspecified hepatic, pancreatic, biliary",0,0
-unspecified lymphatic,1,-1
-unspecified mammary,-2,0
-unspecified musculoskeletal,0,1
+unspecified lymphatic,-1,-1
+unspecified mammary,0,0
+unspecified musculoskeletal,-1,-1
 unspecified neural,0,0
-unspecified ocular,0,0.5
+unspecified ocular,0,0
 unspecified oral,0,0
-unspecified otic,2,-1
-unspecified reproductive,0,1
-unspecified respiratory,-1,1
-unspecified urinary,-1,1
-urethra,2,-1
+unspecified otic,0,0
+unspecified reproductive,0,0
+unspecified respiratory,0,0
+unspecified urinary,0,0
+urethra,4.5,0
 vascular,0,0
-white adipose tissue,-11,0
-blood-brain barrier,-10,-0.5
+white adipose tissue,0,2
+blood-brain barrier,0,-0.5
 brainstem,0,0
-choroid plexus,-8,0
+choroid plexus,0.5,0
 forebrain,0,0
-ganglion,5,0.2
+ganglion,-5,0.5
 large intestine,0,0
-neuromuscular,8,0.3
-neurovascular,8,0.4
-small intestine,0,0
-spinal cord,-6.5,-0.5
+neuromuscular,-9,0
+neurovascular,-8,-0.5
+small intestine,0,-1
 unspecified brain,0,0
-unspecified intestine,0,0
-unspecified nerve,-0.5,-0.5
-unspecified spine,-2,0
+unspecified intestine,0,-2
+unspecified nerve,0,-1

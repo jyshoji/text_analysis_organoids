@@ -72,7 +72,7 @@ unique(derived_stem_cell$word1)
 ### From the above words, following words were selected.
 ### If these words appear before "derived stem cell", then the cell source is considered to be "adult stem cell".
 pre_derived_stem_w <- c("patient", "adipose", "gingiva", "tissue", "marrow", "urine", "gland", "adult", "crypt", "muscle", 
-                        "adipocyte")
+                        "adipocyte", "skin")
 
 
 

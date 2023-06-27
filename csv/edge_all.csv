@@ -22,9 +22,11 @@ body,unidentified,unidentified,NA,NA
 body,venom gland,venom gland,NA,NA
 neural,brain,neural,neural,neural
 neural,barriers,neural,neural,neural
+neural,meninges,neural,neural,neural
 neural,neuroimmune,neural,neural,neural
 neural,nerve,neural,neural,neural
 neural,spine,neural,neural,neural
+neural,enteric nervous system,neural,neural,neural
 neural,unspecified neural,neural,neural,NA
 brain,forebrain,neural,neural,neural
 brain,brainstem,neural,neural,neural
@@ -41,6 +43,7 @@ diencephalon,hypothalamus,neural,neural,neural
 diencephalon,pituitary,neural,neural,neural
 brainstem,midbrain,neural,neural,neural
 brainstem,hindbrain,neural,neural,neural
+midbrain,ventral midbrain,neural,neural,neural
 hindbrain,cerebellum,neural,neural,neural
 barriers,blood-brain barrier,neural,neural,neural
 barriers,choroid plexus,neural,neural,neural
@@ -50,6 +53,7 @@ nerve,ganglion,neural,neural,neural
 nerve,neurovascular,neural,neural,neural
 nerve,neuromuscular,neural,neural,neural
 nerve,unspecified nerve,neural,neural,NA
+ganglion,autonomic ganglion,neural,neural,neural
 ganglion,dorsal root ganglion,neural,neural,neural
 neurovascular,neurovascular unit,neural,neural,neural
 neuromuscular,neuromuscular junction,neural,neural,neural
@@ -58,7 +62,6 @@ spine,unspecified spine,neural,neural,NA
 otic,cochlea,otic,other,otic
 otic,umbo,otic,other,otic
 otic,unspecified otic,otic,other,otic
-ocular,optic vesicle,ocular,neural,NA
 ocular,optic cup,ocular,other,ocular
 ocular,retina,ocular,other,ocular
 ocular,lacrimal gland,ocular,other,ocular
@@ -72,6 +75,7 @@ cornea,corneal barrier,ocular,other,ocular
 oral,tooth,oral,oral,oral
 oral,tongue,oral,oral,oral
 oral,salivary gland,oral,oral,oral
+oral,gingival crevice,oral,oral,oral
 oral,unspecified oral,oral,oral,NA
 tooth,dental follicle,oral,oral,oral
 tooth,dental papilla,oral,oral,oral
@@ -119,11 +123,17 @@ respiratory,airway,respiratory,other,airway
 respiratory,lung,respiratory,lung,lung
 respiratory,pleura,respiratory,other,respiratory
 respiratory,unspecified respiratory,respiratory,other,NA
+airway,pharynx,respiratory,other,airway
+airway,larynx,respiratory,other,airway
 airway,trachea,respiratory,other,airway
 trachea,tracheosphere,respiratory,other,airway
+pharynx,nasopharynx,respiratory,other,airway
+pharynx,oropharynx,respiratory,other,airway
+pharynx,hypopharynx,respiratory,other,airway
 lung,alveolus,respiratory,lung,lung
 lung,bronchus,respiratory,lung,lung
 lung,bronchiole,respiratory,lung,lung
+lung,blood-air barrier,respiratory,lung,lung
 gastrointestinal,esophagus,gastrointestinal,esophagus,esophagus
 gastrointestinal,gastroesophageal junction,gastrointestinal,other,gastroesophageal junction
 gastrointestinal,stomach,gastrointestinal,stomach,stomach
@@ -143,6 +153,7 @@ small intestine,jejunum,gastrointestinal,other,small intestine
 large intestine,caecum,gastrointestinal,large intestine,large intestine
 large intestine,colon,gastrointestinal,large intestine,large intestine
 large intestine,rectum,gastrointestinal,large intestine,large intestine
+colon,appendix,gastrointestinal,large intestine,large intestine
 "hepatic, pancreatic, biliary",pancreas,"hepatic, pancreatic, biliary",pancreas,pancreas
 "hepatic, pancreatic, biliary",liver,"hepatic, pancreatic, biliary",liver,liver
 "hepatic, pancreatic, biliary",biliary,"hepatic, pancreatic, biliary",other,biliary
@@ -189,11 +200,13 @@ musculoskeletal,osteochondral,musculoskeletal,other,NA
 musculoskeletal,joint,musculoskeletal,other,joint
 musculoskeletal,muscle,musculoskeletal,other,muscle
 musculoskeletal,tendon,musculoskeletal,other,NA
+musculoskeletal,anulus fibrosus,musculoskeletal,other,NA
 musculoskeletal,unspecified musculoskeletal,musculoskeletal,other,NA
 osteochondral,bone,musculoskeletal,other,bone
 osteochondral,cartilage,musculoskeletal,other,NA
 joint,synovial joint,musculoskeletal,other,joint
 joint,anterior cruciate ligament,musculoskeletal,other,joint
+joint,artificial joint,musculoskeletal,other,joint
 synovial joint,synovium,musculoskeletal,other,joint
 adipose,white adipose tissue,adipose,other,adipose
 adipose,omentum,adipose,other,adipose
@@ -218,14 +231,17 @@ trophoblast,cytotrophoblast,NA,NA,NA
 post-implantation,post-implantation embryonic,NA,NA,NA
 post-implantation,post-implantation extraembryonic,NA,NA,NA
 post-implantation embryonic,neuroectoderm,NA,NA,NA
+post-implantation embryonic,neuromesoderm,NA,NA,NA
 post-implantation embryonic,paraxial mesoderm,NA,NA,NA
 post-implantation embryonic,precardiac,NA,NA,NA
 post-implantation embryonic,foregut,NA,NA,NA
 post-implantation embryonic,midgut,NA,NA,NA
+post-implantation embryonic,hindgut,NA,NA,NA
 post-implantation embryonic,ureteric bud,NA,NA,NA
 post-implantation embryonic,aorta gonad mesonephros,NA,NA,NA
 neuroectoderm,neural tube,NA,NA,NA
-neural tube,medial ganglionic eminence,NA,NA,NA
+neural tube,ganglionic eminence,NA,NA,NA
+neural tube,optic vesicle,NA,NA,NA
 aorta gonad mesonephros,mesonephros,NA,NA,NA
 post-implantation extraembryonic,placenta,NA,NA,NA
 placenta,placental barrier,NA,NA,NA
