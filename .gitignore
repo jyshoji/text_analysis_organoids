@@ -2,6 +2,7 @@
 R_temps
 R_unused
 raw_data
+raw_data_CC_update/
 raw_data_update
 raw_data2/
 raw_data3/
@@ -21,5 +22,9 @@ results/prenatal_classifications/*_bubble.png
 results/TF_tile_F
 results/ToC
 results/organ_types
+results/csv/multi_models.csv
+results/csv/organ_models_OoC.csv
+results/csv/organ_models_organoid.csv
+results/csv/research_topics.csv
 R_results/all_corpus
 bfg-1.14.0.jar
