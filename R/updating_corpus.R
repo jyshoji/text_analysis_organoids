@@ -11,6 +11,18 @@
 ###
 ### Overall, metadata of new publications is cleaned up, added to the existing corpus (./R_results/all_corpus), and deduplicated.
 ###
+### The code includes following steps.
+### 1. Saving the existing corpus as a back-up.
+### 2. Importing literature metadata of microphysiological systems.
+### 3. Deduplicating and reformatting metadata on microphysiological systems.
+### 4. Importing, reformatting, and deduplicating literature metadata on on-chip technology.
+### 5. Selecting organ-on-a-chip documents by identifying words that occur before "on-a-chip".
+### 6. Combining the organ-on-a-chip and microphysiological system corpora.
+### 7. Deduplicating the combined organ-on-a-chip corpus. 
+### 8. Reformatting the organ-on-a-chip corpus and adding it to the existing corpus
+### 9. Importing, reformatting, and deduplicating literature metadata on organoids, and adding it to the existing corpus
+### 10. Combining orgnaoid and organ-on-a-chip corpora
+### 
 ### The outcome of the code is saved as:
 ### ./R_results/all_corpus
 ### by overwriting the existing file, and is used for subsequent analysis.
@@ -32,7 +44,7 @@ root_path <- "~/Research_data/Hybrida/final_analysis/"
 
 ##########
 ###
-### 1. The existing files of the corpus and associated data may be saved as back-up.
+### 1. Saving the existing corpus as a back-up.
 ###
 ##########
 
@@ -114,7 +126,7 @@ cleanedup_ms <- fn_cleanup_metadata(data_all_ms)
 
 ##########
 ####
-#### 2. Deduplicating and reformatting metadata on microphysiological systems.
+#### 3. Deduplicating and reformatting metadata on microphysiological systems.
 ####
 ####
 ##########
@@ -208,7 +220,7 @@ unique_ms_F <- fn_keywords_abstract_adjustment(unique_ms)
 
 ##########
 ###
-### 3. Importing, reformatting, and deduplicating literature metadata on on-chip technology.
+### 4. Importing, reformatting, and deduplicating literature metadata on on-chip technology.
 ###
 ##########
 
@@ -246,7 +258,7 @@ unique_oc_F <- fn_cleanup_metadata(data_all_oc) %>%
 
 ##########
 ###
-### 4. Selecting organ-on-a-chip documents by identifying words that occur before "on-a-chip".
+### 5. Selecting organ-on-a-chip documents by identifying words that occur before "on-a-chip".
 ###
 ### This step select organ-on-a-chip documents from the on-chip corpus, by choosing documents where 
 ### organ names or equivalents occur right before "onchip".
@@ -278,7 +290,7 @@ write.csv(pre_onchip_all_update, file = paste0(root_path, "csv/temps/pre_onchip_
 
 
 ###
-### 4.1. Selecting organ-on-a-chip publications.
+### 5.1. Selecting organ-on-a-chip publications.
 ###
 
 ### Loading the csv file of terms after manual screening.
@@ -333,7 +345,7 @@ data_ooc <- unique_oc_F %>%
 
 ##########
 ###
-### 5. Combining the organ-on-a-chip and microphysiological system corpora.
+### 6. Combining the organ-on-a-chip and microphysiological system corpora.
 ###
 ##########
 
@@ -368,7 +380,7 @@ dim(combined_ooc)
 
 ##########
 ###
-### 6. Deduplicating the combined organ-on-a-chip corpus
+### 7. Deduplicating the combined organ-on-a-chip corpus
 ###
 ##########
 
@@ -457,7 +469,7 @@ save(unique_ooc_F, file = paste0(root_path, "R_temps/unique_ooc_update"))
 
 ##########
 ###
-### 7. Reformatting the organ-on-a-chip corpus
+### 8. Reformatting the organ-on-a-chip corpus and adding it to the existing corpus
 ###
 ##########
 
@@ -555,7 +567,7 @@ dim(ooc_corpus)
 
 ##########
 ###
-### 8. Importing, reformatting, and deduplicating literature metadata on organoids.
+### 9. Importing, reformatting, and deduplicating literature metadata on organoids, and adding it to the existing corpus
 ###
 ### Note that initially some of the files could not be imported into R by "read_bibliography()" for an unknown reason.
 ### To overcome this issue, publications from PubMed were imported as 1) reviews only, 2) reviews + research articles.
@@ -628,7 +640,7 @@ dim(unique_or_F)
 
 
 ###
-### 8.1 Cleaning up the organoid corpus.
+### 9.1 Cleaning up the organoid corpus.
 ###
 
 ### Applying custom functions for keywords/abstract adjustment and reformatting.
@@ -712,7 +724,7 @@ colnames(organoid_corpus)
 
 ##########
 ###
-### 9. Combining orgnaoid and organ-on-a-chip corpora
+### 10. Combining orgnaoid and organ-on-a-chip corpora
 ###
 ##########
 

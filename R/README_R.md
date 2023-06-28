@@ -152,4 +152,15 @@ Code used for identifying research topics. The code uses *./R_results/all_corpus
 
 The result of the analysis was saved as: *./R_results/research_topics_F*, and *./R_results/research_topics_P*.
 
-
+## updating_corpus.R
+Code used for updating the literature corpus. The code uses *./R_results/all_corpus* and generates an R object file with the same name with new publications being added. The code is mostly identical to that in *./R/formatting.R* with a few modifications. There is a 9-month overlap of the publication period between the existing corpus and newly added publications, which was introduced to handle changes in the publication year which may happen when publication status changes from electronic to printed version. Thus, the main objectives of the code is to add new publications, update the publication year when applicable, and removed duplicate publications that already existed in the existing corpus. The code includes following steps.
+1. Saving the existing corpus as a back-up.
+2. Importing literature metadata of microphysiological systems.
+3. Deduplicating and reformatting metadata on microphysiological systems.
+4. Importing, reformatting, and deduplicating literature metadata on on-chip technology.
+5. Selecting organ-on-a-chip documents by identifying words that occur before "on-a-chip".
+6. Combining the organ-on-a-chip and microphysiological system corpora.
+7. Deduplicating the combined organ-on-a-chip corpus. 
+8. Reformatting the organ-on-a-chip corpus and adding it to the existing corpus
+9. Importing, reformatting, and deduplicating literature metadata on organoids, and adding it to the existing corpus
+10. Combining orgnaoid and organ-on-a-chip corpora
