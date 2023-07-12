@@ -85,7 +85,7 @@ Dedrograms showing hierarchical organ classifications.
 ## organ_links
 
 ### OoC_network_links.png
-### OoC_network_links.png
+### organoid_network_links.png
 
 Figures showing dendtograms of hierarchical organ classification, with links connecting organs/substructures that are researched in combination. Generated in *fig_organ_links.R*.
 

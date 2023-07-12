@@ -225,9 +225,11 @@ organ_counts <- organ_types_P %>%
   mutate(hierarchical_organ_type = gsub("body", " ", hierarchical_organ_type)) 
 
 ### From the edge list, organ categories (i.e., excluding prenatal categories) are selected. 
-edge_organ <- edge_all[1:212, 1:2] %>% 
+edge_organ <- edge_all %>% 
+  filter(!is.na(major_organ2)) %>% 
+  select(from, to) %>% 
   filter(!grepl("unspecified", to)) %>% 
-  filter(!to %in% c("prenatal", "multiple organs", "venom gland", "unidentified")) %>% 
+  filter(!to %in% c("multiple organs", "venom gland", "unidentified")) %>% 
   mutate(from = gsub("body", " ", from))
 
 ### In order to facilitate figure label customization (e.g., tilting text labels), the order of the organ categories have to match 

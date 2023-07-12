@@ -392,7 +392,7 @@ organoid_edge_SP <- fn_edge_SP(organoid_counts_SP, edge_all[, 1:2])
 organoid_network <- fn_organ_network(organoid_counts_SP, organoid_edge_SP) + 
   scale_size_continuous(limits = c(0, sqrt(10000)), breaks = c(sqrt(10), sqrt(100), sqrt(1000), sqrt(10000)), labels = c(10, 100, 1000, 10000)) + 
   theme(panel.background = element_rect(fill = "transparent"), 
-        legend.position = c(0.08, 0.17), 
+        legend.position = c(0.07, 0.17), 
         legend.title = element_text(size = 7, face = 2), 
         legend.text = element_text(size = 6), 
         legend.key.size = unit(5, "mm"))

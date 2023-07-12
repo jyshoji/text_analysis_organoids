@@ -259,7 +259,7 @@ fn_prenatal_network <- function(edge_list, vertice_data) {
                                   ifelse(corpus_type == "organoid", "organoids", 
                                          ifelse(corpus_type %in% c("OoC", "ToC"), corpus_type, NA)))
   organism_type <- ifelse(unique(vertice_data$organism) == "both", "human and mouse", unique(vertice_data$organism))
-  title_label <- paste0("Prenatal structures modelled as ", corpus_type_converted, " in ",  organism_type)
+  title_label <- paste0("Embryonic / extraembryonic structures modelled as ", corpus_type_converted, " in ",  organism_type)
   prenatal_network <- ggraph(prenatal_g_lvl3, layout = "igraph", algorithm = "tree") + 
     geom_edge_link(color = "grey50", alpha = 0.15) +
     geom_node_point(aes(size = sqrt(prenatal_total), color = adjusted_trend2), alpha = 0.8) + 
@@ -290,7 +290,7 @@ organoid_prenatal_human_counts_SP <- fn_prenatal_counts_SP(combined_prenatal_tre
 organoid_prenatal_human_edge_SP <- fn_prenatal_edge_SP(organoid_prenatal_human_counts_SP, edge_all[, 1:2])
 
 organoid_EM_human_network <- fn_prenatal_network(organoid_prenatal_human_edge_SP, organoid_prenatal_human_counts_SP) + 
-  labs(title = "A. Prenatal structures modelled as organoids in human")
+  labs(title = "A. Organoids (human)")
 
 ggsave(organoid_EM_human_network, 
        filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_human_network.pdf"),  
@@ -306,7 +306,7 @@ organoid_prenatal_mouse_counts_SP <- fn_prenatal_counts_SP(combined_prenatal_tre
 organoid_prenatal_mouse_edge_SP <- fn_prenatal_edge_SP(organoid_prenatal_mouse_counts_SP, edge_all[, 1:2])
 
 organoid_EM_mouse_network <- fn_prenatal_network(organoid_prenatal_mouse_edge_SP, organoid_prenatal_mouse_counts_SP) + 
-  labs(title = "B. Prenatal structures modelled as organoids in mice")
+  labs(title = "B. Organoids (mouse)")
 
 ggsave(organoid_EM_mouse_network, 
        filename = paste0(root_path, "results/prenatal_classifications/organoid_EM_mouse_network.pdf"),  
@@ -321,7 +321,7 @@ OoC_prenatal_HM_counts_SP <- fn_prenatal_counts_SP(combined_prenatal_trends, cor
 OoC_prenatal_HM_edge_SP <- fn_prenatal_edge_SP(OoC_prenatal_HM_counts_SP, edge_all[, 1:2])
 
 OoC_EM_HM_network <- fn_prenatal_network(OoC_prenatal_HM_edge_SP, OoC_prenatal_HM_counts_SP) + 
-  labs(title = "C. Prenatal structures modelled as OoC in human and mouse")
+  labs(title = "C. OoC (human and mouse)")
 
 ggsave(OoC_EM_HM_network, 
        filename = paste0(root_path, "results/prenatal_classifications/OoC_EM_HM_network.pdf"),  

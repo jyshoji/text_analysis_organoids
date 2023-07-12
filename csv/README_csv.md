@@ -50,13 +50,20 @@ A conversion table for research topics, used for conversions among column names,
 
 A subcorpus consisting of potential duplicate publications in the organ-on-a-chip corpus, detected by title matching. The file is based on *./csv/temps/duplicates_ooc.csv*, which was manually checked, adjusted, and saved as this file. The file was used in *./R/formatting.R* to remove duplicate publications.
 
+## duplicates_ooc_update_checked.csv
+Similar to the above *duplicates_ooc_checked.csv*, but was used when updating the literature corpus.
+
 ## duplicates_or_checked.csv
 
-Same as above, but for the organoid corpus.
+Similar to *duplicates_ooc_checked.csv*, but for organoid corpus.
+
+## duplicates_or_update_checked.csv
+
+Similar to *duplicates_ooc_checked.csv*, but was used for updating the organoid corpus.
 
 ## edge_all.csv
 
-An edge list for hierarchical organ classification. The first column represents a higher category, with a lower category in the second column. For example, a branch of the hierarchical classification *gastrointestinal* - *intestine* - *colon* is expressed as *gastrointestinal* - *intestine* in one row, and *intestine* - *colon* in another. The file also includes *major_organ* and *tumor_organ* columns, which show the highest organ category (the 1st-level organ category), and the tumor classification category, respectively, of the corresponding organ category listed in the *to* column. The file was used for hierarchical organ classification in *./R/organ_types.R* and for circular packing graphs and network graphs in *./R/fig_organ_classifications.R*, among others.
+An edge list for hierarchical organ classification. The first column (*from*) represents a higher category, with a lower category in the second column (*to*). For example, a branch of the hierarchical classification *gastrointestinal* - *intestine* - *colon* is expressed as *gastrointestinal* - *intestine* in one row, and *intestine* - *colon* in another. The file also includes *major_organ* and *tumor_group* columns, which show the highest organ category (the 1st-level organ category mostly matching the organ system level category), and the tumor classification category used in tumor organoid analysis, respectively, of the corresponding organ category listed in the *to* column. The file was used for hierarchical organ classification in *./R/organ_types.R* and for circular packing graphs and network graphs in *./R/fig_organ_classifications.R*, among others.
 
 ## minor_organisms_F.csv
 

@@ -19,7 +19,6 @@ VOSviewer/
 *.pptx
 *_old.png
 results/global_trends/parts
-results/prenatal_classifications/*_bubble.png
 results/TF_tile_F
 results/ToC
 results/organ_types
@@ -28,4 +27,4 @@ results/csv/organ_models_OoC.csv
 results/csv/organ_models_organoid.csv
 results/csv/research_topics.csv
 R_results/all_corpus
-bfg-1.14.0.jar
+

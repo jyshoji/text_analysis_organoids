@@ -2,6 +2,31 @@
 
 This folder contains R script files which are to be opened and run on RStudio.
 
+# Session info.
+R version 4.0.5 (2021-03-31)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS 12.6.6
+
+Matrix products: default
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils    
+[5] datasets  methods   base     
+
+other attached packages:
+ [1] rworldmap_1.3-6 sp_1.4-6       
+ [3] tidytext_0.4.1  ggpp_0.5.0     
+ [5] igraph_1.3.0    ggraph_2.1.0   
+ [7] forcats_0.5.2   stringr_1.4.1  
+ [9] dplyr_1.0.10    purrr_0.3.5    
+[11] readr_2.1.2     tidyr_1.2.1    
+[13] tibble_3.1.6    ggplot2_3.4.0  
+[15] tidyverse_1.3.2
+
 # Files
 
 ## README_R.md
@@ -10,7 +35,7 @@ This file.
 
 ## accuracy_tests.R
 
-Containing code used for determining accuracy of computational classifications as compared to manual classifications.
+Containing code used for determining accuracy of computational classifications as compared to manual classifications. The test has not been repeated after the literature corpus was updated on June 2023, so that it will now give a different result.  
 
 ## capturing_topics.R
 
