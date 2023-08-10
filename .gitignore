@@ -22,9 +22,6 @@ results/global_trends/parts
 results/TF_tile_F
 results/ToC
 results/organ_types
-results/csv/multi_models.csv
-results/csv/organ_models_OoC.csv
-results/csv/organ_models_organoid.csv
-results/csv/research_topics.csv
+results/csv/table_S*
 R_results/all_corpus
 

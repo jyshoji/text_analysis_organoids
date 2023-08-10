@@ -2076,7 +2076,7 @@ organ_models_organoid <- organ_types_F %>%
   select(author, year, title, doi, major_organ, organ_type) %>% 
   arrange(major_organ, organ_type, year, author)
 
-write.csv(organ_models_organoid, file = paste0(root_path, "results/csv/organ_models_organoid.csv"), row.names = FALSE)
+write.csv(organ_models_organoid, file = paste0(root_path, "results/csv/table_S1_organ_models_organoid.csv"), row.names = FALSE)
 
 
 organ_models_OoC <- organ_types_F %>% 
@@ -2086,4 +2086,4 @@ organ_models_OoC <- organ_types_F %>%
   select(author, year, title, doi, major_organ, organ_type) %>% 
   arrange(major_organ, organ_type, year, author)
 
-write.csv(organ_models_OoC, file = paste0(root_path, "results/csv/organ_models_OoC.csv"), row.names = FALSE)
+write.csv(organ_models_OoC, file = paste0(root_path, "results/csv/table_S2_organ_models_OoC.csv"), row.names = FALSE)

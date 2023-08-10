@@ -547,4 +547,4 @@ selected_publications <- research_topics_F %>%
   rename(any_of(setNames(selected_topics$category_colname, selected_topics$category_renamed))) %>% 
   arrange(corpus_F, major_organ, year, author)
 
-write.csv(selected_publications, file = paste0(root_path, "results/csv/research_topics.csv"), row.names = FALSE)
+write.csv(selected_publications, file = paste0(root_path, "results/csv/table_S4_research_topics.csv"), row.names = FALSE)

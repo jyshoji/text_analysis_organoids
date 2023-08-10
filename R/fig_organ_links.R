@@ -433,4 +433,4 @@ multi_models <- multi_model_metadata %>%
   select(author, year, title, doi, phase, corpus_F, organ_1, organ_2, n) %>% 
   arrange(corpus_F, - n, organ_2, organ_1, year, author)
 
-write.csv(multi_models, file = paste0(root_path, "results/csv/multi_models.csv"), row.names = FALSE)
+write.csv(multi_models, file = paste0(root_path, "results/csv/table_S3_multi_models.csv"), row.names = FALSE)
