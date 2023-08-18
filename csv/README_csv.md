@@ -26,7 +26,7 @@ The number of research articles in the tumor research area between 2011 and 2022
 
 1. "tumor" or "cancer" as Text Word
 2. "English" as language
-3. "2011 - 2022" as publication date range.
+3. "2011 - " as publication date range.
 4. "journal article" but not "comment", "review", "retracted publication", or "retraction of publication" as document types.
 
 ### Search strings

@@ -269,8 +269,6 @@ ToC_top20_country <- selected_trends %>%
 
 
 ### Making a custom function for drawing pie charts.
-### type_index accepts an integer between 1 to 3, with 1 corresponding to "Research article", 
-### 2 corresponding to "Review", and 3 corresponding to "Preprint".
 fn_country_pies <- function(x, corpus_type, article_type = "Research article") {
   corpus_type_converted <- ifelse(corpus_type == "tumor_organoid", "tumor", 
                                   ifelse(corpus_type %in% c("organoid", "OoC", "ToC"), corpus_type, NA))

@@ -300,6 +300,7 @@ colnames(pre_organism)
 colnames(minor_organisms_F)
 
 ### Checking the number of articles where the classifications were manually changed.
+### Skip this line if you did not manually correct the classification above.
 changed_papers <- data.frame(before = rowSums(minor_organisms[, 4:20]), after = rowSums(minor_organisms_F[, 4:20])) %>% 
   filter(!before == after)
 
