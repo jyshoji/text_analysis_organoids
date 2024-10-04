@@ -6,15 +6,18 @@ The repsitory can be used to:
 1. investigate the data (see *./README_investigating.md*)
 2. reproducing the analysis (see *./README_reproduction.md*).
 
+!! Note !!
+The read_bibliography function of the revtools package gives an error on R version 4.3.0. and later.
+See *./R/for_newer_R_versions.R* for a workaround.
+
 # Citation
 
 The paper on this analysis is published as below. 
 
 Shoji JY, Davis RP, Mummery CL, Krauss S. 
-Global Meta-Analysis of Organoid and Organ-on-Chip Research. 
-Adv Healthc Mater. 2023 Jul 21:e2301067. 
-doi: 10.1002/adhm.202301067. 
-Epub ahead of print. PMID: 37479227.
+Global Literature Analysis of Organoid and Organ-on-Chip Research. 
+Adv Healthc Mater. 2024 Aug;13(21):e2301067. 
+doi: 10.1002/adhm.202301067. Epub 2023 Aug 7. PMID: 37479227.
 
 # Terminology
 

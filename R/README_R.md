@@ -139,6 +139,10 @@ Code used for importing, deduplicating and formatting literature metadata for al
 
 The end result is a corpus of academic publications on organoids and OoCs (the latter including microphysiological systems), which was saved as *./R_results/all_corpus*, which was used for all the subsequent analysis. 
 
+## for_newer_R_versions.R
+
+Code of modified functions to be used for R version 4.3.0. and later.
+
 ## investigating.R
 
 Code and instructions on how to identify academic publications on specific topics using *./R_results/research_topics_P*. Not needed for the analysis, but instead shows how to use the generated data. 
